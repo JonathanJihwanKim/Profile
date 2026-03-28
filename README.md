@@ -32,7 +32,7 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ### GitHub Stats
 
-![Repos](https://img.shields.io/badge/Public_Repos-4-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=2AAC94) ![Stars](https://img.shields.io/badge/Total_Stars-58+-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=F2C811) ![Languages](https://img.shields.io/badge/Top_Language-Python-0c1220?style=for-the-badge&logo=python&logoColor=white&labelColor=0c1220&color=3572A5)
+![Repos](https://img.shields.io/badge/Public_Repos-4-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=2AAC94) ![Stars](https://img.shields.io/badge/Total_Stars-58+-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=F2C811)
 
 ---
 
