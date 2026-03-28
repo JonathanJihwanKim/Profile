@@ -32,12 +32,12 @@
             --text-primary: #e6edf3;
             --text-secondary: #8b949e;
             --text-muted: #6e7681;
-            --accent-gold: #e8a838;
-            --accent-blue: #4A90D9;
-            --accent-teal: #2dd4bf;
-            --accent-green: #3fb950;
-            --accent-coral: #E8634A;
-            --accent-indigo: #6366f1;
+            --accent-pbi: #F2C811;
+            --accent-pbi-dark: #EEA41A;
+            --accent-fabric: #2AAC94;
+            --accent-fabric-light: #55DDB9;
+            --accent-fabric-dark: #085954;
+            --accent-fabric-cyan: #6AD6F9;
             --border: #30363d;
             --border-light: #3d444d;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -51,7 +51,7 @@
             --shadow: 0 4px 24px rgba(0,0,0,0.3);
             --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --gradient-warm-line: linear-gradient(90deg, var(--accent-coral), var(--accent-gold), var(--accent-blue));
+            --gradient-warm-line: linear-gradient(90deg, var(--accent-fabric), var(--accent-pbi), var(--accent-pbi-dark));
         }
 
         /* ============================================
@@ -72,28 +72,28 @@
                     0deg,
                     transparent,
                     transparent 80px,
-                    rgba(232, 99, 74, 0.015) 80px,
-                    rgba(232, 99, 74, 0.015) 81px
+                    rgba(238, 164, 26, 0.015) 80px,
+                    rgba(238, 164, 26, 0.015) 81px
                 ),
                 repeating-linear-gradient(
                     90deg,
                     transparent,
                     transparent 80px,
-                    rgba(74, 144, 217, 0.008) 80px,
-                    rgba(74, 144, 217, 0.008) 81px
+                    rgba(42, 172, 148, 0.008) 80px,
+                    rgba(42, 172, 148, 0.008) 81px
                 );
             color: var(--text-primary);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
-        a { color: var(--accent-blue); text-decoration: none; transition: color var(--transition); }
-        a:hover { color: var(--accent-teal); }
+        a { color: var(--accent-fabric-cyan); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--accent-fabric); }
 
         img { max-width: 100%; display: block; }
 
         ::selection {
-            background: var(--accent-coral);
+            background: var(--accent-pbi-dark);
             color: white;
         }
 
@@ -105,7 +105,7 @@
             max-width: var(--max-width);
             margin: 0 auto;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-coral), var(--accent-gold), var(--accent-blue), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent-pbi-dark), var(--accent-pbi), var(--accent-fabric-cyan), transparent);
             opacity: 0.25;
         }
 
@@ -191,11 +191,11 @@
         }
 
         .nav-home-btn:hover {
-            color: var(--accent-gold);
-            background: rgba(245, 183, 49, 0.1);
+            color: var(--accent-pbi);
+            background: rgba(242, 200, 17, 0.1);
         }
 
-        .nav-logo span { color: var(--accent-gold); }
+        .nav-logo span { color: var(--accent-pbi); }
 
         .nav-dashboard-label {
             font-family: var(--font-mono);
@@ -232,7 +232,7 @@
             left: 0;
             width: 0;
             height: 3px;
-            background: var(--accent-gold);
+            background: var(--accent-pbi);
             border-radius: 2px 2px 0 0;
             transition: width var(--transition);
         }
@@ -275,7 +275,7 @@
         .section-label {
             font-family: var(--font-mono);
             font-size: 0.8rem;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             letter-spacing: 0.15em;
             text-transform: uppercase;
             margin-bottom: 12px;
@@ -289,9 +289,23 @@
             display: inline-block;
             width: 14px;
             height: 14px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8a838' opacity='0.7'%3E%3Crect x='1' y='9' width='3' height='6' rx='0.5'/%3E%3Crect x='6' y='5' width='3' height='10' rx='0.5'/%3E%3Crect x='11' y='1' width='3' height='14' rx='0.5'/%3E%3C/svg%3E") no-repeat center / contain;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F2C811' opacity='0.7'%3E%3Crect x='1' y='9' width='3' height='6' rx='0.5'/%3E%3Crect x='6' y='5' width='3' height='10' rx='0.5'/%3E%3Crect x='11' y='1' width='3' height='14' rx='0.5'/%3E%3C/svg%3E") no-repeat center / contain;
             opacity: 0.7;
             flex-shrink: 0;
+        }
+
+        .section-label--pbi::before {
+            background: url("assets/Power-BI.png") no-repeat center / contain;
+            width: 18px;
+            height: 18px;
+            opacity: 0.85;
+        }
+
+        .section-label--fabric::before {
+            background: url("assets/fabric.svg") no-repeat center / contain;
+            width: 18px;
+            height: 18px;
+            opacity: 0.85;
         }
 
         .section-title {
@@ -341,9 +355,9 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(ellipse at 30% 20%, rgba(74,144,217,0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 60%, rgba(240,160,48,0.06) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 80%, rgba(232,99,74,0.04) 0%, transparent 40%);
+            background: radial-gradient(ellipse at 30% 20%, rgba(42,172,148,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 60%, rgba(242,200,17,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(238,164,26,0.04) 0%, transparent 40%);
             animation: heroGlow 12s ease-in-out infinite alternate;
         }
 
@@ -376,8 +390,8 @@
             height: 240px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(245, 183, 49, 0.3);
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15), 0 0 80px rgba(245, 183, 49, 0.08);
+            border: 3px solid rgba(242, 200, 17, 0.3);
+            box-shadow: 0 0 40px rgba(42, 172, 148, 0.15), 0 0 80px rgba(242, 200, 17, 0.08);
         }
 
         .hero-badges {
@@ -395,7 +409,7 @@
 
         .hero-credential {
             font-size: 0.85rem;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             font-weight: 600;
             margin-bottom: 12px;
             letter-spacing: 0.02em;
@@ -405,12 +419,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(245, 183, 49, 0.1);
-            border: 1px solid rgba(245, 183, 49, 0.25);
+            background: rgba(242, 200, 17, 0.1);
+            border: 1px solid rgba(242, 200, 17, 0.25);
             border-radius: 999px;
             padding: 6px 16px;
             font-size: 0.85rem;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             font-weight: 600;
             margin-bottom: 28px;
         }
@@ -418,7 +432,7 @@
         .hero-badge svg {
             width: 16px;
             height: 16px;
-            fill: var(--accent-gold);
+            fill: var(--accent-pbi);
         }
 
         .hero-name {
@@ -428,7 +442,7 @@
             letter-spacing: -0.02em;
             line-height: 1.05;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 50%, var(--accent-gold) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-fabric-cyan) 50%, var(--accent-pbi) 100%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -468,7 +482,7 @@
             width: 400px;
             height: 400px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(232,99,74,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(238,164,26,0.07) 0%, transparent 70%);
             pointer-events: none;
             transform: translate(-50%, -50%);
             opacity: 0;
@@ -493,7 +507,7 @@
         }
 
         .hero-tagline strong {
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             font-weight: 600;
         }
 
@@ -516,7 +530,7 @@
         .hero-kpi-value {
             font-size: 1.05rem;
             font-weight: 700;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
         }
 
         .hero-kpi-trend {
@@ -525,7 +539,7 @@
             height: 0;
             border-left: 3.5px solid transparent;
             border-right: 3.5px solid transparent;
-            border-bottom: 5px solid var(--accent-green);
+            border-bottom: 5px solid var(--accent-fabric-light);
             margin-left: 2px;
         }
 
@@ -558,14 +572,14 @@
         }
 
         .btn-primary {
-            background: var(--accent-blue);
+            background: var(--accent-fabric-cyan);
             color: white;
         }
 
         .btn-primary:hover {
-            background: #2563eb;
+            background: #085954;
             color: white;
-            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 24px rgba(42, 172, 148, 0.3);
         }
 
         .btn-secondary {
@@ -575,8 +589,8 @@
         }
 
         .btn-secondary:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
+            border-color: var(--accent-pbi);
+            color: var(--accent-pbi);
         }
 
         /* ============================================
@@ -624,13 +638,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--card-accent, var(--accent-gold));
+            bottom: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--card-accent, var(--accent-pbi));
         }
 
         .stat-card:hover {
-            border-color: var(--card-accent, var(--accent-gold));
+            border-color: var(--card-accent, var(--accent-pbi));
             box-shadow: var(--shadow);
             transform: translateY(-2px);
         }
@@ -654,7 +669,7 @@
         .stat-number {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             letter-spacing: -0.03em;
             font-family: var(--font-mono);
             line-height: 1.1;
@@ -664,7 +679,7 @@
             font-family: var(--font-mono);
             font-size: 0.65rem;
             font-weight: 700;
-            color: var(--accent-green);
+            color: var(--accent-fabric-light);
             display: inline-flex;
             align-items: center;
             gap: 2px;
@@ -677,7 +692,7 @@
             height: 0;
             border-left: 3.5px solid transparent;
             border-right: 3.5px solid transparent;
-            border-bottom: 5px solid var(--accent-green);
+            border-bottom: 5px solid var(--accent-fabric-light);
         }
 
         .stat-sparkline {
@@ -688,38 +703,38 @@
         }
 
         .stat-sparkline--1 {
-            background: linear-gradient(90deg, rgba(232,168,56,0.05) 0%, rgba(232,168,56,0.35) 100%);
+            background: linear-gradient(90deg, rgba(238,164,26,0.05) 0%, rgba(238,164,26,0.35) 100%);
             clip-path: polygon(0% 85%, 10% 70%, 20% 75%, 35% 55%, 50% 60%, 65% 35%, 80% 25%, 100% 10%, 100% 100%, 0% 100%);
         }
         .stat-sparkline--2 {
-            background: linear-gradient(90deg, rgba(74,144,217,0.05) 0%, rgba(74,144,217,0.35) 100%);
+            background: linear-gradient(90deg, rgba(42,172,148,0.05) 0%, rgba(42,172,148,0.35) 100%);
             clip-path: polygon(0% 90%, 15% 50%, 30% 55%, 45% 25%, 55% 30%, 70% 15%, 85% 20%, 100% 5%, 100% 100%, 0% 100%);
         }
         .stat-sparkline--3 {
-            background: linear-gradient(90deg, rgba(45,212,191,0.05) 0%, rgba(45,212,191,0.35) 100%);
+            background: linear-gradient(90deg, rgba(42,172,148,0.05) 0%, rgba(42,172,148,0.35) 100%);
             clip-path: polygon(0% 80%, 12% 65%, 25% 70%, 40% 45%, 55% 50%, 68% 30%, 82% 35%, 100% 15%, 100% 100%, 0% 100%);
         }
         .stat-sparkline--4 {
-            background: linear-gradient(90deg, rgba(232,99,74,0.05) 0%, rgba(232,99,74,0.35) 100%);
+            background: linear-gradient(90deg, rgba(238,164,26,0.05) 0%, rgba(238,164,26,0.35) 100%);
             clip-path: polygon(0% 75%, 14% 60%, 28% 65%, 42% 40%, 56% 45%, 70% 20%, 84% 25%, 100% 8%, 100% 100%, 0% 100%);
         }
         .stat-sparkline--5 {
-            background: linear-gradient(90deg, rgba(99,102,241,0.05) 0%, rgba(99,102,241,0.35) 100%);
+            background: linear-gradient(90deg, rgba(8,89,84,0.05) 0%, rgba(8,89,84,0.35) 100%);
             clip-path: polygon(0% 70%, 16% 55%, 32% 60%, 48% 35%, 60% 40%, 72% 22%, 86% 28%, 100% 12%, 100% 100%, 0% 100%);
         }
         .stat-sparkline--6 {
-            background: linear-gradient(90deg, rgba(232,168,56,0.05) 0%, rgba(232,168,56,0.35) 100%);
+            background: linear-gradient(90deg, rgba(238,164,26,0.05) 0%, rgba(238,164,26,0.35) 100%);
             clip-path: polygon(0% 82%, 13% 68%, 26% 72%, 39% 50%, 52% 55%, 65% 32%, 78% 38%, 100% 18%, 100% 100%, 0% 100%);
         }
         .stat-sparkline--7 {
-            background: linear-gradient(90deg, rgba(74,144,217,0.05) 0%, rgba(74,144,217,0.35) 100%);
+            background: linear-gradient(90deg, rgba(42,172,148,0.05) 0%, rgba(42,172,148,0.35) 100%);
             clip-path: polygon(0% 78%, 11% 62%, 24% 68%, 38% 42%, 54% 48%, 69% 28%, 83% 32%, 100% 14%, 100% 100%, 0% 100%);
         }
 
         .mvp-callout {
             margin-top: 32px;
-            background: linear-gradient(135deg, rgba(245,183,49,0.08), rgba(59,130,246,0.08));
-            border: 1px solid rgba(245,183,49,0.2);
+            background: linear-gradient(135deg, rgba(242,200,17,0.08), rgba(42,172,148,0.08));
+            border: 1px solid rgba(242,200,17,0.2);
             border-radius: var(--radius);
             padding: 24px;
             display: flex;
@@ -747,7 +762,7 @@
         }
 
         .mvp-text strong {
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
         }
 
         /* ============================================
@@ -766,7 +781,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(180deg, var(--accent-blue), var(--accent-gold), var(--border));
+            background: linear-gradient(180deg, var(--accent-fabric-cyan), var(--accent-pbi), var(--border));
         }
 
         .timeline-item {
@@ -785,13 +800,13 @@
             height: 16px;
             border-radius: 50%;
             background: var(--bg-primary);
-            border: 3px solid var(--accent-blue);
+            border: 3px solid var(--accent-fabric-cyan);
             z-index: 1;
         }
 
         .timeline-item.current .timeline-dot {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 12px rgba(245,183,49,0.4);
+            border-color: var(--accent-pbi);
+            box-shadow: 0 0 12px rgba(242,200,17,0.4);
         }
 
         .timeline-header {
@@ -811,8 +826,8 @@
         .timeline-current-badge {
             font-family: var(--font-mono);
             font-size: 0.7rem;
-            background: rgba(245,183,49,0.15);
-            color: var(--accent-gold);
+            background: rgba(242,200,17,0.15);
+            color: var(--accent-pbi);
             padding: 2px 10px;
             border-radius: 999px;
             font-weight: 600;
@@ -821,7 +836,7 @@
 
         .timeline-role {
             font-size: 1rem;
-            color: var(--accent-blue);
+            color: var(--accent-fabric-cyan);
             font-weight: 600;
             margin-bottom: 4px;
         }
@@ -830,6 +845,33 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-bottom: 12px;
+        }
+
+        .timeline-tech-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            opacity: 0.75;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+            margin-left: -4px;
+        }
+
+        .hero-tech-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 2px;
+            opacity: 0.7;
+        }
+
+        .capability-card-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 12px;
+            opacity: 0.8;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
         }
 
         .timeline-achievements {
@@ -854,11 +896,11 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--accent-teal);
+            background: var(--accent-fabric);
         }
 
         .timeline-achievements .metric {
-            color: var(--accent-green);
+            color: var(--accent-fabric-light);
             font-weight: 700;
             font-family: var(--font-mono);
             font-size: 0.88rem;
@@ -866,8 +908,8 @@
 
         /* ---- Key Achievements Card ---- */
         .timeline-key-achievements {
-            background: linear-gradient(135deg, rgba(245,183,49,0.06), rgba(59,130,246,0.06));
-            border: 1px solid rgba(245,183,49,0.15);
+            background: linear-gradient(135deg, rgba(242,200,17,0.06), rgba(42,172,148,0.06));
+            border: 1px solid rgba(242,200,17,0.15);
             border-radius: var(--radius-sm);
             padding: 20px 24px;
             margin: 16px 0 20px;
@@ -876,7 +918,7 @@
         .timeline-key-achievements-title {
             font-family: var(--font-mono);
             font-size: 0.72rem;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             letter-spacing: 0.1em;
             text-transform: uppercase;
             margin-bottom: 16px;
@@ -923,7 +965,7 @@
         }
 
         .skill-group:hover {
-            border-color: var(--accent-blue);
+            border-color: var(--accent-fabric-cyan);
             box-shadow: var(--shadow);
         }
 
@@ -941,7 +983,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent-blue);
+            background: var(--accent-fabric-cyan);
         }
 
         .skill-item {
@@ -961,9 +1003,9 @@
         .skill-years {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--accent-gold);
-            background: rgba(245, 183, 49, 0.1);
-            border: 1px solid rgba(245, 183, 49, 0.2);
+            color: var(--accent-pbi);
+            background: rgba(242, 200, 17, 0.1);
+            border: 1px solid rgba(242, 200, 17, 0.2);
             border-radius: 999px;
             padding: 2px 10px;
             white-space: nowrap;
@@ -1035,7 +1077,7 @@
         }
 
         .project-card:hover {
-            border-color: var(--accent-blue);
+            border-color: var(--accent-fabric-cyan);
             box-shadow: var(--shadow-lg);
         }
 
@@ -1058,7 +1100,7 @@
             gap: 4px;
             font-family: var(--font-mono);
             font-size: 0.85rem;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             font-weight: 600;
         }
 
@@ -1073,7 +1115,7 @@
         .project-stars svg {
             width: 14px;
             height: 14px;
-            fill: var(--accent-gold);
+            fill: var(--accent-pbi);
         }
 
         .project-desc {
@@ -1093,9 +1135,9 @@
         .project-tag {
             font-size: 0.75rem;
             font-family: var(--font-mono);
-            color: var(--accent-teal);
-            background: rgba(45, 212, 191, 0.08);
-            border: 1px solid rgba(45, 212, 191, 0.2);
+            color: var(--accent-fabric);
+            background: rgba(42, 172, 148, 0.08);
+            border: 1px solid rgba(42, 172, 148, 0.2);
             padding: 3px 10px;
             border-radius: 999px;
         }
@@ -1106,10 +1148,10 @@
             gap: 6px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--accent-blue);
+            color: var(--accent-fabric-cyan);
         }
 
-        .project-link:hover { color: var(--accent-teal); }
+        .project-link:hover { color: var(--accent-fabric); }
 
         .project-link svg {
             width: 16px;
@@ -1123,7 +1165,7 @@
             gap: 6px;
             font-size: 0.82rem;
             font-weight: 600;
-            color: var(--accent-coral);
+            color: var(--accent-pbi-dark);
             cursor: pointer;
             margin-top: 12px;
             padding: 6px 0;
@@ -1131,7 +1173,7 @@
             user-select: none;
         }
 
-        .project-expand-trigger:hover { color: var(--accent-gold); }
+        .project-expand-trigger:hover { color: var(--accent-pbi); }
 
         .project-expand-trigger svg {
             width: 16px;
@@ -1167,7 +1209,7 @@
         .case-study-label {
             font-family: var(--font-mono);
             font-size: 0.7rem;
-            color: var(--accent-coral);
+            color: var(--accent-pbi-dark);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 4px;
@@ -1221,14 +1263,14 @@
         }
 
         .cert-badge:hover {
-            border-color: var(--accent-blue);
+            border-color: var(--accent-fabric-cyan);
         }
 
         .cert-badge .cert-icon {
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: var(--accent-blue);
+            background: var(--accent-fabric-cyan);
         }
 
         .cert-badge--expired {
@@ -1289,16 +1331,16 @@
 
         .awards-range--superuser {
             top: 0;
-            background: linear-gradient(90deg, rgba(59,130,246,0.25), rgba(59,130,246,0.45));
-            border: 1.5px solid rgba(59,130,246,0.5);
-            box-shadow: 0 2px 12px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+            background: linear-gradient(90deg, rgba(42,172,148,0.25), rgba(42,172,148,0.45));
+            border: 1.5px solid rgba(42,172,148,0.5);
+            box-shadow: 0 2px 12px rgba(42,172,148,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
         }
 
         .awards-range--mvp {
             top: 46px;
-            background: linear-gradient(90deg, rgba(245,183,49,0.3), rgba(245,183,49,0.5));
-            border: 1.5px solid rgba(245,183,49,0.55);
-            box-shadow: 0 2px 12px rgba(245,183,49,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+            background: linear-gradient(90deg, rgba(242,200,17,0.3), rgba(242,200,17,0.5));
+            border: 1.5px solid rgba(242,200,17,0.55);
+            box-shadow: 0 2px 12px rgba(242,200,17,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
         }
 
         .awards-range-img {
@@ -1321,8 +1363,8 @@
         .awards-range-badge {
             font-family: var(--font-mono);
             font-size: 0.6rem;
-            background: rgba(245,183,49,0.15);
-            color: var(--accent-gold);
+            background: rgba(242,200,17,0.15);
+            color: var(--accent-pbi);
             padding: 1px 8px;
             border-radius: 999px;
             font-weight: 600;
@@ -1331,8 +1373,8 @@
         }
 
         .awards-range--superuser .awards-range-badge {
-            background: rgba(59,130,246,0.15);
-            color: var(--accent-blue);
+            background: rgba(42,172,148,0.15);
+            color: var(--accent-fabric-cyan);
         }
 
         .awards-range::after {
@@ -1344,14 +1386,14 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent-gold);
-            box-shadow: 0 0 8px rgba(245,183,49,0.6);
+            background: var(--accent-pbi);
+            box-shadow: 0 0 8px rgba(242,200,17,0.6);
             animation: awardPulse 2.5s ease-in-out infinite;
         }
 
         .awards-range--superuser::after {
-            background: var(--accent-blue);
-            box-shadow: 0 0 8px rgba(59,130,246,0.6);
+            background: var(--accent-fabric-cyan);
+            box-shadow: 0 0 8px rgba(42,172,148,0.6);
         }
 
         @keyframes awardPulse {
@@ -1363,7 +1405,7 @@
         .awards-axis {
             position: relative;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-gold));
+            background: linear-gradient(90deg, var(--accent-fabric-cyan), var(--accent-pbi));
             border-radius: 1px;
         }
 
@@ -1404,11 +1446,11 @@
         }
 
         .awards-axis-year--present::before {
-            background: var(--accent-gold);
+            background: var(--accent-pbi);
         }
 
         .awards-axis-year--present span {
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
         }
 
         /* Point events (below axis) */
@@ -1426,7 +1468,7 @@
             height: 14px;
             border-radius: 50%;
             background: var(--bg-primary);
-            border: 3px solid var(--accent-blue);
+            border: 3px solid var(--accent-fabric-cyan);
             z-index: 3;
             transition: all var(--transition);
             transform: scale(0);
@@ -1440,8 +1482,8 @@
         }
 
         .awards-point:hover .awards-point-dot {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 12px rgba(59,130,246,0.4);
+            border-color: var(--accent-pbi);
+            box-shadow: 0 0 12px rgba(42,172,148,0.4);
             transform: scale(1.3);
         }
 
@@ -1496,7 +1538,7 @@
             font-family: var(--font-mono);
             font-size: 0.6rem;
             font-weight: 700;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             text-transform: uppercase;
             letter-spacing: 0.12em;
             opacity: 0.7;
@@ -1505,12 +1547,12 @@
 
         /* IKEA achievement points — second row, gold accent */
         .awards-point--ikea .awards-point-dot {
-            border-color: var(--accent-gold);
+            border-color: var(--accent-pbi);
         }
 
         .awards-point--ikea:hover .awards-point-dot {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 12px rgba(245,183,49,0.4);
+            border-color: var(--accent-pbi);
+            box-shadow: 0 0 12px rgba(242,200,17,0.4);
         }
 
         .awards-point--ikea .awards-point-label {
@@ -1518,7 +1560,7 @@
         }
 
         .awards-point--ikea .awards-point-label strong {
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
         }
 
         .awards-point--ikea .awards-point-source {
@@ -1554,7 +1596,7 @@
         }
 
         .community-card:hover {
-            border-color: var(--accent-blue);
+            border-color: var(--accent-fabric-cyan);
             box-shadow: var(--shadow);
         }
 
@@ -1573,7 +1615,7 @@
         .community-stat {
             font-family: var(--font-mono);
             font-size: 0.85rem;
-            color: var(--accent-teal);
+            color: var(--accent-fabric);
         }
 
         .community-links-list {
@@ -1594,19 +1636,19 @@
         }
 
         .community-links-list a {
-            color: var(--accent-blue);
+            color: var(--accent-fabric-cyan);
             font-weight: 600;
             font-size: 0.88rem;
             text-decoration: none;
         }
 
         .community-links-list a:hover {
-            color: var(--accent-teal);
+            color: var(--accent-fabric);
         }
 
         .community-links-list .stat-inline {
             font-family: var(--font-mono);
-            color: var(--accent-teal);
+            color: var(--accent-fabric);
             font-size: 0.82rem;
             font-weight: 600;
         }
@@ -1630,7 +1672,7 @@
         }
 
         .motivation-highlight {
-            border-left: 3px solid var(--accent-gold);
+            border-left: 3px solid var(--accent-pbi);
             padding-left: 20px;
             margin: 32px 0;
             font-style: italic;
@@ -1646,8 +1688,8 @@
         }
 
         .vision-next {
-            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(245,183,49,0.08));
-            border: 1px solid rgba(59,130,246,0.2);
+            background: linear-gradient(135deg, rgba(42,172,148,0.08), rgba(242,200,17,0.08));
+            border: 1px solid rgba(42,172,148,0.2);
             border-radius: var(--radius);
             padding: 28px;
         }
@@ -1655,7 +1697,7 @@
         .vision-next-title {
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--accent-blue);
+            color: var(--accent-fabric-cyan);
             margin-bottom: 16px;
             display: flex;
             align-items: center;
@@ -1686,7 +1728,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--accent-blue);
+            background: var(--accent-fabric-cyan);
         }
 
         .vision-next-items li strong {
@@ -1722,8 +1764,8 @@
         }
 
         .contact-link:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
+            border-color: var(--accent-fabric-cyan);
+            color: var(--accent-fabric-cyan);
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
@@ -1766,6 +1808,7 @@
         .chart-container {
             background: var(--bg-card);
             border: 1px solid var(--border);
+            border-top: 2px solid var(--accent-pbi);
             border-radius: var(--radius);
             padding: 24px;
             margin-top: 40px;
@@ -1784,6 +1827,8 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -1795,7 +1840,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent-blue);
+            background: var(--accent-fabric-cyan);
         }
 
         .community-chart-container {
@@ -1832,9 +1877,9 @@
            URGENCY BANNER
            ============================================ */
         .urgency-banner {
-            background: linear-gradient(135deg, rgba(232, 99, 74, 0.08) 0%, rgba(232, 168, 56, 0.08) 50%, rgba(99, 102, 241, 0.08) 100%);
-            border-top: 1px solid rgba(232, 168, 56, 0.15);
-            border-bottom: 1px solid rgba(232, 168, 56, 0.15);
+            background: linear-gradient(135deg, rgba(238, 164, 26, 0.08) 0%, rgba(238, 164, 26, 0.08) 50%, rgba(8, 89, 84, 0.08) 100%);
+            border-top: 1px solid rgba(238, 164, 26, 0.15);
+            border-bottom: 1px solid rgba(238, 164, 26, 0.15);
             padding: 56px 24px;
         }
 
@@ -1846,7 +1891,7 @@
         .urgency-banner-title {
             font-family: var(--font-display);
             font-size: 1.5rem;
-            color: var(--accent-coral);
+            color: var(--accent-pbi-dark);
             text-align: center;
             margin-bottom: 36px;
         }
@@ -1860,7 +1905,7 @@
         .urgency-card {
             padding: 24px;
             background: rgba(26, 35, 50, 0.6);
-            border: 1px solid rgba(232, 168, 56, 0.15);
+            border: 1px solid rgba(238, 164, 26, 0.15);
             border-radius: var(--radius);
             transition: all var(--transition);
             position: relative;
@@ -1874,25 +1919,25 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent-coral);
+            background: var(--accent-pbi-dark);
             animation: urgencyPulse 2s ease-in-out infinite;
         }
 
         @keyframes urgencyPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(232,99,74,0.4); }
-            50% { box-shadow: 0 0 0 6px rgba(232,99,74,0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(238,164,26,0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(238,164,26,0); }
         }
 
         .urgency-card:hover {
-            border-color: var(--accent-coral);
-            box-shadow: 0 4px 20px rgba(232, 99, 74, 0.1);
+            border-color: var(--accent-pbi-dark);
+            box-shadow: 0 4px 20px rgba(238, 164, 26, 0.1);
         }
 
         .urgency-card-headline {
             font-family: var(--font-mono);
             font-size: 0.85rem;
             font-weight: 700;
-            color: var(--accent-coral);
+            color: var(--accent-pbi-dark);
             margin-bottom: 10px;
             line-height: 1.3;
         }
@@ -1904,7 +1949,7 @@
         }
 
         .urgency-card-text strong {
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
         }
 
         /* ============================================
@@ -1934,11 +1979,11 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--card-accent, var(--accent-blue));
+            background: var(--card-accent, var(--accent-fabric-cyan));
         }
 
         .capability-card:hover {
-            border-color: var(--card-accent, var(--accent-blue));
+            border-color: var(--card-accent, var(--accent-fabric-cyan));
             box-shadow: var(--shadow);
             transform: translateY(-2px);
         }
@@ -1959,7 +2004,7 @@
 
         .capability-card-proof {
             font-size: 0.78rem;
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             font-weight: 600;
             margin-bottom: 16px;
         }
@@ -1986,15 +2031,28 @@
             background: rgba(139, 148, 158, 0.1);
             border-radius: 3px;
             margin-top: 20px;
-            overflow: hidden;
+            overflow: visible;
+            position: relative;
         }
 
         .capability-progress-fill {
             height: 100%;
             border-radius: 3px;
-            background: var(--card-accent, var(--accent-blue));
+            background: linear-gradient(90deg, var(--card-accent, var(--accent-fabric-cyan)), color-mix(in srgb, var(--card-accent, var(--accent-fabric-cyan)), white 20%));
             width: 0;
             transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .capability-progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 2px;
+            height: 10px;
+            background: var(--card-accent, var(--accent-fabric-cyan));
+            border-radius: 1px;
         }
 
         .capability-progress-fill.animated {
@@ -2015,7 +2073,7 @@
         }
 
         .social-proof-strip span {
-            color: var(--accent-gold);
+            color: var(--accent-pbi);
             font-weight: 600;
         }
 
@@ -2169,7 +2227,7 @@
                     <img src="assets/mvp-badge.png" alt="Microsoft MVP Badge" />
                     <img src="assets/superuser-badge.png" alt="Power BI & Microsoft Fabric Community Super User Badge" />
                 </div>
-                <p class="hero-credential">Microsoft MVP | Power BI & Microsoft Fabric Community Super User</p>
+                <p class="hero-credential"><img src="assets/Power-BI.png" alt="" class="hero-tech-icon" aria-hidden="true"><img src="assets/fabric.svg" alt="" class="hero-tech-icon" aria-hidden="true"> Microsoft MVP | Power BI & Microsoft Fabric Community Super User</p>
                 <h1 class="hero-name">Jihwan Kim</h1>
                 <p class="hero-title">Enterprise BI Architect & Microsoft Fabric Strategist</p>
                 <p class="hero-tagline">
@@ -2190,7 +2248,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
                         See My Impact
                     </a>
-                    <a href="#urgency" class="btn btn-secondary" style="border-color: var(--accent-coral); color: var(--accent-coral);">
+                    <a href="#urgency" class="btn btn-secondary" style="border-color: var(--accent-pbi-dark); color: var(--accent-pbi-dark);">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                         Why Hire Me Now
                     </a>
@@ -2198,7 +2256,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Download CV
                     </a>
-                    <a href="career-description.html" class="btn btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">
+                    <a href="career-description.html" class="btn btn-secondary" style="border-color: var(--accent-fabric); color: var(--accent-fabric);">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Career Description
                     </a>
@@ -2239,7 +2297,7 @@
         <!-- ====== ABOUT ====== -->
         <section class="section" id="about">
             <div class="reveal">
-                <p class="section-label">About Me</p>
+                <p class="section-label section-label--pbi">About Me</p>
                 <h2 class="section-title">The Enterprise Fabric Architect<br>Who Already Built the Tooling</h2>
             </div>
             <div class="about-grid">
@@ -2276,7 +2334,7 @@
                 </div>
                 <div class="reveal">
                     <div class="stats-grid">
-                        <div class="stat-card" style="--card-accent: var(--accent-gold);">
+                        <div class="stat-card" style="--card-accent: var(--accent-pbi);">
                             <div class="stat-label">Users Served</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="30000">0</div>
@@ -2284,7 +2342,7 @@
                             </div>
                             <div class="stat-sparkline stat-sparkline--1" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card" style="--card-accent: var(--accent-blue);">
+                        <div class="stat-card" style="--card-accent: var(--accent-fabric-cyan);">
                             <div class="stat-label">Refresh Time Reduced</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="90" data-suffix="%+">0</div>
@@ -2292,7 +2350,7 @@
                             </div>
                             <div class="stat-sparkline stat-sparkline--2" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card" style="--card-accent: var(--accent-teal);">
+                        <div class="stat-card" style="--card-accent: var(--accent-fabric);">
                             <div class="stat-label">Model Size Reduction</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="30" data-suffix="%">0</div>
@@ -2300,7 +2358,7 @@
                             </div>
                             <div class="stat-sparkline stat-sparkline--3" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card" style="--card-accent: var(--accent-coral);">
+                        <div class="stat-card" style="--card-accent: var(--accent-pbi-dark);">
                             <div class="stat-label">Performance Gain</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="25" data-suffix="%">0</div>
@@ -2308,7 +2366,7 @@
                             </div>
                             <div class="stat-sparkline stat-sparkline--4" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card" style="--card-accent: var(--accent-indigo);">
+                        <div class="stat-card" style="--card-accent: var(--accent-fabric-dark);">
                             <div class="stat-label">Open-Source Tools</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="4">0</div>
@@ -2316,7 +2374,7 @@
                             </div>
                             <div class="stat-sparkline stat-sparkline--5" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card" style="--card-accent: var(--accent-gold);">
+                        <div class="stat-card" style="--card-accent: var(--accent-pbi);">
                             <div class="stat-label">Years Power BI</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="8" data-suffix="+">0</div>
@@ -2324,7 +2382,7 @@
                             </div>
                             <div class="stat-sparkline stat-sparkline--6" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card" style="--card-accent: var(--accent-blue);">
+                        <div class="stat-card" style="--card-accent: var(--accent-fabric-cyan);">
                             <div class="stat-label">Years Microsoft Fabric</div>
                             <div class="stat-value-row">
                                 <div class="stat-number" data-target="2" data-suffix="+">0</div>
@@ -2341,7 +2399,7 @@
         <section class="section" id="portfolio" style="background: var(--bg-secondary); max-width: 100%; padding-left: 0; padding-right: 0;">
             <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 24px;">
                 <div class="reveal">
-                    <p class="section-label">Open Source</p>
+                    <p class="section-label section-label--pbi">Open Source</p>
                     <h2 class="section-title">Open-Source Tools</h2>
                     <p class="section-subtitle">The DevOps tooling that enterprises need for PBIR/TMDL governance&mdash;built from real-world pain at IKEA scale, free and open-source.</p>
                     <p class="social-proof-strip"><span>58+</span> GitHub stars &bull; <span>4</span> tools &bull; Solving PBIP/TMDL/PBIR governance for Power BI teams worldwide</p>
@@ -2361,7 +2419,7 @@
                                     <span class="project-stars-date">Mar 2026</span>
                                 </span>
                             </div>
-                            <p class="project-desc">Generates comprehensive documentation from Power BI semantic models. Automatically extracts measures, tables, relationships, and metadata into structured, readable output. <em style="color: var(--accent-gold); font-style: normal;">Used by enterprise teams managing 100+ semantic models who need automated governance documentation.</em></p>
+                            <p class="project-desc">Generates comprehensive documentation from Power BI semantic models. Automatically extracts measures, tables, relationships, and metadata into structured, readable output. <em style="color: var(--accent-pbi); font-style: normal;">Used by enterprise teams managing 100+ semantic models who need automated governance documentation.</em></p>
                             <div class="project-tags">
                                 <span class="project-tag">JavaScript</span>
                                 <span class="project-tag">PBIP</span>
@@ -2405,7 +2463,7 @@
                                     <span class="project-stars-date">Mar 2026</span>
                                 </span>
                             </div>
-                            <p class="project-desc">Traces DAX measure dependencies from visuals to source columns in PBIP projects. Includes commit-by-commit change intelligence&mdash;see exactly what changed, when, and which visuals are impacted across 30+ change types. <em style="color: var(--accent-gold); font-style: normal;">Essential for teams adopting Git-based workflows who need to understand impact before merging.</em></p>
+                            <p class="project-desc">Traces DAX measure dependencies from visuals to source columns in PBIP projects. Includes commit-by-commit change intelligence&mdash;see exactly what changed, when, and which visuals are impacted across 30+ change types. <em style="color: var(--accent-pbi); font-style: normal;">Essential for teams adopting Git-based workflows who need to understand impact before merging.</em></p>
                             <div class="project-tags">
                                 <span class="project-tag">JavaScript</span>
                                 <span class="project-tag">DAX Lineage</span>
@@ -2450,7 +2508,7 @@
                                     <span class="project-stars-date">Mar 2026</span>
                                 </span>
                             </div>
-                            <p class="project-desc">Bulk-manage filter visibility and layer order in PBIR reports. Eliminates tedious manual clicking through Edit Interactions for complex multi-visual reports. <em style="color: var(--accent-gold); font-style: normal;">Built for the PBIR transition&mdash;the first tool to enable bulk management of PBIR visual properties.</em></p>
+                            <p class="project-desc">Bulk-manage filter visibility and layer order in PBIR reports. Eliminates tedious manual clicking through Edit Interactions for complex multi-visual reports. <em style="color: var(--accent-pbi); font-style: normal;">Built for the PBIR transition&mdash;the first tool to enable bulk management of PBIR visual properties.</em></p>
                             <div class="project-tags">
                                 <span class="project-tag">JavaScript</span>
                                 <span class="project-tag">PBIR</span>
@@ -2494,7 +2552,7 @@
                                     <span class="project-stars-date">Mar 2026</span>
                                 </span>
                             </div>
-                            <p class="project-desc">Analyze impact of changes and safely refactor PBIP semantic models. Know exactly which visuals, measures, and reports are affected before making changes. <em style="color: var(--accent-gold); font-style: normal;">The safety net for enterprise refactoring&mdash;know what breaks before you break it.</em></p>
+                            <p class="project-desc">Analyze impact of changes and safely refactor PBIP semantic models. Know exactly which visuals, measures, and reports are affected before making changes. <em style="color: var(--accent-pbi); font-style: normal;">The safety net for enterprise refactoring&mdash;know what breaks before you break it.</em></p>
                             <div class="project-tags">
                                 <span class="project-tag">JavaScript</span>
                                 <span class="project-tag">Impact Analysis</span>
@@ -2532,7 +2590,7 @@
         <section class="section" id="career" style="background: var(--bg-secondary); max-width: 100%; padding-left: 0; padding-right: 0;">
             <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 24px;">
                 <div class="reveal">
-                    <p class="section-label">Career</p>
+                    <p class="section-label section-label--pbi">Career</p>
                     <h2 class="section-title">Enterprise-Scale Impact</h2>
                     <p class="section-subtitle">Two decades of supply chain domain expertise combined with deep BI architecture&mdash;a rare combination at Fortune 500 scale.</p>
                 </div>
@@ -2546,11 +2604,12 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-header">
                             <span class="timeline-company">IKEA</span>
+                            <img src="assets/Power-BI.png" alt="" class="timeline-tech-icon" width="20" height="20" aria-hidden="true"><img src="assets/fabric.svg" alt="" class="timeline-tech-icon" width="20" height="20" aria-hidden="true">
                             <span class="timeline-current-badge">CURRENT</span>
                         </div>
                         <div class="timeline-role">Data Analyst | Power BI Developer</div>
                         <div class="timeline-meta">Feb 2023 &ndash; Present &middot; Amsterdam, Netherlands</div>
-                        <div style="font-size: 0.82rem; color: var(--accent-teal); margin-bottom: 12px; font-weight: 500;">Scope: Customer Fulfilment, Inventory &amp; Logistics Insights&mdash;serving IKEA's global supply chain analytics operations</div>
+                        <div style="font-size: 0.82rem; color: var(--accent-fabric); margin-bottom: 12px; font-weight: 500;">Scope: Customer Fulfilment, Inventory &amp; Logistics Insights&mdash;serving IKEA's global supply chain analytics operations</div>
                         <ul class="timeline-achievements">
                             <li>Architect semantic models and analytics pipelines on <strong>Microsoft Fabric</strong> and Power BI serving <span class="metric">30,000+</span> users across the global supply chain organization</li>
                         </ul>
@@ -2558,15 +2617,15 @@
                             <div class="timeline-key-achievements-title">Key Achievements</div>
                             <div class="timeline-key-achievement">
                                 <div class="timeline-key-achievement-name">Semantic Model Development Process Optimization</div>
-                                <div class="timeline-key-achievement-desc">Implemented systematic parameterization &mdash; source control parameters, row count control, and data integrity parameters &mdash; making the development process controllable and reproducible across environments. <strong style="color: var(--accent-green);">Result: reproducible deployments across 3 environments, eliminating deployment failures and reducing release time by 70%.</strong></div>
+                                <div class="timeline-key-achievement-desc">Implemented systematic parameterization &mdash; source control parameters, row count control, and data integrity parameters &mdash; making the development process controllable and reproducible across environments. <strong style="color: var(--accent-fabric-light);">Result: reproducible deployments across 3 environments, eliminating deployment failures and reducing release time by 70%.</strong></div>
                             </div>
                             <div class="timeline-key-achievement">
                                 <div class="timeline-key-achievement-name">Git Integration &amp; Source Control Architecture</div>
-                                <div class="timeline-key-achievement-desc">Designed a new architecture achieving full source control and version control for Power BI artifacts (PBIP/TMDL), with CI/CD pipelines via Azure DevOps and GitHub. <strong style="color: var(--accent-green);">Result: zero-downtime deployments, full audit trail for compliance, and 50% faster onboarding for new team members.</strong></div>
+                                <div class="timeline-key-achievement-desc">Designed a new architecture achieving full source control and version control for Power BI artifacts (PBIP/TMDL), with CI/CD pipelines via Azure DevOps and GitHub. <strong style="color: var(--accent-fabric-light);">Result: zero-downtime deployments, full audit trail for compliance, and 50% faster onboarding for new team members.</strong></div>
                             </div>
                             <div class="timeline-key-achievement">
                                 <div class="timeline-key-achievement-name">Direct Lake &amp; Composite Model Migration</div>
-                                <div class="timeline-key-achievement-desc">Migrated legacy Import-mode models to composite models with Direct Lake mode &mdash; achieving developer efficiency with <span class="metric">90%+</span> refresh elimination and optimized CU usage, plus end-user satisfaction with more data and <span class="metric">25%</span> better query performance. <strong style="color: var(--accent-green);">Result: near real-time analytics for 30,000+ supply chain users, enabling faster inventory decisions and reducing data latency from hours to minutes.</strong></div>
+                                <div class="timeline-key-achievement-desc">Migrated legacy Import-mode models to composite models with Direct Lake mode &mdash; achieving developer efficiency with <span class="metric">90%+</span> refresh elimination and optimized CU usage, plus end-user satisfaction with more data and <span class="metric">25%</span> better query performance. <strong style="color: var(--accent-fabric-light);">Result: near real-time analytics for 30,000+ supply chain users, enabling faster inventory decisions and reducing data latency from hours to minutes.</strong></div>
                             </div>
                         </div>
                         <ul class="timeline-achievements">
@@ -2582,6 +2641,7 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-header">
                             <span class="timeline-company">ITVT Group</span>
+                            <img src="assets/Power-BI.png" alt="" class="timeline-tech-icon" width="20" height="20" aria-hidden="true">
                         </div>
                         <div class="timeline-role">Senior Business Intelligence Analyst</div>
                         <div class="timeline-meta">Jun 2022 &ndash; Jan 2023 &middot; Utrecht, Netherlands</div>
@@ -2598,6 +2658,7 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-header">
                             <span class="timeline-company">GXO Logistics</span>
+                            <img src="assets/Power-BI.png" alt="" class="timeline-tech-icon" width="20" height="20" aria-hidden="true">
                         </div>
                         <div class="timeline-role">Business Intelligence Analyst</div>
                         <div class="timeline-meta">Jun 2021 &ndash; May 2022 &middot; Schiphol-Rijk, Netherlands</div>
@@ -2613,6 +2674,7 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-header">
                             <span class="timeline-company">Supply Chain Flow</span>
+                            <img src="assets/Power-BI.png" alt="" class="timeline-tech-icon" width="20" height="20" aria-hidden="true">
                         </div>
                         <div class="timeline-role">Supply Chain Data Analyst (Freelance)</div>
                         <div class="timeline-meta">Feb 2020 &ndash; May 2021 &middot; Amsterdam, Netherlands</div>
@@ -2642,7 +2704,7 @@
 
                 <!-- Education -->
                 <div class="reveal" style="margin-top: 48px; padding-left: 40px;">
-                    <h3 class="sub-heading" style="color: var(--accent-gold);">Education</h3>
+                    <h3 class="sub-heading" style="color: var(--accent-pbi);">Education</h3>
                     <div style="display: flex; flex-direction: column; gap: 16px; padding-left: 32px;">
                         <div>
                             <div style="font-weight: 700;">Rotterdam Business School</div>
@@ -2662,12 +2724,13 @@
         <!-- ====== SKILLS ====== -->
         <section class="section" id="skills">
             <div class="reveal">
-                <p class="section-label">Strategic Capabilities</p>
+                <p class="section-label section-label--fabric">Strategic Capabilities</p>
                 <h2 class="section-title">What I Deliver</h2>
                 <p class="section-subtitle">Not just technical skills&mdash;strategic capabilities proven at enterprise scale, each backed by measurable outcomes.</p>
             </div>
             <div class="capability-grid">
-                <div class="capability-card reveal" style="--card-accent: var(--accent-blue);">
+                <div class="capability-card reveal" style="--card-accent: var(--accent-fabric-cyan);">
+                    <img src="assets/fabric.svg" alt="" class="capability-card-icon" aria-hidden="true">
                     <div class="capability-card-title">Enterprise Fabric Migration</div>
                     <div class="capability-card-desc">Architect end-to-end migrations from legacy Import-mode Power BI to Direct Lake composite models on Microsoft Fabric. Design lakehouse architecture, optimize Fabric capacity (CU), and deliver near real-time analytics at scale.</div>
                     <div class="capability-card-proof">Proven at IKEA: 30,000+ users, 90%+ refresh elimination, 25% CU savings</div>
@@ -2682,7 +2745,8 @@
                     </div>
                     <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 92%;"></div></div>
                 </div>
-                <div class="capability-card reveal" style="--card-accent: var(--accent-teal);">
+                <div class="capability-card reveal" style="--card-accent: var(--accent-fabric);">
+                    <img src="assets/Power-BI.png" alt="" class="capability-card-icon" aria-hidden="true">
                     <div class="capability-card-title">DevOps &amp; CI/CD Governance</div>
                     <div class="capability-card-desc">Design Git-based version control and CI/CD pipelines for Power BI using PBIP, TMDL, and PBIR. Build the tooling that makes enterprise BI governance automated, repeatable, and audit-ready.</div>
                     <div class="capability-card-proof">4 open-source governance tools with 58+ GitHub stars. IKEA-scale CI/CD architecture.</div>
@@ -2697,7 +2761,8 @@
                     </div>
                     <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 85%;"></div></div>
                 </div>
-                <div class="capability-card reveal" style="--card-accent: var(--accent-gold);">
+                <div class="capability-card reveal" style="--card-accent: var(--accent-pbi);">
+                    <img src="assets/Power-BI.png" alt="" class="capability-card-icon" aria-hidden="true">
                     <div class="capability-card-title">Semantic Modeling &amp; Performance Engineering</div>
                     <div class="capability-card-desc">Architect star-schema semantic models, optimize DAX at the formula and storage engine level, tune Fabric capacity, and integrate AI into the development workflow for 3x faster iteration.</div>
                     <div class="capability-card-proof">Proven at IKEA: 30% model size reduction, 25% query performance gain, 3x dev speed with AI</div>
@@ -2711,7 +2776,7 @@
                     </div>
                     <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 95%;"></div></div>
                 </div>
-                <div class="capability-card reveal" style="--card-accent: var(--accent-coral);">
+                <div class="capability-card reveal" style="--card-accent: var(--accent-pbi-dark);">
                     <div class="capability-card-title">Domain: Supply Chain &amp; Retail</div>
                     <div class="capability-card-desc">Translate complex supply chain operations into analytics that drive decisions&mdash;not just reports. Two decades of domain expertise means I speak the language of operations, finance, and logistics, not just data.</div>
                     <div class="capability-card-proof">Proven at IKEA, GXO Logistics, Samsung SDS Cello. 20+ years domain expertise.</div>
@@ -2743,7 +2808,7 @@
                             <div class="cert-badge"><span class="cert-icon"></span>PL-300: Power BI Data Analyst</div>
                             <div class="cert-badge"><span class="cert-icon"></span>DP-600: Fabric Analytics Engineer</div>
                             <div class="cert-badge"><span class="cert-icon"></span>AZ-900: Azure Fundamentals</div>
-                            <div class="cert-badge"><span class="cert-icon" style="background: var(--accent-teal)"></span>Power Platform Fundamentals</div>
+                            <div class="cert-badge"><span class="cert-icon" style="background: var(--accent-fabric)"></span>Power Platform Fundamentals</div>
                         </div>
                     </div>
                     <div class="cert-group" style="margin-top: 8px;">
@@ -2841,13 +2906,13 @@
         <section class="section" id="community" style="background: var(--bg-secondary); max-width: 100%; padding-left: 0; padding-right: 0;">
             <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 24px;">
                 <div class="reveal">
-                    <p class="section-label">Community</p>
+                    <p class="section-label section-label--pbi">Community</p>
                     <h2 class="section-title">Blog & Community</h2>
                     <p class="section-subtitle">Sharing knowledge through writing, mentoring, and open-source contributions.</p>
                 </div>
                 <div class="community-grid">
                     <a href="https://powerbimvp.com/" class="community-card reveal" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
-                        <div class="community-card-title" style="color: var(--accent-gold);">powerbimvp.com</div>
+                        <div class="community-card-title" style="color: var(--accent-pbi);">powerbimvp.com</div>
                         <p class="community-card-desc">
                             Deep dives into Power BI, PBIR, DAX, Microsoft Fabric, and DevOps for BI.
                             Sharing discoveries, patterns, and practical techniques from real enterprise work.
@@ -2917,7 +2982,7 @@
                 </div>
                 <div class="vision-next reveal">
                     <div class="vision-next-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-fabric-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         What I'll Deliver
                     </div>
                     <ul class="vision-next-items">
@@ -2936,7 +3001,7 @@
                 <p class="section-label">Get in Touch</p>
                 <h2 class="section-title">Let's Discuss Your Fabric Strategy</h2>
                 <p class="section-subtitle">Exploring senior enterprise BI architecture roles at Fortune 500 organizations in The Netherlands. If your team faces a Fabric migration, PBIR transition, or needs to scale Power BI governance&mdash;let's talk.</p>
-                <p style="font-size: 0.85rem; color: var(--accent-teal); margin-top: 8px;">Power BI Architect &bull; Fabric Platform Lead &bull; Enterprise Analytics Director &bull; Based in Amsterdam</p>
+                <p style="font-size: 0.85rem; color: var(--accent-fabric); margin-top: 8px;">Power BI Architect &bull; Fabric Platform Lead &bull; Enterprise Analytics Director &bull; Based in Amsterdam</p>
             </div>
             <div class="contact-links reveal">
                 <div class="contact-item">
@@ -2959,11 +3024,11 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                     Blog
                 </a>
-                <a href="cv.html" class="contact-link" style="border-color: var(--accent-gold); color: var(--accent-gold);">
+                <a href="cv.html" class="contact-link" style="border-color: var(--accent-pbi); color: var(--accent-pbi);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     Download CV
                 </a>
-                <a href="career-description.html" class="contact-link" style="border-color: var(--accent-teal); color: var(--accent-teal);">
+                <a href="career-description.html" class="contact-link" style="border-color: var(--accent-fabric); color: var(--accent-fabric);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     Career Description
                 </a>
@@ -3228,7 +3293,7 @@
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const container = document.querySelector('.hero-particles');
             if (!container) return;
-            const colors = ['var(--accent-coral)', 'var(--accent-gold)', 'var(--accent-blue)'];
+            const colors = ['var(--accent-pbi-dark)', 'var(--accent-pbi)', 'var(--accent-fabric-cyan)'];
             for (let i = 0; i < 15; i++) {
                 const p = document.createElement('div');
                 p.className = 'hero-particle';
@@ -3297,28 +3362,45 @@
             var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             try {
-                // Career Impact Trajectory - Area Chart
+                // Career Impact Trajectory - Area Chart (milestone-mapped)
                 var careerContainer = document.querySelector('#careerChart');
                 var careerEl = document.querySelector('#careerChartEl');
+                var milestones = [
+                    'Samsung SDS \u2014 Career pivot: discovered power of data analytics',
+                    'Freelance \u2014 Built Power BI practice + CSCP, MCSA certifications',
+                    'GXO Logistics \u2014 10+ EU sites, Power BI Super User nomination',
+                    'ITVT + Microsoft MVP Award (one of ~250 worldwide)',
+                    'IKEA \u2014 Enterprise Fabric architect, 30K+ users',
+                    '30K users on Direct Lake, 90%+ refresh elimination',
+                    'Open-source tools (58+ GitHub stars), community growth',
+                    'MVP renewal, PBIR tooling pioneer, peak enterprise impact'
+                ];
                 if (careerContainer && careerEl) {
+                    var isMobile = window.innerWidth < 768;
                     var careerChart = new ApexCharts(careerEl, {
                         chart: {
                             type: 'area',
-                            height: 180,
+                            height: isMobile ? 200 : 260,
                             background: 'transparent',
                             toolbar: { show: false },
                             animations: { enabled: !reducedMotion, easing: 'easeinout', speed: 1200 },
                             fontFamily: 'Inter, sans-serif'
                         },
-                        series: [{ name: 'Impact Scale', data: [10, 20, 35, 50, 65, 80, 90, 95] }],
-                        colors: ['#4A90D9'],
+                        series: [{ name: 'Enterprise Impact', data: [15, 25, 40, 60, 75, 85, 92, 97] }],
+                        colors: ['#F2C811'],
                         fill: {
                             type: 'gradient',
-                            gradient: { shade: 'dark', type: 'vertical', opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 100] }
+                            gradient: {
+                                shade: 'dark', type: 'vertical', opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 100],
+                                colorStops: [
+                                    { offset: 0, color: '#F2C811', opacity: 0.35 },
+                                    { offset: 100, color: '#2AAC94', opacity: 0.05 }
+                                ]
+                            }
                         },
                         stroke: { curve: 'smooth', width: 3 },
-                        markers: { size: 5, colors: ['#e8a838'], strokeWidth: 0, hover: { size: 7 } },
-                        grid: { borderColor: '#30363d', strokeDashArray: 4, padding: { left: 8, right: 8 } },
+                        markers: { size: 5, colors: ['#2AAC94'], strokeColors: '#F2C811', strokeWidth: 2, hover: { size: 8 } },
+                        grid: { borderColor: '#30363d', strokeDashArray: 4, padding: { left: 8, right: 8, top: isMobile ? 0 : 20 } },
                         xaxis: {
                             categories: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
                             labels: { style: { colors: '#8b949e', fontFamily: 'Inter', fontSize: '11px' } },
@@ -3326,13 +3408,34 @@
                             axisTicks: { color: '#30363d' }
                         },
                         yaxis: { show: false },
+                        annotations: isMobile ? {} : {
+                            points: [
+                                { x: '2019', y: 15, marker: { size: 0 }, label: { text: 'Career pivot to BI', borderColor: '#F2C811', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
+                                { x: '2021', y: 40, marker: { size: 0 }, label: { text: 'Super User \u00b7 10+ EU sites', borderColor: '#2AAC94', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
+                                { x: '2022', y: 60, marker: { size: 0 }, label: { text: 'Microsoft MVP Award', borderColor: '#F2C811', offsetY: -8, style: { color: '#F2C811', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
+                                { x: '2023', y: 75, marker: { size: 0 }, label: { text: 'IKEA \u00b7 Enterprise Fabric', borderColor: '#2AAC94', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
+                                { x: '2026', y: 97, marker: { size: 0 }, label: { text: 'Peak Impact', borderColor: '#F2C811', offsetY: -8, style: { color: '#F2C811', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } } } }
+                            ]
+                        },
                         tooltip: {
                             theme: 'dark',
                             style: { fontFamily: 'Inter' },
-                            x: { show: true },
-                            marker: { show: true }
+                            custom: function(opts) {
+                                var idx = opts.dataPointIndex;
+                                var year = 2019 + idx;
+                                return '<div style="padding:8px 12px;font-size:12px;max-width:240px;">' +
+                                    '<div style="color:#F2C811;font-weight:700;margin-bottom:4px;">' + year + '</div>' +
+                                    '<div style="color:#c9d1d9;">' + milestones[idx] + '</div></div>';
+                            }
                         },
-                        dataLabels: { enabled: false }
+                        dataLabels: { enabled: false },
+                        responsive: [{
+                            breakpoint: 768,
+                            options: {
+                                chart: { height: 200 },
+                                markers: { size: 4, hover: { size: 6 } }
+                            }
+                        }]
                     });
                     careerChart.render();
                     careerContainer.classList.add('loaded');
@@ -3351,7 +3454,7 @@
                             fontFamily: 'Inter, sans-serif'
                         },
                         series: [90],
-                        colors: ['#e8a838'],
+                        colors: ['#F2C811'],
                         plotOptions: {
                             radialBar: {
                                 hollow: { size: '55%', background: 'transparent' },
@@ -3363,7 +3466,7 @@
                                         fontSize: '20px',
                                         fontFamily: "'Cascadia Code', 'Fira Code', monospace",
                                         fontWeight: 800,
-                                        color: '#e8a838',
+                                        color: '#F2C811',
                                         offsetY: -12,
                                         formatter: function() { return '2,700+'; }
                                     }

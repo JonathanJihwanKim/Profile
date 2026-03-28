@@ -4,9 +4,9 @@
 
 **Enterprise BI Architect** | Microsoft Fabric | Power BI
 
-[![View Portfolio](https://img.shields.io/badge/View_Portfolio_%E2%86%92-E8A838?style=for-the-badge)](https://jonathanjihwankim.github.io/Profile/)
+[![View Portfolio](https://img.shields.io/badge/View_Portfolio_%E2%86%92-F2C811?style=for-the-badge)](https://jonathanjihwankim.github.io/Profile/)
 
-![Users](https://img.shields.io/badge/Users_Served-30,000+-E8A838?style=flat-square&logo=powerbi&logoColor=white) ![Solutions](https://img.shields.io/badge/Community_Solutions-2,700+-4A90D9?style=flat-square&logo=microsoft&logoColor=white) ![Stars](https://img.shields.io/badge/GitHub_Stars-58+-2dd4bf?style=flat-square&logo=github&logoColor=white) ![Experience](https://img.shields.io/badge/Power_BI-8+_Years-E8634A?style=flat-square) ![Fabric](https://img.shields.io/badge/Fabric-2+_Years-6366f1?style=flat-square)
+![Users](https://img.shields.io/badge/Users_Served-30,000+-F2C811?style=flat-square&logo=powerbi&logoColor=white) ![Solutions](https://img.shields.io/badge/Community_Solutions-2,700+-2AAC94?style=flat-square&logo=microsoft&logoColor=white) ![Stars](https://img.shields.io/badge/GitHub_Stars-58+-55DDB9?style=flat-square&logo=github&logoColor=white) ![Experience](https://img.shields.io/badge/Power_BI-8+_Years-EEA41A?style=flat-square) ![Fabric](https://img.shields.io/badge/Fabric-2+_Years-085954?style=flat-square)
 
 ---
 
@@ -23,18 +23,18 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 | Repository | What it does | Stars |
 |------------|-------------|-------|
-| [pbip-documenter](https://github.com/JonathanJihwanKim/pbip-documenter) | Generates semantic model documentation from PBIP metadata | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-documenter?style=flat-square&color=E8A838&label=) |
-| [pbip-lineage-explorer](https://github.com/JonathanJihwanKim/pbip-lineage-explorer) | Visualizes end-to-end data lineage across models | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-lineage-explorer?style=flat-square&color=E8A838&label=) |
-| [isHiddenInViewMode](https://github.com/JonathanJihwanKim/isHiddenInViewMode) | Bulk toggles visual visibility for governance control | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/isHiddenInViewMode?style=flat-square&color=E8A838&label=) |
-| [pbip-impact-analyzer](https://github.com/JonathanJihwanKim/pbip-impact-analyzer) | Analyzes change impact before refactoring semantic models | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-impact-analyzer?style=flat-square&color=E8A838&label=) |
+| [pbip-documenter](https://github.com/JonathanJihwanKim/pbip-documenter) | Generates semantic model documentation from PBIP metadata | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-documenter?style=flat-square&color=F2C811&label=) |
+| [pbip-lineage-explorer](https://github.com/JonathanJihwanKim/pbip-lineage-explorer) | Visualizes end-to-end data lineage across models | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-lineage-explorer?style=flat-square&color=F2C811&label=) |
+| [isHiddenInViewMode](https://github.com/JonathanJihwanKim/isHiddenInViewMode) | Bulk toggles visual visibility for governance control | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/isHiddenInViewMode?style=flat-square&color=F2C811&label=) |
+| [pbip-impact-analyzer](https://github.com/JonathanJihwanKim/pbip-impact-analyzer) | Analyzes change impact before refactoring semantic models | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-impact-analyzer?style=flat-square&color=F2C811&label=) |
 
 ---
 
 ### GitHub Stats
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=JonathanJihwanKim&show_icons=true&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=e8a838&icon_color=4A90D9&text_color=8b949e&ring_color=e8a838)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=JonathanJihwanKim&show_icons=true&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&icon_color=2AAC94&text_color=8b949e&ring_color=F2C811)
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=JonathanJihwanKim&layout=compact&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=e8a838&text_color=8b949e)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=JonathanJihwanKim&layout=compact&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&text_color=8b949e)
 
 ---
 
