@@ -10,8 +10,8 @@
 
 ---
 
-- **Microsoft MVP** in Power BI — one of ~250 worldwide
-- Architecting enterprise Fabric analytics at Fortune 500 scale — **30,000+ users** across **15 semantic models** powering **30 reports**
+- **Microsoft MVP** in Power BI — fewer than 200 worldwide
+- Architecting enterprise Fabric analytics at Fortune 500 scale — **30,000+ users**, **500M+ records** across **15 semantic models** powering **30 reports**
 - Creator of open-source PBIP governance tools — **58+ GitHub stars** across 4 repositories
 - Supply chain & logistics domain expertise — Samsung SDS, GXO Logistics, IKEA
 
