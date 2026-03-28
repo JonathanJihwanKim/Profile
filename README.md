@@ -1,16 +1,23 @@
+![Microsoft MVP — Power BI](https://img.shields.io/badge/Microsoft_MVP-Power_BI-F7B730?style=for-the-badge&logo=microsoft&logoColor=white)
+
 # Jihwan Kim
 
 **Enterprise BI Architect** | Microsoft Fabric | Power BI
 
-**[View Portfolio](https://jonathanjihwankim.github.io/Profile/)** · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)
+[![View Portfolio](https://img.shields.io/badge/View_Portfolio_%E2%86%92-E8A838?style=for-the-badge)](https://jonathanjihwankim.github.io/Profile/)
 
 ---
 
-- Microsoft MVP architecting enterprise Fabric migrations at Fortune 500 scale — 30,000+ users, 500M+ records
-- Creator of open-source PBIP governance tools adopted across the Power BI ecosystem
-- Supply chain & logistics domain expertise spanning Samsung SDS, GXO Logistics, and IKEA
+- **Microsoft MVP** in Power BI — one of ~250 worldwide
+- Architecting enterprise Fabric analytics at Fortune 500 scale — **30,000+ users** across **15 semantic models** powering **30 reports**
+- Creator of open-source PBIP governance tools — **58+ GitHub stars** across 4 repositories
+- Supply chain & logistics domain expertise — Samsung SDS, GXO Logistics, IKEA
+
+---
 
 ## Open-Source Tools
+
+Tools I built to solve real enterprise Power BI governance problems.
 
 | Repository | What it does | Stars |
 |------------|-------------|-------|
@@ -19,14 +26,8 @@
 | [isHiddenInViewMode](https://github.com/JonathanJihwanKim/isHiddenInViewMode) | Bulk toggles visual visibility for governance control | 8 |
 | [pbip-impact-analyzer](https://github.com/JonathanJihwanKim/pbip-impact-analyzer) | Analyzes change impact before refactoring semantic models | 3 |
 
-## Portfolio & CV
+---
 
-| | |
-|---|---|
-| [Portfolio](https://jonathanjihwankim.github.io/Profile/) | Career timeline, enterprise projects, skills, and achievements |
-| [CV](https://jonathanjihwankim.github.io/Profile/cv.html) | Printable resume (screen and print optimized) |
-| [Career Description](https://jonathanjihwankim.github.io/Profile/career-description.html) | Detailed achievement case studies with measurable impact |
+![PL-300](https://img.shields.io/badge/PL--300-0078D4?style=flat-square) ![DP-600](https://img.shields.io/badge/DP--600-0078D4?style=flat-square) ![AZ-900](https://img.shields.io/badge/AZ--900-0078D4?style=flat-square)
 
-## Contact
-
-**Email:** jonathan.jihwankim@gmail.com · **LinkedIn:** [jihwankim1975](https://www.linkedin.com/in/jihwankim1975/) · **Blog:** [powerbimvp.com](https://powerbimvp.com/)
+<sub>jonathan.jihwankim@gmail.com · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)</sub>
