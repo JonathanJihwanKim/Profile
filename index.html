@@ -1814,6 +1814,12 @@
             margin-top: 40px;
             margin-bottom: 16px;
             display: none;
+            overflow: visible;
+        }
+
+        .chart-container .apexcharts-tooltip {
+            overflow: visible !important;
+            white-space: nowrap;
         }
 
         .chart-container.loaded {
@@ -3370,10 +3376,10 @@
                     'Freelance \u2014 Built Power BI practice + CSCP, MCSA certifications',
                     'GXO Logistics \u2014 10+ EU sites, Power BI Super User nomination',
                     'ITVT + Microsoft MVP Award (one of ~250 worldwide)',
-                    'IKEA \u2014 Enterprise Fabric architect, 30K+ users',
-                    '30K users on Direct Lake, 90%+ refresh elimination',
-                    'Open-source tools (58+ GitHub stars), community growth',
-                    'MVP renewal, PBIR tooling pioneer, peak enterprise impact'
+                    'IKEA \u2014 Joined as Power BI developer, enterprise analytics',
+                    'Version control source + git integration, open-source tools (58+ GitHub stars)',
+                    'Enterprise Fabric architect, 30K+ users, Direct Lake migration, 90%+ refresh elimination',
+                    'Peak enterprise impact'
                 ];
                 if (careerContainer && careerEl) {
                     var isMobile = window.innerWidth < 768;
@@ -3400,7 +3406,7 @@
                         },
                         stroke: { curve: 'smooth', width: 3 },
                         markers: { size: 5, colors: ['#2AAC94'], strokeColors: '#F2C811', strokeWidth: 2, hover: { size: 8 } },
-                        grid: { borderColor: '#30363d', strokeDashArray: 4, padding: { left: 8, right: 8, top: isMobile ? 0 : 20 } },
+                        grid: { borderColor: '#30363d', strokeDashArray: 4, padding: { left: 8, right: 24, top: isMobile ? 0 : 20 } },
                         xaxis: {
                             categories: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
                             labels: { style: { colors: '#8b949e', fontFamily: 'Inter', fontSize: '11px' } },
@@ -3413,8 +3419,8 @@
                                 { x: '2019', y: 15, marker: { size: 0 }, label: { text: 'Career pivot to BI', borderColor: '#F2C811', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
                                 { x: '2021', y: 40, marker: { size: 0 }, label: { text: 'Super User \u00b7 10+ EU sites', borderColor: '#2AAC94', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
                                 { x: '2022', y: 60, marker: { size: 0 }, label: { text: 'Microsoft MVP Award', borderColor: '#F2C811', offsetY: -8, style: { color: '#F2C811', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
-                                { x: '2023', y: 75, marker: { size: 0 }, label: { text: 'IKEA \u00b7 Enterprise Fabric', borderColor: '#2AAC94', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
-                                { x: '2026', y: 97, marker: { size: 0 }, label: { text: 'Peak Impact', borderColor: '#F2C811', offsetY: -8, style: { color: '#F2C811', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } } } }
+                                { x: '2025', y: 92, marker: { size: 0 }, label: { text: 'IKEA \u00b7 Enterprise Fabric', borderColor: '#2AAC94', offsetY: -8, style: { color: '#e6edf3', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', padding: { left: 6, right: 6, top: 3, bottom: 3 } } } },
+                                { x: '2026', y: 97, marker: { size: 0 }, label: { text: 'Peak Impact', borderColor: '#F2C811', offsetX: -30, offsetY: -8, style: { color: '#F2C811', background: '#1a2332', fontSize: '9px', fontFamily: 'Inter', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } } } }
                             ]
                         },
                         tooltip: {
@@ -3423,7 +3429,7 @@
                             custom: function(opts) {
                                 var idx = opts.dataPointIndex;
                                 var year = 2019 + idx;
-                                return '<div style="padding:8px 12px;font-size:12px;max-width:240px;">' +
+                                return '<div style="padding:8px 12px;font-size:12px;white-space:nowrap;">' +
                                     '<div style="color:#F2C811;font-weight:700;margin-bottom:4px;">' + year + '</div>' +
                                     '<div style="color:#c9d1d9;">' + milestones[idx] + '</div></div>';
                             }
