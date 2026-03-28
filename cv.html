@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jihwan Kim — CV</title>
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ── Variables via custom properties ── */
+  :root {
+    --bg: #0f1a2e;
+    --surface: #132040;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --gold: #f5b731;
+    --blue: #3b82f6;
+    --teal: #2dd4bf;
+    --border: #30363d;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Layout ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .topbar a { color: var(--text-muted); font-size: 0.875rem; }
+  .topbar a:hover { color: var(--gold); }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--gold);
+    color: #0d1117;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.45rem 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: opacity .2s;
+  }
+  .btn-print:hover { opacity: .85; }
+
+  /* ── Header ── */
+  .cv-header { margin-bottom: 1.6rem; }
+  .cv-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .cv-header .title {
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-weight: 500;
+    margin-top: 0.15rem;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .meta span { white-space: nowrap; }
+
+  /* ── Sections ── */
+  .section { margin-bottom: 1.5rem; }
+  .section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── Summary ── */
+  .summary {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Experience ── */
+  .job { margin-bottom: 1.1rem; }
+  .job:last-child { margin-bottom: 0; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+  }
+  .job-header h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .job-header h3 span { color: var(--gold); font-weight: 500; }
+  .job-header .period {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .job ul {
+    list-style: none;
+    margin-top: 0.3rem;
+    padding-left: 0;
+  }
+  .job li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+    line-height: 1.5;
+  }
+  .job li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--border);
+  }
+
+  /* ── Education ── */
+  .edu-item {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  .edu-item strong { color: var(--text); }
+  .edu-item .period { color: var(--text-muted); font-size: 0.8rem; }
+
+  /* ── Certifications ── */
+  .cert-list {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+  .cert-list .sep { color: var(--border); margin: 0 0.15rem; }
+
+  /* ── Projects ── */
+  .project { margin-bottom: 0.45rem; }
+  .project-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  .project-stars {
+    font-size: 0.78rem;
+    color: var(--gold);
+    margin-left: 0.3rem;
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+  }
+
+  /* ── Awards ── */
+  .awards-list {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── Skills ── */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .skill-tag {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ═══════════════════════════════════
+     PRINT STYLESHEET
+     ═══════════════════════════════════ */
+  @media print {
+    @page {
+      size: A4;
+      margin: 1.5cm;
+    }
+
+    html { font-size: 11px; }
+
+    body {
+      background: #fff;
+      color: #111;
+      line-height: 1.4;
+    }
+
+    a { color: #111; }
+
+    .topbar, .btn-print { display: none !important; }
+
+    .page {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .cv-header h1 { font-size: 1.8rem; color: #111; }
+    .cv-header .title { color: #333; font-size: 1rem; }
+    .meta { color: #444; font-size: 0.82rem; gap: 0.3rem 1rem; }
+
+    .section { margin-bottom: 1rem; }
+    .section-title {
+      color: #111;
+      border-bottom: 1.5px solid #bbb;
+      font-size: 0.78rem;
+      padding-bottom: 0.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary { color: #333; font-size: 0.88rem; }
+
+    .job { margin-bottom: 0.7rem; }
+    .job-header h3 { color: #111; font-size: 0.9rem; }
+    .job-header h3 span { color: #444; }
+    .job-header .period { color: #555; }
+    .job li { color: #333; font-size: 0.82rem; padding-left: 0.8rem; margin-bottom: 0.1rem; }
+    .job li::before { color: #999; }
+
+    .edu-item { font-size: 0.85rem; }
+    .edu-item strong { color: #111; }
+    .edu-item .period { color: #555; }
+
+    .cert-list { color: #333; font-size: 0.82rem; }
+    .cert-list .sep { color: #aaa; }
+
+    .project-name { color: #111; font-size: 0.85rem; }
+    .project-stars { color: #666; }
+    .project-desc { color: #333; font-size: 0.8rem; }
+    .project { margin-bottom: 0.3rem; }
+
+    .awards-list { color: #333; font-size: 0.82rem; }
+
+    .skill-tag {
+      border-color: #ccc;
+      color: #333;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.4rem;
+    }
+    .skills-list { gap: 0.25rem; }
+
+    /* avoid page-break inside blocks */
+    .job, .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Top bar (screen only) -->
+  <div class="topbar">
+    <a href="index.html">&larr; Back to site</a>
+    <button class="btn-print" onclick="window.print()">&#128438; Print this CV</button>
+  </div>
+
+  <!-- Header -->
+  <header class="cv-header">
+    <h1>Jihwan Kim</h1>
+    <div class="title">Power BI Developer &amp; Data Model Architect</div>
+    <div class="meta">
+      <span>Amsterdam, Netherlands</span>
+      <span><a href="mailto:jonathan.jihwankim@gmail.com">jonathan.jihwankim@gmail.com</a></span>
+      <span><a href="https://linkedin.com/in/jihwankim1975" target="_blank">linkedin.com/in/jihwankim1975</a></span>
+      <span><a href="https://github.com/JonathanJihwanKim" target="_blank">github.com/JonathanJihwanKim</a></span>
+      <span><a href="https://powerbimvp.com" target="_blank">powerbimvp.com</a></span>
+    </div>
+  </header>
+
+  <!-- Professional Summary -->
+  <section class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary">Microsoft MVP | Power BI Developer &amp; Data Model Architect with 8+ years of Power BI experience and 2+ years of Microsoft Fabric expertise. Power BI &amp; Microsoft Fabric Community Super User. Builds enterprise-scale analytics on Microsoft Fabric and Power BI serving 30,000+ users. Combines deep technical expertise in semantic modeling, DAX optimization, and CI/CD governance with supply chain business acumen. Creator of open-source Power BI developer tools. AI-augmented workflow pioneer boosting development speed 3x.</p>
+  </section>
+
+  <!-- Experience -->
+  <section class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>IKEA <span>— Data Analyst / Power BI Developer</span></h3>
+        <span class="period">Feb 2023 – Present · Amsterdam</span>
+      </div>
+      <ul>
+        <li>Architect semantic models and analytics pipelines on Microsoft Fabric within Customer Fulfilment, Inventory &amp; Logistics Insights</li>
+        <li>Built Direct Lake semantic model serving 5,000+ users with 500M+ records, cutting refresh time by 65%</li>
+        <li>Streamlined semantic models: 30% model size reduction and 25% performance gain</li>
+        <li>Improved Fabric Premium capacity usage by 25% through AI-supported analysis</li>
+        <li>Embedded AI copilots into DAX authoring and performance diagnostics, boosting development speed 3x</li>
+        <li>Designed CI/CD pipelines (Azure DevOps / GitHub) for versioned Power BI artifacts</li>
+        <li>Mentor analysts in AI-augmented semantic modeling and query optimization</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>ITVT Group <span>— Senior BI Analyst</span></h3>
+        <span class="period">Jun 2022 – Jan 2023 · Utrecht</span>
+      </div>
+      <ul>
+        <li>Enterprise Power BI solutions across Supply Chain, Logistics, CRM, HR, PM integrated with Dynamics 365</li>
+        <li>Created logistics dashboard cutting weekly reporting from 6 hours to 10 minutes</li>
+        <li>Optimized query folding and DAX logic, improving report load times by 40–60%</li>
+        <li>Built reusable Power BI templates for faster client rollouts</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>GXO Logistics <span>— BI Analyst</span></h3>
+        <span class="period">Jun 2021 – May 2022 · Schiphol-Rijk</span>
+      </div>
+      <ul>
+        <li>Power BI Dataflows, datasets, and reports for 10+ EU sites</li>
+        <li>Weekly Stability, Monthly Business Review, and Productivity dashboards</li>
+        <li>Nominated Power BI Super User by Microsoft for technical leadership</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Supply Chain Flow <span>— Freelance Data Analyst</span></h3>
+        <span class="period">Feb 2020 – May 2021 · Amsterdam</span>
+      </div>
+      <ul>
+        <li>Power BI insights on freight pricing, process bottleneck analysis, cash flow visibility</li>
+        <li>Launched FlowAnalysis.co for data modeling and supply chain analytics content</li>
+        <li>Earned CSCP, MCSA BI Reporting, MCT, MOS Excel Expert certifications</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Samsung SDS Cello Logistics <span>— Business Development Manager</span></h3>
+        <span class="period">Feb 2019 – Feb 2020 · Delft</span>
+      </div>
+      <ul>
+        <li>Key Account Management across global air/ocean freight, European trucking, warehouse handling</li>
+        <li>Operational analytics: shipment visibility, SLA root-cause analysis, cost-to-serve modeling</li>
+        <li>Asia-Europe trade lane optimization with data-driven carrier selection</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-item"><strong>Rotterdam Business School</strong> — Master in Logistics Management <span class="period">(2018–2019)</span></div>
+    <div class="edu-item"><strong>Korea University</strong> — Bachelor in Geology <span class="period">(1994–2001)</span></div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="section">
+    <div class="section-title">Certifications</div>
+    <div class="cert-list">
+      PL-300: Power BI Data Analyst <span class="sep">|</span>
+      DP-600: Fabric Analytics Engineer <span class="sep">|</span>
+      DP-700: Fabric Data Engineer <span class="sep">|</span>
+      AZ-900: Azure Fundamentals <span class="sep">|</span>
+      DP-900: Data Fundamentals <span class="sep">|</span>
+      APICS CSCP <span class="sep">|</span>
+      MCSA: BI Reporting <span class="sep">|</span>
+      MCT: Microsoft Certified Trainer <span class="sep">|</span>
+      MOS: Excel Expert <span class="sep">|</span>
+      Power Platform Fundamentals
+    </div>
+  </section>
+
+  <!-- Open-Source Projects -->
+  <section class="section">
+    <div class="section-title">Open-Source Projects</div>
+    <div class="project">
+      <span class="project-name">pbip-documenter</span><span class="project-stars">&#9733; 27</span>
+      <span class="project-desc"> — Auto-generate documentation from Power BI semantic models</span>
+    </div>
+    <div class="project">
+      <span class="project-name">pbip-lineage-explorer</span><span class="project-stars">&#9733; 19</span>
+      <span class="project-desc"> — Trace DAX measure lineage from visuals to source columns</span>
+    </div>
+    <div class="project">
+      <span class="project-name">isHiddenInViewMode</span><span class="project-stars">&#9733; 8</span>
+      <span class="project-desc"> — Bulk-manage filter visibility in PBIR reports</span>
+    </div>
+    <div class="project">
+      <span class="project-name">pbip-impact-analyzer</span><span class="project-stars">&#9733; 3</span>
+      <span class="project-desc"> — Analyze impact and safely refactor PBIP models</span>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="section">
+    <div class="section-title">Awards</div>
+    <div class="awards-list">
+      Microsoft MVP (Multi-Year) <span class="sep" style="color:var(--border);margin:0 0.15rem">|</span>
+      Fabric Community Super User FY24/25 &amp; FY25/26 <span class="sep" style="color:var(--border);margin:0 0.15rem">|</span>
+      Power BI Community Spotlight Apr 2024 <span class="sep" style="color:var(--border);margin:0 0.15rem">|</span>
+      Maven Hall of Fame <span class="sep" style="color:var(--border);margin:0 0.15rem">|</span>
+      Data Analysis Challenge Winner <span class="sep" style="color:var(--border);margin:0 0.15rem">|</span>
+      Power BI Challenge Winner <span class="sep" style="color:var(--border);margin:0 0.15rem">|</span>
+      Excellence Thesis Award
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section">
+    <div class="section-title">Skills</div>
+    <div class="skills-list">
+      <span class="skill-tag">Power BI Desktop/Service</span>
+      <span class="skill-tag">DAX</span>
+      <span class="skill-tag">Power Query/M</span>
+      <span class="skill-tag">Semantic Models</span>
+      <span class="skill-tag">Microsoft Fabric</span>
+      <span class="skill-tag">Direct Lake</span>
+      <span class="skill-tag">Lakehouse</span>
+      <span class="skill-tag">Dataflow Gen2</span>
+      <span class="skill-tag">OneLake</span>
+      <span class="skill-tag">Azure DevOps</span>
+      <span class="skill-tag">GitHub</span>
+      <span class="skill-tag">CI/CD for PBI</span>
+      <span class="skill-tag">PBIP/TMDL</span>
+      <span class="skill-tag">SQL Server</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Supply Chain &amp; Logistics</span>
+      <span class="skill-tag">AI-Augmented Analytics</span>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

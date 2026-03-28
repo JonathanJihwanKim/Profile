@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jihwan Kim — Enterprise BI Architect & Microsoft Fabric Strategist</title>
+    <meta name="description" content="Microsoft MVP architecting enterprise Fabric migrations and DevOps governance for Fortune 500. Creator of PBIP open-source tooling adopted across the Power BI ecosystem.">
+    <meta name="author" content="Jihwan Kim">
+    <meta property="og:title" content="Jihwan Kim — Enterprise BI Architect & Microsoft Fabric Strategist">
+    <meta property="og:description" content="Microsoft MVP architecting enterprise Fabric migrations and DevOps governance for Fortune 500. Creator of PBIP open-source tooling adopted across the Power BI ecosystem.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN TOKENS
+           ============================================ */
+        :root {
+            --bg-primary: #0c1220;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --bg-card-hover: #1f2d3f;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-gold: #e8a838;
+            --accent-blue: #4A90D9;
+            --accent-teal: #2dd4bf;
+            --accent-green: #3fb950;
+            --accent-coral: #E8634A;
+            --accent-indigo: #6366f1;
+            --border: #30363d;
+            --border-light: #3d444d;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+            --max-width: 1200px;
+            --nav-height: 64px;
+            --section-padding: 100px;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.3);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-warm-line: linear-gradient(90deg, var(--accent-coral), var(--accent-gold), var(--accent-blue));
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 80px,
+                rgba(232, 99, 74, 0.015) 80px,
+                rgba(232, 99, 74, 0.015) 81px
+            );
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent-blue); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--accent-teal); }
+
+        img { max-width: 100%; display: block; }
+
+        ::selection {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        /* ============================================
+           SECTION DIVIDERS
+           ============================================ */
+        .section-divider {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-coral), var(--accent-gold), var(--accent-blue), transparent);
+            opacity: 0.25;
+        }
+
+        /* ============================================
+           SCROLL PROGRESS
+           ============================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: var(--gradient-warm-line);
+            z-index: 1001;
+            transition: width 0.1s linear;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ============================================
+           NAV
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(12, 18, 32, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(12, 18, 32, 0.97);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            border-bottom-color: transparent;
+        }
+
+        .nav-inner {
+            width: 100%;
+            max-width: var(--max-width);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-logo:hover {
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-home-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+        }
+
+        .nav-home-btn:hover {
+            color: var(--accent-gold);
+            background: rgba(245, 183, 49, 0.1);
+        }
+
+        .nav-logo span { color: var(--accent-gold); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active::after, .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .nav-hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            display: block;
+        }
+
+        /* ============================================
+           SECTIONS COMMON
+           ============================================ */
+        .section {
+            padding: var(--section-padding) 24px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--nav-height) + 40px) 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(74,144,217,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 60%, rgba(240,160,48,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(232,99,74,0.04) 0%, transparent 40%);
+            animation: heroGlow 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-3%, 2%) rotate(3deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-photo {
+            flex-shrink: 0;
+        }
+
+        .hero-photo img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(245, 183, 49, 0.3);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15), 0 0 80px rgba(245, 183, 49, 0.08);
+        }
+
+        .hero-badges {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hero-badges img {
+            height: 120px;
+            width: auto;
+            filter: drop-shadow(0 2px 12px rgba(0,0,0,0.4));
+        }
+
+        .hero-credential {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 183, 49, 0.1);
+            border: 1px solid rgba(245, 183, 49, 0.25);
+            border-radius: 999px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent-gold);
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 50%, var(--accent-gold) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: nameGradient 6s ease infinite;
+        }
+
+        @keyframes nameGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) translateX(0); }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-20px) translateX(20px); }
+        }
+
+        .hero-cursor-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,99,74,0.07) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .hero-title {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-tagline {
+            font-size: 1.08rem;
+            color: #c9d1d9;
+            max-width: 600px;
+            margin: 0 0 40px;
+            line-height: 1.7;
+        }
+
+        .hero-tagline strong {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-sans);
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* ============================================
+           ABOUT
+           ============================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--accent-coral), var(--accent-gold), var(--accent-blue), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+            z-index: -1;
+            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 2px));
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 2px));
+        }
+
+        .stat-card:hover {
+            border-color: transparent;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: -0.03em;
+            font-family: var(--font-mono);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0 8px;
+            line-height: 1.3;
+        }
+
+        .mvp-callout {
+            margin-top: 32px;
+            background: linear-gradient(135deg, rgba(245,183,49,0.08), rgba(59,130,246,0.08));
+            border: 1px solid rgba(245,183,49,0.2);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .mvp-callout-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .mvp-callout-badge {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .mvp-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .mvp-text strong {
+            color: var(--accent-gold);
+        }
+
+        /* ============================================
+           CAREER TIMELINE
+           ============================================ */
+        .timeline {
+            position: relative;
+            margin-top: 48px;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent-gold), var(--border));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            padding-left: 32px;
+        }
+
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -40px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-blue);
+            z-index: 1;
+        }
+
+        .timeline-item.current .timeline-dot {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px rgba(245,183,49,0.4);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .timeline-company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .timeline-current-badge {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            background: rgba(245,183,49,0.15);
+            color: var(--accent-gold);
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline-role {
+            font-size: 1rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .timeline-achievements li {
+            font-size: 0.92rem;
+            color: #c9d1d9;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-achievements li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-teal);
+        }
+
+        .timeline-achievements .metric {
+            color: var(--accent-green);
+            font-weight: 700;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+        }
+
+        /* ---- Key Achievements Card ---- */
+        .timeline-key-achievements {
+            background: linear-gradient(135deg, rgba(245,183,49,0.06), rgba(59,130,246,0.06));
+            border: 1px solid rgba(245,183,49,0.15);
+            border-radius: var(--radius-sm);
+            padding: 20px 24px;
+            margin: 16px 0 20px;
+        }
+
+        .timeline-key-achievements-title {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .timeline-key-achievement {
+            margin-bottom: 14px;
+        }
+
+        .timeline-key-achievement:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-key-achievement-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .timeline-key-achievement-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           SKILLS
+           ============================================ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .skill-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all var(--transition);
+        }
+
+        .skill-group:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-group-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-group-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .skill-item:last-child { margin-bottom: 0; }
+
+        .skill-name {
+            font-size: 0.85rem;
+            color: #c9d1d9;
+        }
+
+        .skill-years {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            background: rgba(245, 183, 49, 0.1);
+            border: 1px solid rgba(245, 183, 49, 0.2);
+            border-radius: 999px;
+            padding: 2px 10px;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           PORTFOLIO
+           ============================================ */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .project-card .project-body {
+            padding: 28px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-screenshot {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-screenshot img {
+            transform: scale(1.03);
+        }
+
+        .project-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-placeholder svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--border-light);
+            opacity: 0.5;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .project-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .project-stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .project-stars-date {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-weight: 400;
+            margin-left: 2px;
+        }
+
+        .project-stars svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--accent-gold);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--accent-teal);
+            background: rgba(45, 212, 191, 0.08);
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .project-link:hover { color: var(--accent-teal); }
+
+        .project-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .project-expand-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent-coral);
+            cursor: pointer;
+            margin-top: 12px;
+            padding: 6px 0;
+            transition: color var(--transition);
+            user-select: none;
+        }
+
+        .project-expand-trigger:hover { color: var(--accent-gold); }
+
+        .project-expand-trigger svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            transition: transform var(--transition);
+        }
+
+        .project-expand-trigger[aria-expanded="true"] svg {
+            transform: rotate(180deg);
+        }
+
+        .project-case-study {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .project-case-study.open {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .case-study-section { margin-bottom: 12px; }
+        .case-study-section:last-child { margin-bottom: 0; }
+
+        .case-study-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-coral);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .case-study-section p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           ACHIEVEMENTS
+           ============================================ */
+        .achievements-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-top: 32px;
+        }
+
+        .certs-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .cert-group-label {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all var(--transition);
+        }
+
+        .cert-badge:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .cert-badge .cert-icon {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .cert-badge--expired {
+            opacity: 0.5;
+            border-style: dashed;
+        }
+
+        .cert-badge--expired:hover {
+            opacity: 0.7;
+        }
+
+        .cert-badge--expired .cert-icon {
+            background: var(--text-muted);
+        }
+
+        .sub-heading {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        /* ---- Awards Horizontal Timeline ---- */
+        .awards-timeline {
+            position: relative;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .awards-timeline-inner {
+            position: relative;
+            padding: 0 12px 180px;
+        }
+
+        /* Range bars (above axis) */
+        .awards-lanes {
+            position: relative;
+            height: 92px;
+            margin-bottom: 12px;
+        }
+
+        .awards-range {
+            position: absolute;
+            height: 34px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            padding: 0 36px 0 14px;
+            gap: 8px;
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: visible;
+        }
+
+        .awards-range.revealed {
+            clip-path: inset(0 0 0 0);
+        }
+
+        .awards-range--superuser {
+            top: 0;
+            background: linear-gradient(90deg, rgba(59,130,246,0.25), rgba(59,130,246,0.45));
+            border: 1.5px solid rgba(59,130,246,0.5);
+            box-shadow: 0 2px 12px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .awards-range--mvp {
+            top: 46px;
+            background: linear-gradient(90deg, rgba(245,183,49,0.3), rgba(245,183,49,0.5));
+            border: 1.5px solid rgba(245,183,49,0.55);
+            box-shadow: 0 2px 12px rgba(245,183,49,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .awards-range-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            border-radius: 4px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3));
+        }
+
+        .awards-range-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .awards-range-badge {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            background: rgba(245,183,49,0.15);
+            color: var(--accent-gold);
+            padding: 1px 8px;
+            border-radius: 999px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .awards-range--superuser .awards-range-badge {
+            background: rgba(59,130,246,0.15);
+            color: var(--accent-blue);
+        }
+
+        .awards-range::after {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            box-shadow: 0 0 8px rgba(245,183,49,0.6);
+            animation: awardPulse 2.5s ease-in-out infinite;
+        }
+
+        .awards-range--superuser::after {
+            background: var(--accent-blue);
+            box-shadow: 0 0 8px rgba(59,130,246,0.6);
+        }
+
+        @keyframes awardPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 4px currentColor; }
+            50% { opacity: 0.6; box-shadow: 0 0 14px currentColor; }
+        }
+
+        /* Axis line */
+        .awards-axis {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-gold));
+            border-radius: 1px;
+        }
+
+        .awards-axis-year {
+            position: absolute;
+            top: -6px;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .awards-axis-year::before {
+            content: '';
+            width: 2px;
+            height: 14px;
+            background: var(--text-muted);
+            border-radius: 1px;
+        }
+
+        .awards-axis-year span {
+            margin-top: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .awards-axis-year--present::before {
+            background: var(--accent-gold);
+        }
+
+        .awards-axis-year--present span {
+            color: var(--accent-gold);
+        }
+
+        /* Point events (below axis) */
+        .awards-point {
+            position: absolute;
+            top: -7px;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .awards-point-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-blue);
+            z-index: 3;
+            transition: all var(--transition);
+            transform: scale(0);
+            opacity: 0;
+            flex-shrink: 0;
+        }
+
+        .awards-point-dot.revealed {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .awards-point:hover .awards-point-dot {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px rgba(59,130,246,0.4);
+            transform: scale(1.3);
+        }
+
+        .awards-point-label {
+            margin-top: 48px;
+            text-align: center;
+            max-width: 150px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.35;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .awards-point-label.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .awards-point-label strong {
+            color: var(--text-primary);
+            display: block;
+            font-weight: 600;
+        }
+
+        .awards-point-source {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .awards-point--start {
+            transform: translateX(0);
+        }
+
+        .awards-point--start .awards-point-label {
+            text-align: left;
+            transform: translateX(0) translateY(8px);
+        }
+
+        .awards-point--start .awards-point-label.revealed {
+            transform: translateX(0) translateY(0);
+        }
+
+        .awards-ikea-label {
+            position: absolute;
+            top: 68px;
+            left: 55%;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+
+        /* IKEA achievement points — second row, gold accent */
+        .awards-point--ikea .awards-point-dot {
+            border-color: var(--accent-gold);
+        }
+
+        .awards-point--ikea:hover .awards-point-dot {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px rgba(245,183,49,0.4);
+        }
+
+        .awards-point--ikea .awards-point-label {
+            margin-top: 115px;
+        }
+
+        .awards-point--ikea .awards-point-label strong {
+            color: var(--accent-gold);
+        }
+
+        .awards-point--ikea .awards-point-source {
+            color: var(--text-secondary);
+            font-style: normal;
+            font-size: 0.68rem;
+        }
+
+        .awards-point--end {
+            transform: translateX(-100%);
+        }
+
+        .awards-point--end .awards-point-label {
+            text-align: right;
+        }
+
+        /* ============================================
+           BLOG & COMMUNITY
+           ============================================ */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .community-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all var(--transition);
+        }
+
+        .community-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow);
+        }
+
+        .community-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .community-card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .community-stat {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-teal);
+        }
+
+        .community-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 0;
+        }
+
+        .community-links-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .community-links-list a {
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+        }
+
+        .community-links-list a:hover {
+            color: var(--accent-teal);
+        }
+
+        .community-links-list .stat-inline {
+            font-family: var(--font-mono);
+            color: var(--accent-teal);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           MOTIVATION
+           ============================================ */
+        .motivation-content {
+            margin-top: 48px;
+            max-width: 720px;
+        }
+
+        .motivation-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .motivation-content strong {
+            color: var(--text-primary);
+        }
+
+        .motivation-highlight {
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 20px;
+            margin: 32px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .vision-next {
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(245,183,49,0.08));
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .vision-next-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vision-next-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0;
+        }
+
+        .vision-next-items li {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .vision-next-items li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .vision-next-items li strong {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           CONTACT
+           ============================================ */
+        .contact {
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all var(--transition);
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-item .contact-value {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .community-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ============================================
+           URGENCY BANNER
+           ============================================ */
+        .urgency-banner {
+            background: linear-gradient(135deg, rgba(232, 99, 74, 0.08) 0%, rgba(232, 168, 56, 0.08) 50%, rgba(99, 102, 241, 0.08) 100%);
+            border-top: 1px solid rgba(232, 168, 56, 0.15);
+            border-bottom: 1px solid rgba(232, 168, 56, 0.15);
+            padding: 56px 24px;
+        }
+
+        .urgency-banner-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .urgency-banner-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--accent-coral);
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .urgency-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .urgency-card {
+            padding: 24px;
+            background: rgba(26, 35, 50, 0.6);
+            border: 1px solid rgba(232, 168, 56, 0.15);
+            border-radius: var(--radius);
+            transition: all var(--transition);
+        }
+
+        .urgency-card:hover {
+            border-color: var(--accent-coral);
+            box-shadow: 0 4px 20px rgba(232, 99, 74, 0.1);
+        }
+
+        .urgency-card-headline {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-coral);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .urgency-card-text {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .urgency-card-text strong {
+            color: var(--accent-gold);
+        }
+
+        /* ============================================
+           STRATEGIC CAPABILITY CARDS
+           ============================================ */
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .capability-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-accent, var(--accent-blue));
+        }
+
+        .capability-card:hover {
+            border-color: var(--card-accent, var(--accent-blue));
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .capability-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .capability-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .capability-card-proof {
+            font-size: 0.78rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .capability-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .capability-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(139, 148, 158, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 3px 10px;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           SOCIAL PROOF STRIP
+           ============================================ */
+        .social-proof-strip {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            padding: 12px 0;
+            letter-spacing: 0.02em;
+        }
+
+        .social-proof-strip span {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 64px;
+            }
+
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(12, 18, 32, 0.97);
+                backdrop-filter: blur(16px);
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-hamburger { display: flex; }
+
+            .section-title { font-size: 2rem; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .stat-card { width: 110px; height: 110px; }
+            .stat-number { font-size: 1.4rem; }
+            .stat-label { font-size: 0.58rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .achievements-grid { gap: 32px; }
+            .awards-timeline-inner { padding: 0 4px 200px; }
+            .awards-ikea-label { left: 50%; font-size: 0.52rem; }
+            .awards-range-label { font-size: 0.6rem; }
+            .awards-range-badge { font-size: 0.5rem; padding: 1px 5px; }
+            .awards-range-img { width: 18px; height: 18px; }
+            .awards-range { height: 28px; padding: 0 28px 0 8px; gap: 4px; }
+            .awards-lanes { height: 74px; }
+            .awards-range--mvp { top: 36px; }
+            .awards-point-label { font-size: 0.65rem; max-width: 90px; }
+            .awards-point--ikea .awards-point-label { margin-top: 100px; }
+            .awards-axis-year span { font-size: 0.65rem; }
+            .community-grid { grid-template-columns: 1fr; }
+            .vision-grid { grid-template-columns: 1fr; }
+
+            .timeline { padding-left: 28px; }
+            .timeline-item { padding-left: 20px; }
+            .timeline-dot { left: -28px; }
+
+            .hero-content { flex-direction: column; text-align: center; gap: 40px; }
+            .hero-text { text-align: center; }
+            .hero-badges { justify-content: center; }
+            .hero-cta { justify-content: center; }
+            .hero-tagline { margin: 0 auto 40px; }
+            .hero-photo { order: -1; }
+            .hero-photo img { width: 180px; height: 180px; }
+
+            .contact-links { flex-direction: column; }
+            .contact-link { justify-content: center; }
+
+            .urgency-grid { grid-template-columns: repeat(2, 1fr); }
+            .urgency-banner { padding: 40px 16px; }
+            .urgency-banner-title { font-size: 1.25rem; }
+            .capability-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ============================================
+           REDUCED MOTION
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .hero::before { animation: none; }
+            .hero-name { animation: none; }
+            .hero-cursor-glow, .hero-particles { display: none !important; }
+            .scroll-progress { transition: none; }
+            .hero-particle { animation: none; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+        }
+
+        @media (hover: none) {
+            .stat-card:active { transform: scale(0.95); }
+            .project-expand-trigger span::after { content: ' ↓'; }
+        }
+
+        @media print {
+            .nav, .scroll-progress, .hero-particles, .hero-cursor-glow, .section-divider { display: none !important; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            body { background: white !important; color: black !important; background-image: none !important; }
+            .section { padding: 20px 0 !important; }
+            .hero { min-height: auto !important; padding: 40px 24px !important; }
+            .stat-card { border-radius: var(--radius) !important; width: auto !important; height: auto !important; padding: 12px !important; }
+            .stat-card::before { display: none; }
+            .project-case-study { max-height: none !important; opacity: 1 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ====== NAV ====== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <div class="nav-left">
+                <a href="#hero" class="nav-logo" title="Back to top">JK<span>.</span></a>
+                <a href="#hero" class="nav-home-btn" title="Back to top" aria-label="Back to top">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Open-Source</a></li>
+                <li><a href="#career">Career</a></li>
+                <li><a href="#skills">Capabilities</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#motivation">Vision</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ====== HERO ====== -->
+    <header class="hero" id="hero">
+        <div class="hero-particles" aria-hidden="true"></div>
+        <div class="hero-cursor-glow" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badges">
+                    <img src="assets/mvp-badge.png" alt="Microsoft MVP Badge" />
+                    <img src="assets/superuser-badge.png" alt="Power BI & Microsoft Fabric Community Super User Badge" />
+                </div>
+                <p class="hero-credential">Microsoft MVP | Power BI & Microsoft Fabric Community Super User</p>
+                <h1 class="hero-name">Jihwan Kim</h1>
+                <p class="hero-title">Enterprise BI Architect & Microsoft Fabric Strategist</p>
+                <p class="hero-tagline">
+                    I architect enterprise analytics at IKEA (<strong>30,000+ users</strong> on Microsoft Fabric) and build the open-source DevOps tools that Power BI teams need for the PBIR/TMDL transition.
+                    <strong>Microsoft MVP</strong> since 2022. <strong>2,700+ community solutions</strong>. 4 governance tools. <strong>8+ years Power BI</strong> & <strong>2+ years Fabric</strong>.
+                </p>
+                <div class="hero-cta">
+                    <a href="#about" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
+                        See My Impact
+                    </a>
+                    <a href="#urgency" class="btn btn-secondary" style="border-color: var(--accent-coral); color: var(--accent-coral);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        Why Hire Me Now
+                    </a>
+                    <a href="cv.html" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Download CV
+                    </a>
+                    <a href="career-description.html" class="btn btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Career Description
+                    </a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <img src="assets/jihwan-headshot.jpg" alt="Jihwan Kim — Enterprise BI Architect & Microsoft Fabric Strategist" />
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== WHY NOW URGENCY BANNER ====== -->
+    <section class="urgency-banner" id="urgency">
+        <div class="urgency-banner-inner">
+            <h2 class="urgency-banner-title reveal">The Enterprise Fabric Transition Is Happening Now</h2>
+            <div class="urgency-grid">
+                <div class="urgency-card reveal">
+                    <div class="urgency-card-headline">PBIR Mandatory Q3 2026</div>
+                    <div class="urgency-card-text">Every Power BI report must migrate to the PBIR format. Most teams have no tooling or strategy. <strong>Jihwan already built 2 open-source tools</strong> for PBIR governance.</div>
+                </div>
+                <div class="urgency-card reveal">
+                    <div class="urgency-card-headline">85% IT Talent Shortage</div>
+                    <div class="urgency-card-text">85% of IT employers in the Netherlands struggle to find talent with the right skills. The gap is even wider for <strong>Fabric, TMDL, and PBIR expertise</strong>. <span style="font-size:0.7rem;color:var(--text-muted);display:block;margin-top:6px;">Source: <a href="https://manpowergroup.nl/en/labour-market-trends/etto-q2-2026/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;">ManpowerGroup/Experis ETTO Q2 2026</a></span></div>
+                </div>
+                <div class="urgency-card reveal">
+                    <div class="urgency-card-headline">90%+ Fortune 500 on Fabric</div>
+                    <div class="urgency-card-text">Over 90% of Fortune 500 companies now use Microsoft Fabric, but <strong>architects who've migrated at enterprise scale are rare</strong>. Jihwan did it at IKEA for 30,000+ users. <span style="font-size:0.7rem;color:var(--text-muted);display:block;margin-top:6px;">Source: <a href="https://www.bowdark.com/blog/fabric-community-conference-2026-recap" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;">FabCon 2026 Keynote</a></span></div>
+                </div>
+                <div class="urgency-card reveal">
+                    <div class="urgency-card-headline">CI/CD = #1 Skills Gap</div>
+                    <div class="urgency-card-text">CI/CD for Power BI is the biggest skills gap in the market. <strong>Jihwan designed Git-based CI/CD governance</strong> at IKEA scale.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- ====== ABOUT ====== -->
+        <section class="section" id="about">
+            <div class="reveal">
+                <p class="section-label">About Me</p>
+                <h2 class="section-title">The Enterprise Fabric Architect<br>Who Already Built the Tooling</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        Every Fortune 500 enterprise running Power BI faces the same challenge right now: migrating to <strong>Microsoft Fabric</strong>,
+                        adopting <strong>PBIR</strong> (mandatory Q3 2026), implementing <strong>TMDL-based CI/CD</strong>,
+                        and doing it all without breaking production reports serving thousands of users.
+                        This is exactly the problem I solve&mdash;and I have the enterprise-scale proof and open-source tooling to prove it.
+                    </p>
+                    <p>
+                        At IKEA, I architected the migration of legacy Import-mode semantic models to <strong>composite Direct Lake architecture on Microsoft Fabric</strong>&mdash;serving
+                        <strong>30,000+ users</strong> with 90%+ refresh elimination, 30% model size reduction, and 25% query performance improvement.
+                        I designed the Git-based CI/CD governance architecture (PBIP/TMDL) that became the standard for our
+                        Customer Fulfilment, Inventory &amp; Logistics organization.
+                    </p>
+                    <p>
+                        What makes my approach different: I don't just implement solutions&mdash;<strong>I build the tools that make the transition repeatable</strong>.
+                        My four open-source PBIP governance tools (documenter, lineage explorer, impact analyzer, visual manager) solve the exact DevOps gaps
+                        that every enterprise faces during the Fabric transition. And as a <strong>Microsoft MVP with direct access to the product team</strong>,
+                        I work at the frontier of what's coming next. <strong>AI is integrated into every phase</strong> of my workflow&mdash;from DAX prototyping to
+                        performance analysis&mdash;boosting development speed by 3x.
+                    </p>
+                    <div class="mvp-callout">
+                        <div class="mvp-callout-badges">
+                            <img src="assets/mvp-avatar-badge.png" alt="Microsoft MVP Badge" class="mvp-callout-badge" />
+                            <img src="assets/superuser-badge.png" alt="Community Super User Badge" class="mvp-callout-badge" />
+                        </div>
+                        <div class="mvp-text">
+                            <a href="https://mvp.microsoft.com/en-US/mvp/profile/385eb34e-c755-ed11-9561-000d3a197333" target="_blank" rel="noopener"><strong>Microsoft MVP</strong></a> since 2022 &mdash; Recognized for community contributions in Power BI and Microsoft Fabric. Fewer than 200 people worldwide hold MVP status in Power BI &amp; Fabric&mdash;this means direct access to Microsoft's product roadmap, early previews of features like PBIR and DAX UDFs, and a direct feedback channel to the engineering team.<br>
+                            <a href="https://community.fabric.microsoft.com/t5/user/viewprofilepage/user-id/291628" target="_blank" rel="noopener"><strong>Community Super User</strong></a> since 2021 &mdash; 2,709 solutions authored in the Power BI & Fabric Community forums. Active community mentor.
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="30000">0</div>
+                            <div class="stat-label">Users Served</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="90" data-suffix="%+">0</div>
+                            <div class="stat-label">Refresh Time Reduced with Direct Lake Mode</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="30" data-suffix="%">0</div>
+                            <div class="stat-label">Model Size Reduction</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="25" data-suffix="%">0</div>
+                            <div class="stat-label">Performance Gain</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="4">0</div>
+                            <div class="stat-label">Open-Source Tools</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                            <div class="stat-label">Years Power BI</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="2" data-suffix="+">0</div>
+                            <div class="stat-label">Years Microsoft Fabric</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== PORTFOLIO ====== -->
+        <section class="section" id="portfolio" style="background: var(--bg-secondary); max-width: 100%; padding-left: 0; padding-right: 0;">
+            <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 24px;">
+                <div class="reveal">
+                    <p class="section-label">Open Source</p>
+                    <h2 class="section-title">Open-Source Tools</h2>
+                    <p class="section-subtitle">The DevOps tooling that enterprises need for PBIR/TMDL governance&mdash;built from real-world pain at IKEA scale, free and open-source.</p>
+                    <p class="social-proof-strip"><span>58+</span> GitHub stars &bull; <span>4</span> tools &bull; Solving PBIP/TMDL/PBIR governance for Power BI teams worldwide</p>
+                </div>
+                <div class="portfolio-grid">
+                    <!-- pbip-documenter -->
+                    <div class="project-card reveal">
+                        <div class="project-screenshot">
+                            <img src="assets/projects/pbipdocumenter.png" alt="pbip-documenter — semantic model documentation with page layout, tables, measures, and lineage" loading="lazy" />
+                        </div>
+                        <div class="project-body">
+                            <div class="project-header">
+                                <span class="project-name">pbip-documenter</span>
+                                <span class="project-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                                    28
+                                    <span class="project-stars-date">Mar 2026</span>
+                                </span>
+                            </div>
+                            <p class="project-desc">Generates comprehensive documentation from Power BI semantic models. Automatically extracts measures, tables, relationships, and metadata into structured, readable output. <em style="color: var(--accent-gold); font-style: normal;">Used by enterprise teams managing 100+ semantic models who need automated governance documentation.</em></p>
+                            <div class="project-tags">
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">PBIP</span>
+                                <span class="project-tag">Documentation</span>
+                            </div>
+                            <a href="https://github.com/JonathanJihwanKim/pbip-documenter" class="project-link" target="_blank" rel="noopener">
+                                View on GitHub
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                            <div class="project-expand-trigger" role="button" tabindex="0" aria-expanded="false">
+                                <span>View Case Study</span>
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                            <div class="project-case-study" aria-hidden="true">
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Problem</div>
+                                    <p>Enterprise BI teams spent hours manually documenting semantic models. Documentation drifted from reality, creating governance gaps and onboarding friction.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Approach</div>
+                                    <p>Built a JavaScript parser that reads PBIP/TMDL project files and auto-extracts every measure, table, relationship, and metadata entry into structured, readable documentation.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Impact</div>
+                                    <p>Documentation time reduced from hours to seconds. Adopted by Power BI teams across multiple organizations. 28 GitHub stars and growing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- pbip-lineage-explorer -->
+                    <div class="project-card reveal">
+                        <div class="project-screenshot">
+                            <img src="assets/projects/pbip-lineage-explorer.png" alt="pbip-lineage-explorer — DAX lineage tracing and git change intelligence" loading="lazy" />
+                        </div>
+                        <div class="project-body">
+                            <div class="project-header">
+                                <span class="project-name">pbip-lineage-explorer</span>
+                                <span class="project-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                                    19
+                                    <span class="project-stars-date">Mar 2026</span>
+                                </span>
+                            </div>
+                            <p class="project-desc">Traces DAX measure dependencies from visuals to source columns in PBIP projects. Includes commit-by-commit change intelligence&mdash;see exactly what changed, when, and which visuals are impacted across 30+ change types. <em style="color: var(--accent-gold); font-style: normal;">Essential for teams adopting Git-based workflows who need to understand impact before merging.</em></p>
+                            <div class="project-tags">
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">DAX Lineage</span>
+                                <span class="project-tag">Git Change Intelligence</span>
+                                <span class="project-tag">PBIP</span>
+                            </div>
+                            <a href="https://github.com/JonathanJihwanKim/pbip-lineage-explorer" class="project-link" target="_blank" rel="noopener">
+                                View on GitHub
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                            <div class="project-expand-trigger" role="button" tabindex="0" aria-expanded="false">
+                                <span>View Case Study</span>
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                            <div class="project-case-study" aria-hidden="true">
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Problem</div>
+                                    <p>DAX refactoring in large PBIP projects was blind — no way to know which visuals or measures would break when renaming or removing a column or measure.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Approach</div>
+                                    <p>Built a dependency tracer that maps DAX lineage from visuals to source columns, plus commit-by-commit git intelligence showing exactly what changed across 30+ change types.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Impact</div>
+                                    <p>Teams can now refactor with full visibility into downstream effects. Change intelligence eliminates guesswork in code reviews. 19 GitHub stars.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- isHiddenInViewMode -->
+                    <div class="project-card reveal">
+                        <div class="project-screenshot">
+                            <img src="assets/projects/isHiddenViewMode.png" alt="isHiddenInViewMode — PBIR Visual Manager for filter visibility, layer order, and visual interactions" loading="lazy" />
+                        </div>
+                        <div class="project-body">
+                            <div class="project-header">
+                                <span class="project-name">isHiddenInViewMode</span>
+                                <span class="project-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                                    8
+                                    <span class="project-stars-date">Mar 2026</span>
+                                </span>
+                            </div>
+                            <p class="project-desc">Bulk-manage filter visibility and layer order in PBIR reports. Eliminates tedious manual clicking through Edit Interactions for complex multi-visual reports. <em style="color: var(--accent-gold); font-style: normal;">Built for the PBIR transition&mdash;the first tool to enable bulk management of PBIR visual properties.</em></p>
+                            <div class="project-tags">
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">PBIR</span>
+                                <span class="project-tag">Productivity</span>
+                            </div>
+                            <a href="https://github.com/JonathanJihwanKim/isHiddenInViewMode" class="project-link" target="_blank" rel="noopener">
+                                View on GitHub
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                            <div class="project-expand-trigger" role="button" tabindex="0" aria-expanded="false">
+                                <span>View Case Study</span>
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                            <div class="project-case-study" aria-hidden="true">
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Problem</div>
+                                    <p>Managing filter visibility and visual interactions in complex PBIR reports meant clicking through each visual one by one — tedious and error-prone for reports with dozens of visuals.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Approach</div>
+                                    <p>Created a bulk management tool that reads PBIR JSON files directly, enabling batch operations on filter visibility, layer order, and visual interactions.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Impact</div>
+                                    <p>What took 30+ minutes of repetitive clicking now takes seconds. Complex multi-visual reports become manageable. 8 GitHub stars.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- pbip-impact-analyzer -->
+                    <div class="project-card reveal">
+                        <div class="project-screenshot">
+                            <img src="assets/projects/impactanalyzer.png" alt="pbip-impact-analyzer — impact analysis and safe refactoring for PBIP semantic models" loading="lazy" />
+                        </div>
+                        <div class="project-body">
+                            <div class="project-header">
+                                <span class="project-name">pbip-impact-analyzer</span>
+                                <span class="project-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                                    3
+                                    <span class="project-stars-date">Mar 2026</span>
+                                </span>
+                            </div>
+                            <p class="project-desc">Analyze impact of changes and safely refactor PBIP semantic models. Know exactly which visuals, measures, and reports are affected before making changes. <em style="color: var(--accent-gold); font-style: normal;">The safety net for enterprise refactoring&mdash;know what breaks before you break it.</em></p>
+                            <div class="project-tags">
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">Impact Analysis</span>
+                                <span class="project-tag">Refactoring</span>
+                            </div>
+                            <a href="https://github.com/JonathanJihwanKim/pbip-impact-analyzer" class="project-link" target="_blank" rel="noopener">
+                                View on GitHub
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                            <div class="project-expand-trigger" role="button" tabindex="0" aria-expanded="false">
+                                <span>View Case Study</span>
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                            <div class="project-case-study" aria-hidden="true">
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Problem</div>
+                                    <p>Renaming or removing measures in PBIP projects was risky — no way to predict which reports, visuals, or downstream measures would break.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Approach</div>
+                                    <p>Built an impact analyzer that scans the entire PBIP project to map dependencies before any change is made, showing exactly which visuals, measures, and reports are affected.</p>
+                                </div>
+                                <div class="case-study-section">
+                                    <div class="case-study-label">Impact</div>
+                                    <p>Teams refactor with confidence — no more broken reports in production. Safe refactoring becomes the default workflow. 3 GitHub stars.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CAREER TIMELINE ====== -->
+        <section class="section" id="career" style="background: var(--bg-secondary); max-width: 100%; padding-left: 0; padding-right: 0;">
+            <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 24px;">
+                <div class="reveal">
+                    <p class="section-label">Career</p>
+                    <h2 class="section-title">Enterprise-Scale Impact</h2>
+                    <p class="section-subtitle">Two decades of supply chain domain expertise combined with deep BI architecture&mdash;a rare combination at Fortune 500 scale.</p>
+                </div>
+                <div class="timeline">
+                    <!-- IKEA -->
+                    <div class="timeline-item current reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-header">
+                            <span class="timeline-company">IKEA</span>
+                            <span class="timeline-current-badge">CURRENT</span>
+                        </div>
+                        <div class="timeline-role">Power BI Architect &amp; Microsoft Fabric Lead</div>
+                        <div class="timeline-meta">Feb 2023 &ndash; Present &middot; Amsterdam, Netherlands</div>
+                        <div style="font-size: 0.82rem; color: var(--accent-teal); margin-bottom: 12px; font-weight: 500;">Scope: Customer Fulfilment, Inventory &amp; Logistics Insights&mdash;serving IKEA's global supply chain analytics operations</div>
+                        <ul class="timeline-achievements">
+                            <li>Architect semantic models and analytics pipelines on <strong>Microsoft Fabric</strong> and Power BI serving <span class="metric">30,000+</span> users across the global supply chain organization</li>
+                        </ul>
+                        <div class="timeline-key-achievements">
+                            <div class="timeline-key-achievements-title">Key Achievements</div>
+                            <div class="timeline-key-achievement">
+                                <div class="timeline-key-achievement-name">Semantic Model Development Process Optimization</div>
+                                <div class="timeline-key-achievement-desc">Implemented systematic parameterization &mdash; source control parameters, row count control, and data integrity parameters &mdash; making the development process controllable and reproducible across environments. <strong style="color: var(--accent-green);">Result: reproducible deployments across 3 environments, eliminating deployment failures and reducing release time by 70%.</strong></div>
+                            </div>
+                            <div class="timeline-key-achievement">
+                                <div class="timeline-key-achievement-name">Git Integration &amp; Source Control Architecture</div>
+                                <div class="timeline-key-achievement-desc">Designed a new architecture achieving full source control and version control for Power BI artifacts (PBIP/TMDL), with CI/CD pipelines via Azure DevOps and GitHub. <strong style="color: var(--accent-green);">Result: zero-downtime deployments, full audit trail for compliance, and 50% faster onboarding for new team members.</strong></div>
+                            </div>
+                            <div class="timeline-key-achievement">
+                                <div class="timeline-key-achievement-name">Direct Lake &amp; Composite Model Migration</div>
+                                <div class="timeline-key-achievement-desc">Migrated legacy Import-mode models to composite models with Direct Lake mode &mdash; achieving developer efficiency with <span class="metric">90%+</span> refresh elimination and optimized CU usage, plus end-user satisfaction with more data and <span class="metric">25%</span> better query performance. <strong style="color: var(--accent-green);">Result: near real-time analytics for 30,000+ supply chain users, enabling faster inventory decisions and reducing data latency from hours to minutes.</strong></div>
+                            </div>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Streamlined semantic models: <span class="metric">30% model size reduction</span> and <span class="metric">25% performance gain</span></li>
+                            <li>Reduced Fabric Premium capacity (CU) usage by <span class="metric">25%</span> through hands-on tuning and AI-supported performance analysis</li>
+                            <li>Integrated AI copilots into DAX authoring and performance diagnostics, boosting development speed <span class="metric">3&times;</span></li>
+                            <li>Mentored analysts on semantic modeling best practices, DAX optimization, and AI-powered report generation</li>
+                        </ul>
+                    </div>
+
+                    <!-- ITVT -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-header">
+                            <span class="timeline-company">ITVT Group</span>
+                        </div>
+                        <div class="timeline-role">Senior Business Intelligence Analyst</div>
+                        <div class="timeline-meta">Jun 2022 &ndash; Jan 2023 &middot; Utrecht, Netherlands</div>
+                        <ul class="timeline-achievements">
+                            <li>Delivered Power BI solutions across Supply Chain, Logistics, CRM, HR, and Project Management domains, integrated with <strong>Dynamics 365</strong></li>
+                            <li>Created logistics performance dashboard consolidating shipping, warehousing &amp; fulfillment KPIs&mdash;reduced manual weekly reporting from <span class="metric">over an hour per day to 10 minutes</span></li>
+                            <li>Optimized query folding and DAX logic, improving report load times by <span class="metric">40&ndash;60%</span></li>
+                            <li>Built reusable Power BI templates and refactored legacy BI components for faster client rollouts</li>
+                        </ul>
+                    </div>
+
+                    <!-- GXO -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-header">
+                            <span class="timeline-company">GXO Logistics</span>
+                        </div>
+                        <div class="timeline-role">Business Intelligence Analyst</div>
+                        <div class="timeline-meta">Jun 2021 &ndash; May 2022 &middot; Schiphol-Rijk, Netherlands</div>
+                        <ul class="timeline-achievements">
+                            <li>Designed and standardized Power BI Dataflows, datasets, and reports across <span class="metric">10+ EU sites</span> monitoring Dock-to-Stock, On-Time Shipping, and Inventory KPIs</li>
+                            <li>Delivered Weekly Stability, Monthly Business Review, and Productivity &amp; Staff Planning dashboards</li>
+                            <li>Reduced decision latency by centralizing analytics practices across large-scale logistics operations</li>
+                        </ul>
+                    </div>
+
+                    <!-- Supply Chain Flow -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-header">
+                            <span class="timeline-company">Supply Chain Flow</span>
+                        </div>
+                        <div class="timeline-role">Supply Chain Data Analyst (Freelance)</div>
+                        <div class="timeline-meta">Feb 2020 &ndash; May 2021 &middot; Amsterdam, Netherlands</div>
+                        <ul class="timeline-achievements">
+                            <li>Built Power BI dashboards for logistics and warehouse teams covering freight pricing, bottleneck analysis, and cash flow visibility</li>
+                            <li>Launched FlowAnalysis.co&mdash;sharing deep dives on data modeling, DAX patterns, and supply chain analytics</li>
+                            <li>Earned <strong>APICS CSCP</strong>, <strong>MCSA: BI Reporting</strong>, <strong>MCT</strong>, and <strong>MOS Excel Expert</strong> certifications during this period</li>
+                        </ul>
+                    </div>
+
+                    <!-- Samsung SDS -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-header">
+                            <span class="timeline-company">Samsung SDS Cello Logistics</span>
+                        </div>
+                        <div class="timeline-role">Business Development Manager</div>
+                        <div class="timeline-meta">Feb 2019 &ndash; Feb 2020 &middot; Delft, Netherlands</div>
+                        <ul class="timeline-achievements">
+                            <li>Managed key accounts across global air/ocean freight, European trucking, and warehouse handling</li>
+                            <li>Built operational analytics for shipment visibility, SLA root-cause analysis, and cost-to-serve modeling</li>
+                            <li>Optimized Asia&ndash;Europe trade lanes using data-driven carrier selection and transit time analysis</li>
+                            <li>Transition point: discovered the power of data analytics, leading to a career shift into enterprise BI</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="reveal" style="margin-top: 48px; padding-left: 40px;">
+                    <h3 class="sub-heading" style="color: var(--accent-gold);">Education</h3>
+                    <div style="display: flex; flex-direction: column; gap: 16px; padding-left: 32px;">
+                        <div>
+                            <div style="font-weight: 700;">Rotterdam Business School</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Master in Logistics Management &middot; 2018&ndash;2019</div>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700;">Korea University</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Bachelor in Geology &middot; 1994&ndash;2001</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ====== SKILLS ====== -->
+        <section class="section" id="skills">
+            <div class="reveal">
+                <p class="section-label">Strategic Capabilities</p>
+                <h2 class="section-title">What I Deliver</h2>
+                <p class="section-subtitle">Not just technical skills&mdash;strategic capabilities proven at enterprise scale, each backed by measurable outcomes.</p>
+            </div>
+            <div class="capability-grid">
+                <div class="capability-card reveal" style="--card-accent: var(--accent-blue);">
+                    <div class="capability-card-title">Enterprise Fabric Migration</div>
+                    <div class="capability-card-desc">Architect end-to-end migrations from legacy Import-mode Power BI to Direct Lake composite models on Microsoft Fabric. Design lakehouse architecture, optimize Fabric capacity (CU), and deliver near real-time analytics at scale.</div>
+                    <div class="capability-card-proof">Proven at IKEA: 30,000+ users, 90%+ refresh elimination, 25% CU savings</div>
+                    <div class="capability-tags">
+                        <span class="capability-tag">Microsoft Fabric</span>
+                        <span class="capability-tag">Direct Lake</span>
+                        <span class="capability-tag">Lakehouse</span>
+                        <span class="capability-tag">Dataflow Gen2</span>
+                        <span class="capability-tag">Composite Models</span>
+                        <span class="capability-tag">2+ yrs Fabric</span>
+                        <span class="capability-tag">8+ yrs Power BI</span>
+                    </div>
+                </div>
+                <div class="capability-card reveal" style="--card-accent: var(--accent-teal);">
+                    <div class="capability-card-title">DevOps &amp; CI/CD Governance</div>
+                    <div class="capability-card-desc">Design Git-based version control and CI/CD pipelines for Power BI using PBIP, TMDL, and PBIR. Build the tooling that makes enterprise BI governance automated, repeatable, and audit-ready.</div>
+                    <div class="capability-card-proof">4 open-source governance tools with 58+ GitHub stars. IKEA-scale CI/CD architecture.</div>
+                    <div class="capability-tags">
+                        <span class="capability-tag">PBIP / TMDL</span>
+                        <span class="capability-tag">PBIR</span>
+                        <span class="capability-tag">Git</span>
+                        <span class="capability-tag">Azure DevOps</span>
+                        <span class="capability-tag">GitHub Actions</span>
+                        <span class="capability-tag">Deployment Pipelines</span>
+                        <span class="capability-tag">3+ yrs</span>
+                    </div>
+                </div>
+                <div class="capability-card reveal" style="--card-accent: var(--accent-gold);">
+                    <div class="capability-card-title">Semantic Modeling &amp; Performance Engineering</div>
+                    <div class="capability-card-desc">Architect star-schema semantic models, optimize DAX at the formula and storage engine level, tune Fabric capacity, and integrate AI into the development workflow for 3x faster iteration.</div>
+                    <div class="capability-card-proof">Proven at IKEA: 30% model size reduction, 25% query performance gain, 3x dev speed with AI</div>
+                    <div class="capability-tags">
+                        <span class="capability-tag">DAX (8+ yrs)</span>
+                        <span class="capability-tag">Power Query / M (8+ yrs)</span>
+                        <span class="capability-tag">SQL (5+ yrs)</span>
+                        <span class="capability-tag">DAX Studio (6+ yrs)</span>
+                        <span class="capability-tag">Tabular Editor (6+ yrs)</span>
+                        <span class="capability-tag">AI-Augmented</span>
+                    </div>
+                </div>
+                <div class="capability-card reveal" style="--card-accent: var(--accent-coral);">
+                    <div class="capability-card-title">Domain: Supply Chain &amp; Retail</div>
+                    <div class="capability-card-desc">Translate complex supply chain operations into analytics that drive decisions&mdash;not just reports. Two decades of domain expertise means I speak the language of operations, finance, and logistics, not just data.</div>
+                    <div class="capability-card-proof">Proven at IKEA, GXO Logistics, Samsung SDS Cello. 20+ years domain expertise.</div>
+                    <div class="capability-tags">
+                        <span class="capability-tag">Inventory &amp; Fulfilment</span>
+                        <span class="capability-tag">Freight &amp; Trade Lanes</span>
+                        <span class="capability-tag">Warehousing</span>
+                        <span class="capability-tag">Retail Analytics</span>
+                        <span class="capability-tag">Dock-to-Stock</span>
+                        <span class="capability-tag">20+ yrs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== ACHIEVEMENTS ====== -->
+        <section class="section" id="achievements">
+            <div class="reveal">
+                <p class="section-label">Recognition</p>
+                <h2 class="section-title">Achievements & Certifications</h2>
+            </div>
+            <div class="achievements-grid">
+                <div class="reveal">
+                    <h3 class="sub-heading">Certifications</h3>
+                    <div class="cert-group">
+                        <p class="cert-group-label">Active</p>
+                        <div class="certs-list">
+                            <div class="cert-badge"><span class="cert-icon"></span>PL-300: Power BI Data Analyst</div>
+                            <div class="cert-badge"><span class="cert-icon"></span>DP-600: Fabric Analytics Engineer</div>
+                            <div class="cert-badge"><span class="cert-icon"></span>AZ-900: Azure Fundamentals</div>
+                            <div class="cert-badge"><span class="cert-icon" style="background: var(--accent-teal)"></span>Power Platform Fundamentals</div>
+                        </div>
+                    </div>
+                    <div class="cert-group" style="margin-top: 8px;">
+                        <p class="cert-group-label">Expired</p>
+                        <div class="certs-list">
+                            <div class="cert-badge cert-badge--expired"><span class="cert-icon"></span>DP-700: Fabric Data Engineer</div>
+                            <div class="cert-badge cert-badge--expired"><span class="cert-icon"></span>DP-900: Data Fundamentals</div>
+                            <div class="cert-badge cert-badge--expired"><span class="cert-icon"></span>APICS CSCP</div>
+                            <div class="cert-badge cert-badge--expired"><span class="cert-icon"></span>MCSA: BI Reporting</div>
+                            <div class="cert-badge cert-badge--expired"><span class="cert-icon"></span>MCT: Microsoft Certified Trainer</div>
+                            <div class="cert-badge cert-badge--expired"><span class="cert-icon"></span>MOS: Excel Expert</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <h3 class="sub-heading">Awards & Recognition</h3>
+                    <div class="awards-timeline">
+                        <div class="awards-timeline-inner">
+                            <!-- Range bars (ongoing awards — above axis) -->
+                            <div class="awards-lanes">
+                                <div class="awards-range awards-range--superuser" style="left: 37.5%; right: 0;">
+                                    <img src="assets/superuser-badge.png" alt="Super User Badge" class="awards-range-img" />
+                                    <span class="awards-range-label">Community Super User</span>
+                                    <span class="awards-range-badge">ONGOING</span>
+                                </div>
+                                <div class="awards-range awards-range--mvp" style="left: 50%; right: 0;">
+                                    <img src="assets/mvp-avatar-badge.png" alt="Microsoft MVP Badge" class="awards-range-img" />
+                                    <span class="awards-range-label">Microsoft MVP</span>
+                                    <span class="awards-range-badge">ONGOING</span>
+                                </div>
+                            </div>
+                            <!-- Axis line with year ticks and point events -->
+                            <div class="awards-axis">
+                                <!-- Year ticks -->
+                                <div class="awards-axis-year" style="left: 0%;"><span>2018</span></div>
+                                <div class="awards-axis-year" style="left: 25%;"><span>2020</span></div>
+                                <div class="awards-axis-year" style="left: 50%;"><span>2022</span></div>
+                                <div class="awards-axis-year" style="left: 75%;"><span>2024</span></div>
+                                <div class="awards-axis-year awards-axis-year--present" style="left: 100%;"><span>NOW</span></div>
+                                <!-- Point events (below axis) -->
+                                <div class="awards-point awards-point--start" style="left: 0%;">
+                                    <div class="awards-point-dot"></div>
+                                    <div class="awards-point-label">
+                                        <strong>Thesis Excellence Award</strong>
+                                        <div class="awards-point-source">Supply Chain & Logistics — Rotterdam Business School</div>
+                                    </div>
+                                </div>
+                                <div class="awards-point" style="left: 25%;">
+                                    <div class="awards-point-dot"></div>
+                                    <div class="awards-point-label">
+                                        <strong>Hall of Fame</strong>
+                                        <div class="awards-point-source">Maven Analytics</div>
+                                    </div>
+                                </div>
+                                <div class="awards-point" style="left: 75%;">
+                                    <div class="awards-point-dot"></div>
+                                    <div class="awards-point-label">
+                                        <strong>Community Spotlight</strong>
+                                        <div class="awards-point-source">Power BI Community</div>
+                                    </div>
+                                </div>
+                                <!-- IKEA Achievements (second row, gold dots) -->
+                                <div class="awards-ikea-label">Achieved at IKEA</div>
+                                <div class="awards-point awards-point--ikea" style="left: 62.5%;">
+                                    <div class="awards-point-dot"></div>
+                                    <div class="awards-point-label">
+                                        <strong>Semantic Model Optimization</strong>
+                                        <div class="awards-point-source">Parameterized dev process</div>
+                                    </div>
+                                </div>
+                                <div class="awards-point awards-point--ikea" style="left: 75%;">
+                                    <div class="awards-point-dot"></div>
+                                    <div class="awards-point-label">
+                                        <strong>Git &amp; Source Control</strong>
+                                        <div class="awards-point-source">New BI architecture</div>
+                                    </div>
+                                </div>
+                                <div class="awards-point awards-point--ikea awards-point--end" style="left: 97%;">
+                                    <div class="awards-point-dot"></div>
+                                    <div class="awards-point-label">
+                                        <strong>Direct Lake Migration</strong>
+                                        <div class="awards-point-source">Composite model architecture</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ====== COMMUNITY ====== -->
+        <section class="section" id="community" style="background: var(--bg-secondary); max-width: 100%; padding-left: 0; padding-right: 0;">
+            <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 24px;">
+                <div class="reveal">
+                    <p class="section-label">Community</p>
+                    <h2 class="section-title">Blog & Community</h2>
+                    <p class="section-subtitle">Sharing knowledge through writing, mentoring, and open-source contributions.</p>
+                </div>
+                <div class="community-grid">
+                    <a href="https://powerbimvp.com/" class="community-card reveal" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+                        <div class="community-card-title" style="color: var(--accent-gold);">powerbimvp.com</div>
+                        <p class="community-card-desc">
+                            Deep dives into Power BI, PBIR, DAX, Microsoft Fabric, and DevOps for BI.
+                            Sharing discoveries, patterns, and practical techniques from real enterprise work.
+                        </p>
+                        <span class="community-stat">Visit Blog &rarr;</span>
+                    </a>
+                    <div class="community-card reveal">
+                        <div class="community-card-title">Community Impact</div>
+                        <p class="community-card-desc">
+                            As a Microsoft MVP and Power BI &amp; Fabric Super User, I actively contribute
+                            to the community through mentoring, forum support, and knowledge sharing.
+                        </p>
+                        <ul class="community-links-list">
+                            <li><span class="stat-inline">2,700+</span> accepted solutions in Power BI Community</li>
+                            <li><span class="stat-inline">9,000+</span> LinkedIn followers</li>
+                        </ul>
+                    </div>
+                    <div class="community-card reveal">
+                        <div class="community-card-title">Profiles &amp; Links</div>
+                        <p class="community-card-desc">
+                            Find me across the Microsoft ecosystem:
+                        </p>
+                        <ul class="community-links-list">
+                            <li><a href="https://www.linkedin.com/in/jihwankim1975/" target="_blank" rel="noopener">LinkedIn Profile &rarr;</a></li>
+                            <li><a href="https://mvp.microsoft.com/en-US/mvp/profile/385eb34e-c755-ed11-9561-000d3a197333" target="_blank" rel="noopener">Microsoft MVP Profile &rarr;</a></li>
+                            <li><a href="https://community.fabric.microsoft.com/t5/user/viewprofilepage/user-id/291628" target="_blank" rel="noopener">Community Super User Profile &rarr;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ====== MOTIVATION ====== -->
+        <section class="section" id="motivation">
+            <div class="reveal">
+                <p class="section-label">Vision</p>
+                <h2 class="section-title">What I'll Build for Your Organization</h2>
+            </div>
+            <div class="vision-grid">
+                <div class="motivation-content reveal" style="margin-top: 0;">
+                    <p>
+                        The next 18 months will define a decade of enterprise BI. <strong>PBIR becomes mandatory. Fabric adoption will accelerate.</strong>
+                        The teams that get governance, DevOps, and semantic architecture right NOW will have a permanent competitive advantage.
+                        I want to be the architect who makes that happen for your organization.
+                    </p>
+                    <div class="motivation-highlight">
+                        "I don't just build reports&mdash;I architect the platform, build the tooling,
+                        and establish the engineering culture that makes enterprise BI sustainable at scale.
+                        The Fabric transition is a once-in-a-decade opportunity to get this right."
+                    </div>
+                    <p>
+                        What I bring to your organization:
+                    </p>
+                    <ul class="timeline-achievements" style="margin-top: 12px;">
+                        <li><strong>Enterprise scale</strong> &mdash; Proven at IKEA with 30,000+ users and 500M+ record workloads</li>
+                        <li><strong>Architectural thinking</strong> &mdash; Open-source governance tools demonstrate depth beyond report building</li>
+                        <li><strong>Business acumen</strong> &mdash; Supply chain and logistics background means I speak the language of operations, not just data</li>
+                        <li><strong>Microsoft relationship</strong> &mdash; MVP status provides early access to features, direct feedback channels, and deep ecosystem knowledge</li>
+                        <li><strong>AI-augmented workflow</strong> &mdash; Practical, proven integration of AI into every phase of BI development</li>
+                        <li><strong>Community leadership</strong> &mdash; Track record of mentoring, knowledge sharing, and building BI culture</li>
+                    </ul>
+                </div>
+                <div class="vision-next reveal">
+                    <div class="vision-next-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        What I'll Deliver
+                    </div>
+                    <ul class="vision-next-items">
+                        <li><strong>Enterprise PBIR Migration Strategy</strong> &mdash; Architect and execute your organization's PBIR transition before the Q3 2026 mandate, using proven tooling and migration patterns from IKEA-scale deployments</li>
+                        <li><strong>Fabric Center of Excellence</strong> &mdash; Establish governance standards, CI/CD pipelines, and semantic model architecture patterns that scale across your organization</li>
+                        <li><strong>AI-Augmented BI Engineering</strong> &mdash; Integrate AI copilots into your BI development workflow&mdash;not as a gimmick, but as a 3x productivity multiplier backed by real results</li>
+                        <li><strong>Semantic Layer as Product</strong> &mdash; Evolve your semantic models from report-backing datasets into governed, reusable data products that serve multiple teams and applications</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CONTACT ====== -->
+        <section class="section contact" id="contact">
+            <div class="reveal">
+                <p class="section-label">Get in Touch</p>
+                <h2 class="section-title">Let's Discuss Your Fabric Strategy</h2>
+                <p class="section-subtitle">Exploring senior enterprise BI architecture roles at Fortune 500 organizations in The Netherlands. If your team faces a Fabric migration, PBIR transition, or needs to scale Power BI governance&mdash;let's talk.</p>
+                <p style="font-size: 0.85rem; color: var(--accent-teal); margin-top: 8px;">Power BI Architect &bull; Fabric Platform Lead &bull; Enterprise Analytics Director &bull; Based in Amsterdam</p>
+            </div>
+            <div class="contact-links reveal">
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    <span class="contact-value">jonathan.jihwankim@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span class="contact-value">06-15243304</span>
+                </div>
+                <a href="https://www.linkedin.com/in/jihwankim1975/" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/JonathanJihwanKim" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://powerbimvp.com/" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    Blog
+                </a>
+                <a href="cv.html" class="contact-link" style="border-color: var(--accent-gold); color: var(--accent-gold);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Download CV
+                </a>
+                <a href="career-description.html" class="contact-link" style="border-color: var(--accent-teal); color: var(--accent-teal);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Career Description
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <p>&copy; 2026 Jihwan Kim. Built with vanilla HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // Mobile nav toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            const btn = document.querySelector('.nav-hamburger');
+            const isOpen = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen);
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+                document.querySelector('.nav-hamburger').setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Scroll reveal with Intersection Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Counter animation
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1500;
+            const start = performance.now();
+
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * target);
+                el.textContent = current.toLocaleString() + (progress >= 1 ? suffix : '');
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.stats-grid').forEach(el => counterObserver.observe(el));
+
+        // Active nav tracking
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                    });
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+        sections.forEach(section => navObserver.observe(section));
+
+        // Awards timeline scroll-triggered animation
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    // Animate range bars (wipe in from left)
+                    el.querySelectorAll('.awards-range').forEach((bar, i) => {
+                        setTimeout(() => bar.classList.add('revealed'), 300 + i * 200);
+                    });
+                    // Animate point dots (pop in)
+                    el.querySelectorAll('.awards-point-dot').forEach((dot, i) => {
+                        setTimeout(() => dot.classList.add('revealed'), 600 + i * 150);
+                    });
+                    // Animate point labels (fade in)
+                    el.querySelectorAll('.awards-point-label').forEach((label, i) => {
+                        setTimeout(() => label.classList.add('revealed'), 800 + i * 150);
+                    });
+                    timelineObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.awards-timeline').forEach(el => timelineObserver.observe(el));
+
+        // Hero name text scramble reveal
+        (function() {
+            const heroName = document.querySelector('.hero-name');
+            if (!heroName || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const finalText = heroName.textContent.trim();
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            const duration = 600;
+            const stagger = 100;
+            let startTime = null;
+
+            // Temporarily disable gradient text for scramble phase
+            heroName.style.webkitTextFillColor = 'var(--text-primary)';
+            heroName.style.backgroundClip = 'unset';
+            heroName.style.webkitBackgroundClip = 'unset';
+            heroName.style.background = 'none';
+
+            function scramble(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                let result = '';
+
+                for (let i = 0; i < finalText.length; i++) {
+                    if (finalText[i] === ' ') { result += ' '; continue; }
+                    const charDelay = i * stagger;
+                    if (elapsed > charDelay + duration) {
+                        result += finalText[i];
+                    } else if (elapsed > charDelay) {
+                        result += chars[Math.floor(Math.random() * chars.length)];
+                    } else {
+                        result += '\u00A0';
+                    }
+                }
+
+                heroName.textContent = result;
+
+                if (elapsed < (finalText.length * stagger) + duration) {
+                    requestAnimationFrame(scramble);
+                } else {
+                    heroName.textContent = finalText;
+                    // Restore gradient text
+                    heroName.style.webkitTextFillColor = '';
+                    heroName.style.backgroundClip = '';
+                    heroName.style.webkitBackgroundClip = '';
+                    heroName.style.background = '';
+                }
+            }
+
+            setTimeout(() => requestAnimationFrame(scramble), 400);
+        })();
+
+        // Scroll progress bar
+        const progressBar = document.querySelector('.scroll-progress');
+        if (progressBar) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = progress + '%';
+            }, { passive: true });
+        }
+
+        // Staggered reveal for grid children
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const children = entry.target.querySelectorAll('.reveal');
+                    children.forEach((child, i) => {
+                        setTimeout(() => child.classList.add('visible'), i * 100);
+                    });
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.skills-grid, .portfolio-grid, .community-grid, .stats-grid').forEach(grid => {
+            // Prevent default observer from handling these children
+            grid.querySelectorAll('.reveal').forEach(el => revealObserver.unobserve(el));
+            staggerObserver.observe(grid);
+        });
+
+        // Nav scroll state
+        const navEl = document.querySelector('.nav');
+        if (navEl) {
+            window.addEventListener('scroll', () => {
+                navEl.classList.toggle('scrolled', window.scrollY > 100);
+            }, { passive: true });
+        }
+
+        // Project card case study expand
+        document.querySelectorAll('.project-expand-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const caseStudy = trigger.nextElementSibling;
+                const isOpen = caseStudy.classList.toggle('open');
+                trigger.setAttribute('aria-expanded', isOpen);
+                caseStudy.setAttribute('aria-hidden', !isOpen);
+            });
+            trigger.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    trigger.click();
+                }
+            });
+        });
+
+        // Hero parallax
+        (function() {
+            const hero = document.querySelector('.hero');
+            if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const heroContent = hero.querySelector('.hero-content');
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                if (scrollY < window.innerHeight && heroContent) {
+                    heroContent.style.transform = 'translateY(' + (scrollY * 0.15) + 'px)';
+                    heroContent.style.opacity = 1 - (scrollY / window.innerHeight) * 0.3;
+                }
+            }, { passive: true });
+        })();
+
+        // Hero cursor glow
+        (function() {
+            const heroGlow = document.querySelector('.hero-cursor-glow');
+            const heroEl = document.querySelector('.hero');
+            if (!heroGlow || !heroEl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            heroEl.addEventListener('mousemove', (e) => {
+                const rect = heroEl.getBoundingClientRect();
+                heroGlow.style.left = (e.clientX - rect.left) + 'px';
+                heroGlow.style.top = (e.clientY - rect.top) + 'px';
+                heroGlow.style.opacity = '1';
+            });
+            heroEl.addEventListener('mouseleave', () => {
+                heroGlow.style.opacity = '0';
+            });
+        })();
+
+        // Floating particles in hero
+        (function() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const container = document.querySelector('.hero-particles');
+            if (!container) return;
+            const colors = ['var(--accent-coral)', 'var(--accent-gold)', 'var(--accent-blue)'];
+            for (let i = 0; i < 15; i++) {
+                const p = document.createElement('div');
+                p.className = 'hero-particle';
+                p.style.left = Math.random() * 100 + '%';
+                const size = (2 + Math.random() * 2) + 'px';
+                p.style.width = size;
+                p.style.height = size;
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                p.style.animationDuration = (15 + Math.random() * 20) + 's';
+                p.style.animationDelay = (Math.random() * 15) + 's';
+                container.appendChild(p);
+            }
+        })();
+
+        // 3D tilt effect on cards
+        (function() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            if ('ontouchstart' in window) return;
+
+            document.querySelectorAll('.project-card, .stat-card, .skill-group, .community-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -6;
+                    const rotateY = ((x - centerX) / centerX) * 6;
+                    card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.transition = 'transform 0.5s ease';
+                    setTimeout(() => { card.style.transition = ''; }, 500);
+                });
+            });
+        })();
+
+        // Magnetic button effect
+        (function() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            if ('ontouchstart' in window) return;
+
+            document.querySelectorAll('.btn, .contact-link').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = '';
+                    btn.style.transition = 'transform 0.4s cubic-bezier(0.33, 1, 0.68, 1)';
+                    setTimeout(() => { btn.style.transition = ''; }, 400);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

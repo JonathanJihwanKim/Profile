@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter — Jihwan Kim</title>
+    <style>
+        /* ===== SCREEN STYLES ===== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0d1117;
+            color: #e6edf3;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #f5b731;
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .letter-container {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .letter-card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 3rem 3.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .print-btn-wrapper {
+            text-align: right;
+            margin-bottom: 1.5rem;
+        }
+
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #f5b731;
+            color: #0d1117;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.15s;
+        }
+
+        .print-btn:hover {
+            background-color: #d9a02b;
+            transform: translateY(-1px);
+        }
+
+        .print-btn:active {
+            transform: translateY(0);
+        }
+
+        .print-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* -- Header / From -- */
+        .letter-header {
+            border-bottom: 2px solid #f5b731;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .letter-header h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.15rem;
+            letter-spacing: -0.02em;
+        }
+
+        .letter-header .subtitle {
+            font-size: 0.9rem;
+            color: #f5b731;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            font-size: 0.88rem;
+            color: #8b949e;
+            line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: #f5b731;
+        }
+
+        /* -- Recipient / To -- */
+        .recipient {
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .recipient .date {
+            margin-bottom: 0.8rem;
+            color: #8b949e;
+        }
+
+        /* -- Body -- */
+        .salutation {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .letter-body p {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            color: #c9d1d9;
+            text-align: justify;
+        }
+
+        .letter-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* -- Closing -- */
+        .closing {
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .closing .sign-off {
+            margin-bottom: 1.8rem;
+        }
+
+        .closing .name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .closing .title-line {
+            font-size: 0.88rem;
+            color: #f5b731;
+            font-weight: 500;
+        }
+
+        /* -- Placeholders -- */
+        .placeholder {
+            background-color: rgba(245, 183, 49, 0.15);
+            border: 1px dashed rgba(245, 183, 49, 0.5);
+            border-radius: 4px;
+            padding: 0.1em 0.45em;
+            color: #f5b731;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @page {
+            margin: 2cm;
+            size: A4;
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #111111;
+                padding: 0;
+                line-height: 1.6;
+                font-size: 11pt;
+            }
+
+            .back-link,
+            .print-btn-wrapper {
+                display: none !important;
+            }
+
+            .letter-container {
+                max-width: 100%;
+            }
+
+            .letter-card {
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+
+            .letter-header {
+                border-bottom: 2px solid #222222;
+                padding-bottom: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .letter-header h1 {
+                color: #000000;
+                font-size: 16pt;
+            }
+
+            .letter-header .subtitle {
+                color: #333333;
+                font-size: 10pt;
+            }
+
+            .contact-info {
+                color: #333333;
+                font-size: 9.5pt;
+            }
+
+            .contact-info a {
+                color: #111111;
+                text-decoration: none;
+            }
+
+            .recipient {
+                font-size: 10.5pt;
+                color: #111111;
+            }
+
+            .recipient .date {
+                color: #333333;
+            }
+
+            .salutation {
+                color: #111111;
+                font-size: 10.5pt;
+            }
+
+            .letter-body p {
+                color: #111111;
+                font-size: 10.5pt;
+                margin-bottom: 0.8rem;
+            }
+
+            .closing {
+                font-size: 10.5pt;
+                color: #111111;
+            }
+
+            .closing .name {
+                color: #000000;
+            }
+
+            .closing .title-line {
+                color: #333333;
+                font-size: 9.5pt;
+            }
+
+            .placeholder {
+                background-color: #fff3cd;
+                border: 1px dashed #997a00;
+                color: #664d00;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="letter-container">
+
+    <!-- Back link -->
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 16 16"><path d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h8.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"/></svg>
+        Back to Portfolio
+    </a>
+
+    <!-- Print button -->
+    <div class="print-btn-wrapper">
+        <button class="print-btn" onclick="window.print()">
+            <svg viewBox="0 0 16 16"><path d="M4 1h8a1 1 0 011 1v2H3V2a1 1 0 011-1zm-2 5h12a2 2 0 012 2v3a1 1 0 01-1 1h-2v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2H1a1 1 0 01-1-1V8a2 2 0 012-2zm3 5v3h6v-3H5zm7-3a1 1 0 100-2 1 1 0 000 2z"/></svg>
+            Print this Letter
+        </button>
+    </div>
+
+    <!-- Letter card -->
+    <div class="letter-card">
+
+        <!-- From -->
+        <div class="letter-header">
+            <h1>Jihwan Kim</h1>
+            <div class="subtitle">Microsoft MVP | Power BI Developer &amp; Architect</div>
+            <div class="contact-info">
+                Amsterdam, Netherlands<br>
+                <a href="mailto:jonathan.jihwankim@gmail.com">jonathan.jihwankim@gmail.com</a><br>
+                <a href="https://linkedin.com/in/jihwankim1975" target="_blank" rel="noopener">linkedin.com/in/jihwankim1975</a>
+            </div>
+        </div>
+
+        <!-- To -->
+        <div class="recipient">
+            <div class="date" id="letter-date"></div>
+            <span class="placeholder">[Hiring Manager Name]</span><br>
+            <span class="placeholder">[Company Name]</span>
+        </div>
+
+        <!-- Salutation -->
+        <p class="salutation">Dear <span class="placeholder">[Hiring Manager Name]</span>,</p>
+
+        <!-- Body -->
+        <div class="letter-body">
+            <p>I am writing to express my interest in the <span class="placeholder">[Position Title]</span> role at <span class="placeholder">[Company Name]</span>. As a Microsoft MVP and Power BI Developer &amp; Architect with over seven years of enterprise experience, I bring a unique combination of deep technical expertise, business acumen, and community leadership that I believe would be a strong asset to your organization.</p>
+
+            <p>In my current role at IKEA, I architect semantic models and analytics pipelines on Microsoft Fabric serving 30,000+ users across Customer Fulfilment, Inventory, and Logistics. I have delivered measurable impact: a Direct Lake model handling 500M+ records with 65% faster refresh times, 30% model size reduction, 25% performance gains, and 25% improvement in Fabric capacity usage. I integrate AI tools into every phase of BI development&#8202;&#8212;&#8202;from DAX prototyping to performance diagnostics&#8202;&#8212;&#8202;boosting development velocity by 3x.</p>
+
+            <p>What sets me apart is the breadth of my contribution to the Power BI ecosystem. Beyond enterprise delivery, I create open-source developer tools that solve real governance challenges: <strong>pbip-documenter</strong> for automated semantic model documentation, <strong>pbip-lineage-explorer</strong> for end-to-end data lineage, and <strong>pbip-impact-analyzer</strong> for safe refactoring. These tools reflect my architectural thinking&#8202;&#8212;&#8202;I don't just build reports, I build systems that make BI teams more effective.</p>
+
+            <p>My career journey from supply chain operations (Samsung SDS, GXO Logistics) through freelance consulting to enterprise BI architecture gives me a rare ability to bridge business and technical conversations. I understand logistics KPIs, operational workflows, and stakeholder needs firsthand&#8202;&#8212;&#8202;not just as abstract data requirements.</p>
+
+            <p>I am seeking an organization where I can apply this experience at scale: designing governed, performant analytics architectures, mentoring teams, and driving the adoption of AI-augmented BI practices. I would welcome the opportunity to discuss how my skills and vision align with <span class="placeholder">[Company Name]</span>'s analytics strategy.</p>
+
+            <p>Thank you for your consideration. I look forward to speaking with you.</p>
+        </div>
+
+        <!-- Closing -->
+        <div class="closing">
+            <p class="sign-off">Sincerely,</p>
+            <div class="name">Jihwan Kim</div>
+            <div class="title-line">Microsoft MVP | Power BI Developer &amp; Architect</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Auto-fill date
+    (function () {
+        var now = new Date();
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var formatted = now.toLocaleDateString('en-US', options);
+        document.getElementById('letter-date').textContent = formatted;
+    })();
+</script>
+
+</body>
+</html>
