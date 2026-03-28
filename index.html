@@ -67,13 +67,21 @@
         body {
             font-family: var(--font-sans);
             background: var(--bg-primary);
-            background-image: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 80px,
-                rgba(232, 99, 74, 0.015) 80px,
-                rgba(232, 99, 74, 0.015) 81px
-            );
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(232, 99, 74, 0.015) 80px,
+                    rgba(232, 99, 74, 0.015) 81px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(74, 144, 217, 0.008) 80px,
+                    rgba(74, 144, 217, 0.008) 81px
+                );
             color: var(--text-primary);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
@@ -189,6 +197,19 @@
 
         .nav-logo span { color: var(--accent-gold); }
 
+        .nav-dashboard-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-dashboard-label { display: block; }
+        }
+
         .nav-links {
             display: flex;
             gap: 32px;
@@ -210,8 +231,9 @@
             bottom: -4px;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--accent-gold);
+            border-radius: 2px 2px 0 0;
             transition: width var(--transition);
         }
 
@@ -257,6 +279,19 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8a838' opacity='0.7'%3E%3Crect x='1' y='9' width='3' height='6' rx='0.5'/%3E%3Crect x='6' y='5' width='3' height='10' rx='0.5'/%3E%3Crect x='11' y='1' width='3' height='14' rx='0.5'/%3E%3C/svg%3E") no-repeat center / contain;
+            opacity: 0.7;
+            flex-shrink: 0;
         }
 
         .section-title {
@@ -462,6 +497,45 @@
             font-weight: 600;
         }
 
+        .hero-kpi-strip {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-kpi {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-kpi-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .hero-kpi-trend {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 3.5px solid transparent;
+            border-right: 3.5px solid transparent;
+            border-bottom: 5px solid var(--accent-green);
+            margin-left: 2px;
+        }
+
+        .hero-kpi-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border);
+            align-self: center;
+        }
+
         .hero-cta {
             display: flex;
             gap: 16px;
@@ -527,47 +601,54 @@
         }
 
         .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 16px;
         }
 
         .stat-card {
             background: var(--bg-card);
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            width: 140px;
-            height: 140px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 20px 20px 12px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            text-align: left;
             transition: all var(--transition);
             position: relative;
+            overflow: hidden;
         }
 
         .stat-card::before {
             content: '';
             position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, var(--accent-coral), var(--accent-gold), var(--accent-blue), transparent);
-            opacity: 0;
-            transition: opacity var(--transition);
-            z-index: -1;
-            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 2px));
-            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 2px));
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-accent, var(--accent-gold));
         }
 
         .stat-card:hover {
-            border-color: transparent;
+            border-color: var(--card-accent, var(--accent-gold));
             box-shadow: var(--shadow);
+            transform: translateY(-2px);
         }
 
-        .stat-card:hover::before {
-            opacity: 1;
+        .stat-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            line-height: 1.3;
+            margin-bottom: 6px;
+            order: -1;
+        }
+
+        .stat-value-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
         }
 
         .stat-number {
@@ -579,14 +660,60 @@
             line-height: 1.1;
         }
 
-        .stat-label {
+        .stat-trend {
+            font-family: var(--font-mono);
             font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 0 8px;
-            line-height: 1.3;
+            font-weight: 700;
+            color: var(--accent-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .stat-trend::before {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 3.5px solid transparent;
+            border-right: 3.5px solid transparent;
+            border-bottom: 5px solid var(--accent-green);
+        }
+
+        .stat-sparkline {
+            height: 24px;
+            margin-top: 10px;
+            border-radius: 0 0 4px 4px;
+            opacity: 0.6;
+        }
+
+        .stat-sparkline--1 {
+            background: linear-gradient(90deg, rgba(232,168,56,0.05) 0%, rgba(232,168,56,0.35) 100%);
+            clip-path: polygon(0% 85%, 10% 70%, 20% 75%, 35% 55%, 50% 60%, 65% 35%, 80% 25%, 100% 10%, 100% 100%, 0% 100%);
+        }
+        .stat-sparkline--2 {
+            background: linear-gradient(90deg, rgba(74,144,217,0.05) 0%, rgba(74,144,217,0.35) 100%);
+            clip-path: polygon(0% 90%, 15% 50%, 30% 55%, 45% 25%, 55% 30%, 70% 15%, 85% 20%, 100% 5%, 100% 100%, 0% 100%);
+        }
+        .stat-sparkline--3 {
+            background: linear-gradient(90deg, rgba(45,212,191,0.05) 0%, rgba(45,212,191,0.35) 100%);
+            clip-path: polygon(0% 80%, 12% 65%, 25% 70%, 40% 45%, 55% 50%, 68% 30%, 82% 35%, 100% 15%, 100% 100%, 0% 100%);
+        }
+        .stat-sparkline--4 {
+            background: linear-gradient(90deg, rgba(232,99,74,0.05) 0%, rgba(232,99,74,0.35) 100%);
+            clip-path: polygon(0% 75%, 14% 60%, 28% 65%, 42% 40%, 56% 45%, 70% 20%, 84% 25%, 100% 8%, 100% 100%, 0% 100%);
+        }
+        .stat-sparkline--5 {
+            background: linear-gradient(90deg, rgba(99,102,241,0.05) 0%, rgba(99,102,241,0.35) 100%);
+            clip-path: polygon(0% 70%, 16% 55%, 32% 60%, 48% 35%, 60% 40%, 72% 22%, 86% 28%, 100% 12%, 100% 100%, 0% 100%);
+        }
+        .stat-sparkline--6 {
+            background: linear-gradient(90deg, rgba(232,168,56,0.05) 0%, rgba(232,168,56,0.35) 100%);
+            clip-path: polygon(0% 82%, 13% 68%, 26% 72%, 39% 50%, 52% 55%, 65% 32%, 78% 38%, 100% 18%, 100% 100%, 0% 100%);
+        }
+        .stat-sparkline--7 {
+            background: linear-gradient(90deg, rgba(74,144,217,0.05) 0%, rgba(74,144,217,0.35) 100%);
+            clip-path: polygon(0% 78%, 11% 62%, 24% 68%, 38% 42%, 54% 48%, 69% 28%, 83% 32%, 100% 14%, 100% 100%, 0% 100%);
         }
 
         .mvp-callout {
@@ -1249,6 +1376,16 @@
             align-items: center;
         }
 
+        .awards-axis-year::after {
+            content: '';
+            position: absolute;
+            top: -104px;
+            width: 1px;
+            height: 100px;
+            border-left: 1px dashed rgba(139,148,158,0.1);
+            pointer-events: none;
+        }
+
         .awards-axis-year::before {
             content: '';
             width: 2px;
@@ -1623,6 +1760,58 @@
             font-weight: 400;
         }
 
+        /* ============================================
+           CHART CONTAINERS
+           ============================================ */
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .chart-container.loaded {
+            display: block;
+        }
+
+        .chart-container-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chart-container-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .community-chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: none;
+            max-width: 200px;
+            margin: 16px auto 0;
+        }
+
+        .community-chart-container.loaded {
+            display: block;
+        }
+
         .footer {
             text-align: center;
             padding: 40px 24px;
@@ -1674,6 +1863,24 @@
             border: 1px solid rgba(232, 168, 56, 0.15);
             border-radius: var(--radius);
             transition: all var(--transition);
+            position: relative;
+        }
+
+        .urgency-card::after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-coral);
+            animation: urgencyPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes urgencyPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(232,99,74,0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(232,99,74,0); }
         }
 
         .urgency-card:hover {
@@ -1774,6 +1981,26 @@
             white-space: nowrap;
         }
 
+        .capability-progress {
+            height: 6px;
+            background: rgba(139, 148, 158, 0.1);
+            border-radius: 3px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .capability-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--card-accent, var(--accent-blue));
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .capability-progress-fill.animated {
+            width: var(--fill-width);
+        }
+
         /* ============================================
            SOCIAL PROOF STRIP
            ============================================ */
@@ -1816,9 +2043,10 @@
             .section-title { font-size: 2rem; }
 
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .stat-card { width: 110px; height: 110px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-card { padding: 16px 16px 10px; }
             .stat-number { font-size: 1.4rem; }
-            .stat-label { font-size: 0.58rem; }
+            .stat-label { font-size: 0.6rem; }
             .skills-grid { grid-template-columns: 1fr; }
             .portfolio-grid { grid-template-columns: 1fr; }
             .achievements-grid { gap: 32px; }
@@ -1845,6 +2073,10 @@
             .hero-badges { justify-content: center; }
             .hero-cta { justify-content: center; }
             .hero-tagline { margin: 0 auto 40px; }
+            .hero-kpi-strip { justify-content: center; gap: 12px; }
+            .hero-kpi { font-size: 0.7rem; }
+            .hero-kpi-value { font-size: 0.9rem; }
+            .hero-kpi-divider { display: none; }
             .hero-photo { order: -1; }
             .hero-photo img { width: 180px; height: 180px; }
 
@@ -1869,10 +2101,12 @@
             .scroll-progress { transition: none; }
             .hero-particle { animation: none; }
             *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+            .capability-progress-fill { transition: none !important; width: var(--fill-width) !important; }
+            .urgency-card::after { animation: none; }
         }
 
         @media (hover: none) {
-            .stat-card:active { transform: scale(0.95); }
+            .stat-card:active { transform: scale(0.98); }
             .project-expand-trigger span::after { content: ' ↓'; }
         }
 
@@ -1882,8 +2116,16 @@
             body { background: white !important; color: black !important; background-image: none !important; }
             .section { padding: 20px 0 !important; }
             .hero { min-height: auto !important; padding: 40px 24px !important; }
-            .stat-card { border-radius: var(--radius) !important; width: auto !important; height: auto !important; padding: 12px !important; }
+            .stat-card { padding: 12px !important; }
             .stat-card::before { display: none; }
+            .stat-sparkline { display: none; }
+            .stat-trend { display: none; }
+            .hero-kpi-strip { display: none; }
+            .capability-progress { display: none; }
+            .nav-dashboard-label { display: none !important; }
+            .chart-container { display: none !important; }
+            .community-chart-container { display: none !important; }
+            .urgency-card::after { display: none; }
             .project-case-study { max-height: none !important; opacity: 1 !important; }
         }
     </style>
@@ -1896,6 +2138,7 @@
         <div class="nav-inner">
             <div class="nav-left">
                 <a href="#hero" class="nav-logo" title="Back to top">JK<span>.</span></a>
+                <span class="nav-dashboard-label">Portfolio Dashboard</span>
                 <a href="#hero" class="nav-home-btn" title="Back to top" aria-label="Back to top">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 </a>
@@ -1933,6 +2176,15 @@
                     I architect enterprise analytics at IKEA (<strong>30,000+ users</strong> on Microsoft Fabric) and build the open-source DevOps tools that Power BI teams need for the PBIR/TMDL transition.
                     <strong>Microsoft MVP</strong> since 2022. <strong>2,700+ community solutions</strong>. 4 governance tools. <strong>8+ years Power BI</strong> & <strong>2+ years Fabric</strong>.
                 </p>
+                <div class="hero-kpi-strip">
+                    <div class="hero-kpi"><span class="hero-kpi-value">30K+</span> users<span class="hero-kpi-trend" aria-hidden="true"></span></div>
+                    <div class="hero-kpi-divider" aria-hidden="true"></div>
+                    <div class="hero-kpi"><span class="hero-kpi-value">2,700+</span> solutions<span class="hero-kpi-trend" aria-hidden="true"></span></div>
+                    <div class="hero-kpi-divider" aria-hidden="true"></div>
+                    <div class="hero-kpi"><span class="hero-kpi-value">58+</span> stars<span class="hero-kpi-trend" aria-hidden="true"></span></div>
+                    <div class="hero-kpi-divider" aria-hidden="true"></div>
+                    <div class="hero-kpi"><span class="hero-kpi-value">8+</span> yrs Power BI</div>
+                </div>
                 <div class="hero-cta">
                     <a href="#about" class="btn btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
@@ -2024,33 +2276,61 @@
                 </div>
                 <div class="reveal">
                     <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="30000">0</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-gold);">
                             <div class="stat-label">Users Served</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="30000">0</div>
+                                <span class="stat-trend">+</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--1" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="90" data-suffix="%+">0</div>
-                            <div class="stat-label">Refresh Time Reduced with Direct Lake Mode</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-blue);">
+                            <div class="stat-label">Refresh Time Reduced</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="90" data-suffix="%+">0</div>
+                                <span class="stat-trend">Direct Lake</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--2" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="30" data-suffix="%">0</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-teal);">
                             <div class="stat-label">Model Size Reduction</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="30" data-suffix="%">0</div>
+                                <span class="stat-trend">optimized</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--3" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="25" data-suffix="%">0</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-coral);">
                             <div class="stat-label">Performance Gain</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="25" data-suffix="%">0</div>
+                                <span class="stat-trend">CU savings</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--4" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-indigo);">
                             <div class="stat-label">Open-Source Tools</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="4">0</div>
+                                <span class="stat-trend">58+ stars</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--5" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-gold);">
                             <div class="stat-label">Years Power BI</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                                <span class="stat-trend">enterprise</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--6" aria-hidden="true"></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="2" data-suffix="+">0</div>
+                        <div class="stat-card" style="--card-accent: var(--accent-blue);">
                             <div class="stat-label">Years Microsoft Fabric</div>
+                            <div class="stat-value-row">
+                                <div class="stat-number" data-target="2" data-suffix="+">0</div>
+                                <span class="stat-trend">early adopter</span>
+                            </div>
+                            <div class="stat-sparkline stat-sparkline--7" aria-hidden="true"></div>
                         </div>
                     </div>
                 </div>
@@ -2256,6 +2536,10 @@
                     <h2 class="section-title">Enterprise-Scale Impact</h2>
                     <p class="section-subtitle">Two decades of supply chain domain expertise combined with deep BI architecture&mdash;a rare combination at Fortune 500 scale.</p>
                 </div>
+                <div class="chart-container reveal" id="careerChart">
+                    <div class="chart-container-label">Career Impact Trajectory</div>
+                    <div id="careerChartEl"></div>
+                </div>
                 <div class="timeline">
                     <!-- IKEA -->
                     <div class="timeline-item current reveal">
@@ -2396,6 +2680,7 @@
                         <span class="capability-tag">2+ yrs Fabric</span>
                         <span class="capability-tag">8+ yrs Power BI</span>
                     </div>
+                    <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 92%;"></div></div>
                 </div>
                 <div class="capability-card reveal" style="--card-accent: var(--accent-teal);">
                     <div class="capability-card-title">DevOps &amp; CI/CD Governance</div>
@@ -2410,6 +2695,7 @@
                         <span class="capability-tag">Deployment Pipelines</span>
                         <span class="capability-tag">3+ yrs</span>
                     </div>
+                    <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 85%;"></div></div>
                 </div>
                 <div class="capability-card reveal" style="--card-accent: var(--accent-gold);">
                     <div class="capability-card-title">Semantic Modeling &amp; Performance Engineering</div>
@@ -2423,6 +2709,7 @@
                         <span class="capability-tag">Tabular Editor (6+ yrs)</span>
                         <span class="capability-tag">AI-Augmented</span>
                     </div>
+                    <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 95%;"></div></div>
                 </div>
                 <div class="capability-card reveal" style="--card-accent: var(--accent-coral);">
                     <div class="capability-card-title">Domain: Supply Chain &amp; Retail</div>
@@ -2436,6 +2723,7 @@
                         <span class="capability-tag">Dock-to-Stock</span>
                         <span class="capability-tag">20+ yrs</span>
                     </div>
+                    <div class="capability-progress"><div class="capability-progress-fill" style="--fill-width: 98%;"></div></div>
                 </div>
             </div>
         </section>
@@ -2576,6 +2864,9 @@
                             <li><span class="stat-inline">2,700+</span> accepted solutions in Power BI Community</li>
                             <li><span class="stat-inline">9,000+</span> LinkedIn followers</li>
                         </ul>
+                        <div class="community-chart-container" id="communityChart">
+                            <div id="communityChartEl"></div>
+                        </div>
                     </div>
                     <div class="community-card reveal">
                         <div class="community-card-title">Profiles &amp; Links</div>
@@ -2683,6 +2974,7 @@
     <!-- ====== FOOTER ====== -->
     <footer class="footer">
         <p>&copy; 2026 Jihwan Kim. Built with vanilla HTML, CSS &amp; JavaScript.</p>
+        <p style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.1em; margin-top: 8px; opacity: 0.6;">DESIGNED AS A DATA DASHBOARD</p>
     </footer>
 
     <!-- ====== JAVASCRIPT ====== -->
@@ -2743,6 +3035,19 @@
         }, { threshold: 0.3 });
 
         document.querySelectorAll('.stats-grid').forEach(el => counterObserver.observe(el));
+
+        // Capability progress bar animation
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.capability-progress-fill').forEach((fill, i) => {
+                        setTimeout(() => fill.classList.add('animated'), i * 150);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.capability-grid').forEach(el => progressObserver.observe(el));
 
         // Active nav tracking
         const sections = document.querySelectorAll('section[id]');
@@ -2983,6 +3288,98 @@
                 });
             });
         })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
+    <script>
+        // ApexCharts initialization (deferred, with fallback)
+        window.addEventListener('load', function() {
+            if (typeof ApexCharts === 'undefined') return;
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            try {
+                // Career Impact Trajectory - Area Chart
+                var careerContainer = document.querySelector('#careerChart');
+                var careerEl = document.querySelector('#careerChartEl');
+                if (careerContainer && careerEl) {
+                    var careerChart = new ApexCharts(careerEl, {
+                        chart: {
+                            type: 'area',
+                            height: 180,
+                            background: 'transparent',
+                            toolbar: { show: false },
+                            animations: { enabled: !reducedMotion, easing: 'easeinout', speed: 1200 },
+                            fontFamily: 'Inter, sans-serif'
+                        },
+                        series: [{ name: 'Impact Scale', data: [10, 20, 35, 50, 65, 80, 90, 95] }],
+                        colors: ['#4A90D9'],
+                        fill: {
+                            type: 'gradient',
+                            gradient: { shade: 'dark', type: 'vertical', opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 100] }
+                        },
+                        stroke: { curve: 'smooth', width: 3 },
+                        markers: { size: 5, colors: ['#e8a838'], strokeWidth: 0, hover: { size: 7 } },
+                        grid: { borderColor: '#30363d', strokeDashArray: 4, padding: { left: 8, right: 8 } },
+                        xaxis: {
+                            categories: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+                            labels: { style: { colors: '#8b949e', fontFamily: 'Inter', fontSize: '11px' } },
+                            axisBorder: { color: '#30363d' },
+                            axisTicks: { color: '#30363d' }
+                        },
+                        yaxis: { show: false },
+                        tooltip: {
+                            theme: 'dark',
+                            style: { fontFamily: 'Inter' },
+                            x: { show: true },
+                            marker: { show: true }
+                        },
+                        dataLabels: { enabled: false }
+                    });
+                    careerChart.render();
+                    careerContainer.classList.add('loaded');
+                }
+
+                // Community Impact Radial Bar
+                var communityContainer = document.querySelector('#communityChart');
+                var communityEl = document.querySelector('#communityChartEl');
+                if (communityContainer && communityEl) {
+                    var communityChart = new ApexCharts(communityEl, {
+                        chart: {
+                            type: 'radialBar',
+                            height: 160,
+                            background: 'transparent',
+                            animations: { enabled: !reducedMotion, speed: 1500 },
+                            fontFamily: 'Inter, sans-serif'
+                        },
+                        series: [90],
+                        colors: ['#e8a838'],
+                        plotOptions: {
+                            radialBar: {
+                                hollow: { size: '55%', background: 'transparent' },
+                                track: { background: '#1a2332', strokeWidth: '100%' },
+                                dataLabels: {
+                                    name: { show: true, fontSize: '10px', color: '#8b949e', offsetY: 16 },
+                                    value: {
+                                        show: true,
+                                        fontSize: '20px',
+                                        fontFamily: "'Cascadia Code', 'Fira Code', monospace",
+                                        fontWeight: 800,
+                                        color: '#e8a838',
+                                        offsetY: -12,
+                                        formatter: function() { return '2,700+'; }
+                                    }
+                                }
+                            }
+                        },
+                        labels: ['solutions'],
+                        stroke: { lineCap: 'round' }
+                    });
+                    communityChart.render();
+                    communityContainer.classList.add('loaded');
+                }
+            } catch(e) {
+                // Charts are additive — page works fine without them
+            }
+        });
     </script>
 </body>
 </html>
