@@ -1,4 +1,4 @@
-![Microsoft MVP — Power BI](https://img.shields.io/badge/Microsoft_MVP-Power_BI-F7B730?style=for-the-badge&logo=microsoft&logoColor=white)
+<img src="assets/mvp-avatar-badge.png" alt="Microsoft MVP Badge" height="70" />&nbsp;&nbsp;<img src="assets/superuser-badge.png" alt="Power BI & Microsoft Fabric Community Super User Badge" height="70" />
 
 # Jihwan Kim
 
