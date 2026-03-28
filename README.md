@@ -32,9 +32,7 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ### GitHub Stats
 
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=JonathanJihwanKim&show_icons=true&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&icon_color=2AAC94&text_color=8b949e&ring_color=F2C811&cache_seconds=86400)](https://github.com/JonathanJihwanKim)
-
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=JonathanJihwanKim&layout=compact&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&text_color=8b949e&cache_seconds=86400)](https://github.com/JonathanJihwanKim)
+![Repos](https://img.shields.io/badge/Public_Repos-4-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=2AAC94) ![Stars](https://img.shields.io/badge/Total_Stars-58+-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=F2C811) ![Languages](https://img.shields.io/badge/Top_Language-Python-0c1220?style=for-the-badge&logo=python&logoColor=white&labelColor=0c1220&color=3572A5)
 
 ---
 
