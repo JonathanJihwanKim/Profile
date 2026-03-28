@@ -32,9 +32,9 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ### GitHub Stats
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=JonathanJihwanKim&show_icons=true&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&icon_color=2AAC94&text_color=8b949e&ring_color=F2C811)
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=JonathanJihwanKim&show_icons=true&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&icon_color=2AAC94&text_color=8b949e&ring_color=F2C811&cache_seconds=86400)](https://github.com/JonathanJihwanKim)
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=JonathanJihwanKim&layout=compact&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&text_color=8b949e)
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=JonathanJihwanKim&layout=compact&theme=github_dark&hide_border=true&bg_color=0c1220&title_color=F2C811&text_color=8b949e&cache_seconds=86400)](https://github.com/JonathanJihwanKim)
 
 ---
 
@@ -44,4 +44,4 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ---
 
-<sub>jonathan.jihwankim@gmail.com · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)</sub>
+📧 jonathan.jihwankim@gmail.com · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)
