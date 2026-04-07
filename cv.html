@@ -283,7 +283,7 @@
     .screen-only { display: none !important; }
     @page {
       size: A4;
-      margin: 1.5cm;
+      margin: 1.5cm 2cm;
     }
 
     html { font-size: 11px; }
@@ -292,6 +292,9 @@
       background: #fff;
       color: #111;
       line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
     }
 
     a { color: #111; }
@@ -300,7 +303,9 @@
 
     .page {
       max-width: 100%;
-      padding: 0;
+      padding: 0 0.3cm;
+      margin: 0;
+      overflow: visible;
     }
 
     .cv-header h1 { font-size: 1.8rem; color: #111; }
@@ -483,7 +488,6 @@
       Power Platform Fundamentals
     </div>
     <div class="cert-note" style="margin-top:4px; font-size:0.85em; color:#666;">Studying for: DP-700 (Fabric Data Engineer)</div>
-    </div>
   </section>
 
   <!-- Open-Source Projects -->
