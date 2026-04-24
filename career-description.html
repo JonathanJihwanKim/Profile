@@ -15,21 +15,30 @@
 <meta name="twitter:description" content="Detailed career achievements — enterprise BI architecture, Fabric migrations, and governance at Fortune 500 scale.">
 <meta name="twitter:image" content="https://jonathanjihwankim.github.io/Profile/assets/og-image.png">
 <link rel="canonical" href="https://jonathanjihwankim.github.io/Profile/career-description.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
 <style>
   /* ── Reset ── */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ── Variables via custom properties ── */
+  /* ── Design tokens — Microsoft Technical ── */
   :root {
-    --bg: #0f1a2e;
-    --surface: #132040;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --gold: #f5b731;
-    --blue: #3b82f6;
-    --teal: #2dd4bf;
-    --border: #30363d;
-    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --pbi-500: #F2C811;  --pbi-600: #c28200;  --pbi-700: #9a6a00;
+    --fabric-500: #0EA5BE; --fabric-600: #00879c;
+    --msblue-700: #0078D4;
+    --grey-900: #1b1d26;  --grey-700: #424450;  --grey-500: #878a99;
+    --grey-200: #e4e6eb;  --grey-50: #f7f8fa;
+    --bg: #ffffff;
+    --bg-alt: #f7f8fa;
+    --text: var(--grey-900);
+    --text-2: var(--grey-700);
+    --text-3: var(--grey-500);
+    --border: var(--grey-200);
+    --link: var(--msblue-700);
+    --font: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
   }
 
   html { font-size: 16px; }
@@ -42,7 +51,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  a { color: var(--blue); text-decoration: none; }
+  a { color: var(--link); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
   /* ── Layout ── */
@@ -59,15 +68,15 @@
     align-items: center;
     margin-bottom: 2rem;
   }
-  .topbar a { color: var(--text-muted); font-size: 0.875rem; }
-  .topbar a:hover { color: var(--gold); }
+  .topbar a { color: var(--text-3); font-size: 0.875rem; }
+  .topbar a:hover { color: var(--pbi-600); }
 
   .btn-print {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    background: var(--gold);
-    color: #0d1117;
+    background: var(--pbi-500);
+    color: var(--grey-900);
     font-weight: 600;
     font-size: 0.85rem;
     padding: 0.45rem 1.1rem;
@@ -78,18 +87,22 @@
     transition: opacity .2s;
   }
   .btn-print:hover { opacity: .85; }
+  .btn-print .material-symbols-outlined {
+    font-size: 16px;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+  }
 
   /* ── Header ── */
   .cv-header { margin-bottom: 1.6rem; }
   .cv-header h1 {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
   .cv-header .title {
-    font-size: 1.1rem;
-    color: var(--gold);
+    font-size: 1.05rem;
+    color: var(--fabric-500);
     font-weight: 500;
     margin-top: 0.15rem;
   }
@@ -99,27 +112,28 @@
     gap: 0.4rem 1.4rem;
     margin-top: 0.6rem;
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--text-3);
   }
   .meta span { white-space: nowrap; }
 
   /* ── Sections ── */
   .section { margin-bottom: 1.5rem; }
   .section-title {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--teal);
+    letter-spacing: 0.09em;
+    color: var(--fabric-600);
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.35rem;
     margin-bottom: 0.75rem;
+    font-family: var(--font-mono);
   }
 
   /* ── Summary ── */
   .summary {
     font-size: 0.92rem;
-    color: var(--text-muted);
+    color: var(--text-2);
     line-height: 1.6;
   }
 
@@ -128,7 +142,7 @@
   .project-case:last-child { margin-bottom: 0; }
   .project-case-title {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text);
     margin-bottom: 0.4rem;
   }
@@ -137,15 +151,16 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--gold);
+    color: var(--pbi-700);
     margin-top: 0.5rem;
     margin-bottom: 0.15rem;
+    font-family: var(--font-mono);
   }
-  .sar-label.action { color: var(--blue); }
-  .sar-label.result { color: var(--teal); }
+  .sar-label.action { color: var(--msblue-700); }
+  .sar-label.result { color: var(--fabric-600); }
   .sar-text {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--text-2);
     line-height: 1.55;
   }
   .sar-text strong { color: var(--text); }
@@ -158,17 +173,18 @@
   .result-metric {
     font-size: 0.78rem;
     padding: 0.2rem 0.6rem;
-    background: rgba(45, 212, 191, 0.08);
-    border: 1px solid rgba(45, 212, 191, 0.2);
+    background: var(--fabric-50, #ecfafd);
+    border: 1px solid #d4f2f7;
     border-radius: 4px;
-    color: var(--teal);
+    color: var(--fabric-600);
     white-space: nowrap;
+    font-family: var(--font-mono);
   }
 
   /* ── Certifications ── */
   .cert-list {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--text-2);
     line-height: 1.65;
   }
   .cert-list .sep { color: var(--border); margin: 0 0.15rem; }
@@ -184,8 +200,9 @@
     padding: 0.2rem 0.55rem;
     border: 1px solid var(--border);
     border-radius: 4px;
-    color: var(--text-muted);
+    color: var(--text-2);
     white-space: nowrap;
+    background: var(--bg-alt);
   }
 
   /* ═══════════════════════════════════
@@ -264,13 +281,13 @@
   <!-- Top bar (screen only) -->
   <div class="topbar">
     <a href="index.html">&larr; Back to site</a>
-    <button class="btn-print" onclick="window.print()">&#128438; Print / Save as PDF</button>
+    <button class="btn-print" onclick="window.print()"><span class="material-symbols-outlined">print</span> Print / Save as PDF</button>
   </div>
 
   <!-- Header -->
   <header class="cv-header">
     <h1>Jihwan Kim</h1>
-    <div class="title">Career Description &mdash; IKEA</div>
+    <div class="title">Career Description, IKEA</div>
     <div class="meta">
       <span>Power BI Developer &amp; Data Model Architect</span>
       <span>Amsterdam, Netherlands</span>
@@ -284,7 +301,7 @@
   <!-- Professional Context -->
   <section class="section">
     <div class="section-title">Professional Context</div>
-    <p class="summary">At IKEA, within the Customer Fulfilment, Inventory &amp; Logistics Insights domain, I serve as the semantic model architect responsible for Microsoft Fabric and Power BI analytics infrastructure serving <strong>30,000+ users</strong> across the global supply chain organization. Since February 2023, I have led the technical architecture for the organization's transition from legacy Import-mode Power BI to modern Microsoft Fabric&mdash;designing patterns that became the standard for enterprise-scale BI governance. My work spans semantic modeling, Direct Lake migration, CI/CD pipeline design, performance engineering, and AI-augmented development&mdash;each initiative driven by measurable business outcomes.</p>
+    <p class="summary">At IKEA, within the Customer Fulfilment, Inventory &amp; Logistics Insights domain, I serve as the semantic model architect responsible for Microsoft Fabric and Power BI analytics infrastructure serving <strong>30,000+ users</strong> across the global supply chain organization. Since February 2023, I have led the technical architecture for the organization's transition from legacy Import-mode Power BI to modern Microsoft Fabric, designing patterns that became the standard for enterprise-scale BI governance. My work spans semantic modeling, Direct Lake migration, CI/CD pipeline design, performance engineering, and AI-augmented development, each initiative driven by measurable business outcomes.</p>
   </section>
 
   <!-- Key Projects & Achievements -->
@@ -297,7 +314,7 @@
       <div class="sar-label">Situation</div>
       <p class="sar-text">Legacy Import-mode semantic models required full data refresh cycles, causing <strong>hours of data latency</strong>, high Fabric capacity (CU) consumption, and user dissatisfaction across 30,000+ supply chain users. Decision-makers in inventory and fulfilment operations were working with stale data, delaying critical supply chain decisions.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Architected the migration to <strong>composite models with Direct Lake mode on Microsoft Fabric</strong>. Designed a hybrid architecture that balanced real-time data access via Direct Lake with calculated table requirements that still needed Import mode. Implemented an incremental migration strategy&mdash;model by model&mdash;to avoid service disruption for active users.</p>
+      <p class="sar-text">Architected the migration to <strong>composite models with Direct Lake mode on Microsoft Fabric</strong>. Designed a hybrid architecture that balanced real-time data access via Direct Lake with calculated table requirements that still needed Import mode. Implemented an incremental migration strategy, model by model, to avoid service disruption for active users.</p>
       <div class="sar-label result">Result</div>
       <p class="sar-text">Delivered near real-time analytics for the entire supply chain organization, enabling faster inventory decisions and reducing data latency from hours to minutes.</p>
       <div class="result-metrics">
@@ -315,7 +332,7 @@
       <div class="sar-label">Situation</div>
       <p class="sar-text">The development process was ad-hoc and environment-dependent. Deployments were manual, error-prone, and differed across dev, test, and production environments. A model that worked in development would frequently fail in production due to hard-coded connection strings and inconsistent configurations.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Implemented <strong>systematic parameterization</strong>&mdash;source control parameters, row count control, and data integrity parameters&mdash;making the development process controllable and reproducible. Built a framework where any developer could deploy identically across all three environments without manual configuration changes.</p>
+      <p class="sar-text">Implemented <strong>systematic parameterization</strong> covering source control parameters, row count control, and data integrity parameters, making the development process controllable and reproducible. Built a framework where any developer could deploy identically across all three environments without manual configuration changes.</p>
       <div class="sar-label result">Result</div>
       <p class="sar-text">Reproducible deployments across all environments, eliminating deployment failures and dramatically reducing the release cycle.</p>
       <div class="result-metrics">
@@ -361,9 +378,9 @@
     <div class="project-case">
       <div class="project-case-title">5. AI-Augmented Development Workflow</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Traditional BI development cycles were slow&mdash;DAX authoring, debugging, and documentation consumed disproportionate development hours, creating bottlenecks in delivery timelines.</p>
+      <p class="sar-text">Traditional BI development cycles were slow: DAX authoring, debugging, and documentation consumed disproportionate development hours, creating bottlenecks in delivery timelines.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Embedded <strong>AI copilots into DAX authoring, performance diagnostics, and documentation workflows</strong>. Adopted the <strong>Power BI MCP (Model Context Protocol) server from its earliest public preview</strong>, enabling AI agents to interact directly with semantic models&mdash;creating measures, validating DAX, executing bulk operations, and enforcing best practices through natural language. Developed prompt engineering patterns specific to Power BI and DAX context. Established team guidelines for effective AI-augmented development that balanced speed with quality.</p>
+      <p class="sar-text">Embedded <strong>AI copilots into DAX authoring, performance diagnostics, and documentation workflows</strong>. Adopted the <strong>Power BI MCP (Model Context Protocol) server from its earliest public preview</strong>, enabling AI agents to interact directly with semantic models: creating measures, validating DAX, executing bulk operations, and enforcing best practices through natural language. Developed prompt engineering patterns specific to Power BI and DAX context. Established team guidelines for effective AI-augmented development that balanced speed with quality.</p>
       <div class="sar-label result">Result</div>
       <p class="sar-text">Fundamentally accelerated the development cycle without sacrificing code quality or governance standards. The MCP integration shifted AI from a code-suggestion tool to an autonomous development partner across the full semantic model lifecycle.</p>
       <div class="result-metrics">
@@ -382,7 +399,7 @@
       <div class="sar-label action">Action</div>
       <p class="sar-text">Conducted hands-on <strong>CU usage analysis</strong> combining AI-supported performance diagnostics with manual tuning. Identified and eliminated wasteful refresh patterns, optimized query distribution across capacity, and right-sized allocation based on actual usage patterns.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Significant cost reduction while maintaining&mdash;and in many cases improving&mdash;performance for end users.</p>
+      <p class="sar-text">Significant cost reduction while maintaining, and in many cases improving, performance for end users.</p>
       <div class="result-metrics">
         <span class="result-metric">25% CU usage reduction</span>
       </div>
@@ -392,7 +409,7 @@
     <div class="project-case">
       <div class="project-case-title">7. Team Mentoring &amp; Knowledge Transfer</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Analysts lacked semantic modeling expertise, DAX proficiency, and awareness of AI-augmented workflows&mdash;creating bottlenecks and single points of failure within the team.</p>
+      <p class="sar-text">Analysts lacked semantic modeling expertise, DAX proficiency, and awareness of AI-augmented workflows, creating bottlenecks and single points of failure within the team.</p>
       <div class="sar-label action">Action</div>
       <p class="sar-text">Established an ongoing <strong>mentoring program</strong> covering semantic modeling best practices, DAX optimization patterns, and AI-powered report generation. Created documentation and training materials. Conducted hands-on workshops tailored to each analyst's skill level and responsibilities.</p>
       <div class="sar-label result">Result</div>
