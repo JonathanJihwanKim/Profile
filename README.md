@@ -10,7 +10,7 @@
 
 ---
 
-- **Microsoft MVP** in Power BI — fewer than 200 worldwide
+- **Microsoft MVP** for Power BI and Microsoft Fabric — fewer than 200 worldwide
 - Architecting enterprise Fabric analytics at Fortune 500 scale — **30,000+ users**, **500M+ records** across **15 semantic models** powering **30 reports**
 - Creator of open-source PBIP governance tools — **83+ GitHub stars** across 4 repositories
 - Supply chain & logistics domain expertise — Samsung SDS, GXO Logistics, IKEA
@@ -42,4 +42,4 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ---
 
-📧 jonathan.jihwankim@gmail.com · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)
+📧 jonathan.jihwankim@gmail.com · 📍 The Netherlands · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)
