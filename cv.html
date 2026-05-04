@@ -250,17 +250,6 @@
     border-radius: 1px;
   }
 
-  /* Project star visual bar */
-  .project-star-bar {
-    display: inline-block;
-    height: 8px;
-    background: var(--pbi-500);
-    border-radius: 2px;
-    margin-left: 6px;
-    vertical-align: middle;
-    opacity: 0.6;
-  }
-
   /* Metric text highlights */
   .job-metric {
     font-weight: 700;
@@ -281,16 +270,6 @@
   .cv-kpi-value {
     font-weight: 700;
     color: var(--pbi-700);
-  }
-
-  .cv-kpi-trend {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-bottom: 4px solid var(--fabric-500);
-    margin-left: 3px;
   }
 
   /* ═══════════════════════════════════
@@ -370,7 +349,6 @@
     }
     .skill-tag::after { display: none; }
     .skills-list { gap: 0.25rem; }
-    .project-star-bar { display: none; }
     .job-metric { color: #111; font-weight: 700; }
     .cv-kpi-strip { display: none !important; }
 
@@ -392,7 +370,7 @@
   <!-- Header -->
   <header class="cv-header">
     <h1>Jihwan Kim</h1>
-    <div class="title"><img src="assets/Power-BI.png" alt="" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px;opacity:0.7;" class="screen-only"> Power BI Developer &amp; Data Model Architect</div>
+    <div class="title">Power BI Developer &amp; Data Model Architect</div>
     <div class="meta">
       <span>The Netherlands</span>
       <span><a href="mailto:jonathan.jihwankim@gmail.com">jonathan.jihwankim@gmail.com</a></span>
@@ -401,9 +379,9 @@
       <span><a href="https://powerbimvp.com" target="_blank">powerbimvp.com</a></span>
     </div>
     <div class="cv-kpi-strip">
-      <span><span class="cv-kpi-value">30K+</span> users<span class="cv-kpi-trend"></span></span>
-      <span><span class="cv-kpi-value">2,700+</span> solutions<span class="cv-kpi-trend"></span></span>
-      <span><span class="cv-kpi-value">83+</span> GitHub stars<span class="cv-kpi-trend"></span></span>
+      <span><span class="cv-kpi-value">30K+</span> users</span>
+      <span><span class="cv-kpi-value">2,700+</span> solutions</span>
+      <span><span class="cv-kpi-value">83+</span> GitHub stars</span>
       <span><span class="cv-kpi-value">8+</span> yrs Power BI</span>
     </div>
   </header>
@@ -512,19 +490,19 @@
   <section class="section">
     <div class="section-title">Open-Source Projects</div>
     <div class="project">
-      <span class="project-name">pbip-documenter</span><span class="project-stars">&#9733; 36</span><span class="project-star-bar" style="width: 40px;"></span>
+      <span class="project-name">pbip-documenter</span><span class="project-stars">&#9733; 36</span>
       <span class="project-desc"> — Auto-generate documentation from Power BI semantic models</span>
     </div>
     <div class="project">
-      <span class="project-name">pbip-lineage-explorer</span><span class="project-stars">&#9733; 32</span><span class="project-star-bar" style="width: 36px;"></span>
+      <span class="project-name">pbip-lineage-explorer</span><span class="project-stars">&#9733; 32</span>
       <span class="project-desc"> — Trace DAX measure lineage from visuals to source columns</span>
     </div>
     <div class="project">
-      <span class="project-name">isHiddenInViewMode</span><span class="project-stars">&#9733; 10</span><span class="project-star-bar" style="width: 11px;"></span>
+      <span class="project-name">isHiddenInViewMode</span><span class="project-stars">&#9733; 10</span>
       <span class="project-desc"> — Bulk-manage filter visibility in PBIR reports</span>
     </div>
     <div class="project">
-      <span class="project-name">pbip-impact-analyzer</span><span class="project-stars">&#9733; 5</span><span class="project-star-bar" style="width: 6px;"></span>
+      <span class="project-name">pbip-impact-analyzer</span><span class="project-stars">&#9733; 5</span>
       <span class="project-desc"> — Analyze impact and safely refactor PBIP models</span>
     </div>
   </section>

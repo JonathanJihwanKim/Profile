@@ -3,7 +3,9 @@
     "allow": [
       "Bash(\"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf=\"C:\\\\Users\\\\jonat\\\\Downloads\\\\Jihwan_Kim_Motivation_Letter_ABN_AMRO.pdf\" \"file:///C:/Users/jonat/AppData/Local/Temp/motivation-letter-abn-amro.html\")",
       "Bash(del \"C:\\\\Users\\\\jonat\\\\AppData\\\\Local\\\\Temp\\\\motivation-letter-abn-amro.html\")",
-      "Bash(dir \"C:\\\\Users\\\\jonat\\\\Downloads\\\\Jihwan_Kim_Motivation_Letter_ABN_AMRO.pdf\")"
+      "Bash(dir \"C:\\\\Users\\\\jonat\\\\Downloads\\\\Jihwan_Kim_Motivation_Letter_ABN_AMRO.pdf\")",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__browser_batch"
     ]
   }
 }
