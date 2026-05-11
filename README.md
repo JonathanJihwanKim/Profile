@@ -2,7 +2,7 @@
 
 # Jihwan Kim
 
-**Enterprise BI Architect** | Microsoft Fabric | Power BI
+**Enterprise BI Architect** | Supply Chain &rarr; Microsoft Fabric &rarr; Power BI
 
 [![View Portfolio](https://img.shields.io/badge/View_Portfolio_%E2%86%92-F2C811?style=for-the-badge)](https://jonathanjihwankim.github.io/Profile/)
 

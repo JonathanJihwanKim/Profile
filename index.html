@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jihwan Kim, Enterprise BI Architect & Microsoft Fabric Strategist</title>
-<meta name="description" content="Microsoft MVP architecting enterprise Fabric migrations and DevOps governance for Fortune 500. Creator of PBIP open-source tooling adopted across the Power BI ecosystem.">
+<title>Jihwan Kim, Enterprise BI Architect &mdash; Supply Chain to Microsoft Fabric</title>
+<meta name="description" content="Supply chain operator turned Microsoft MVP and enterprise BI architect. Architecting Microsoft Fabric analytics at IKEA for 30,000+ users and 500M+ records. Open-source PBIR/TMDL tooling for Fortune 500 BI teams.">
 <meta name="author" content="Jihwan Kim">
-<meta property="og:title" content="Jihwan Kim, Enterprise BI Architect & Microsoft Fabric Strategist">
-<meta property="og:description" content="Microsoft MVP architecting enterprise Fabric migrations and DevOps governance for Fortune 500.">
+<meta property="og:title" content="Jihwan Kim, Enterprise BI Architect &mdash; Supply Chain to Microsoft Fabric">
+<meta property="og:description" content="Supply chain operator turned Microsoft MVP. Architecting Fabric analytics at IKEA for 30,000+ supply-chain users and 500M+ records. Open-source PBIR/TMDL tooling Fortune 500 teams need.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jonathanjihwankim.github.io/Profile/">
 <meta property="og:image" content="https://jonathanjihwankim.github.io/Profile/assets/og-image.png">
@@ -26,6 +26,9 @@
   --pbi-500: #F2C811;        --pbi-600: #c28200;   --pbi-700: #9a6a00;   --pbi-100: #fdf6d8;   --pbi-50: #fffbea;
   --fabric-500: #0EA5BE;     --fabric-600: #00879c; --fabric-700: #006b7d; --fabric-100: #d4f2f7; --fabric-50: #ecfafd;
   --msblue-500: #00A4EF;     --msblue-700: #0078D4; --msblue-100: #d6f0fe;
+
+  /* Personal ink accent, Jihwan signature, distinct from MS palette */
+  --ink-900: #0E1A2B;        --ink-700: #1E2F4A;   --ink-100: #DDE3EE;
 
   /* Fluent grey ink */
   --grey-950: #11131a;  --grey-900: #1b1d26;  --grey-800: #2b2d36;
@@ -80,7 +83,7 @@ body {
 a { color: var(--link); text-decoration: none; transition: color var(--dur-fast); }
 a:hover { color: var(--msblue-500); }
 img { max-width: 100%; display: block; }
-::selection { background: var(--pbi-100); color: var(--pbi-700); }
+::selection { background: var(--ink-100); color: var(--ink-900); }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -88,12 +91,12 @@ img { max-width: 100%; display: block; }
 }
 
 /* ===== Pipeline bar motif ===== */
-.pipeline { display: inline-block; width: 48px; height: 3px; background: var(--pbi-500); border-radius: 1px; }
+.pipeline { display: inline-block; width: 48px; height: 3px; background: var(--ink-900); border-radius: 1px; }
 
 /* ===== Scroll progress (PBI yellow) ===== */
 .scroll-progress {
   position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-  background: linear-gradient(90deg, var(--pbi-500), var(--fabric-500));
+  background: linear-gradient(90deg, var(--ink-900), var(--fabric-500));
   z-index: 1001; transition: width 0.1s linear;
 }
 
@@ -113,13 +116,13 @@ img { max-width: 100%; display: block; }
 }
 .nav-left { display: flex; align-items: center; gap: 14px; }
 .nav-logo {
-  font-family: var(--font-display);
-  font-weight: 600; font-size: 1.05rem; color: var(--text);
-  letter-spacing: -0.02em; position: relative; padding-bottom: 4px;
+  font-family: var(--font-mono);
+  font-weight: 600; font-size: 0.95rem; color: var(--text);
+  letter-spacing: -0.01em; position: relative; padding-bottom: 4px;
 }
 .nav-logo::after {
   content: ''; position: absolute; left: 0; bottom: 0;
-  width: 40%; height: 3px; background: var(--pbi-500);
+  width: 40%; height: 3px; background: var(--ink-900);
   transition: width var(--dur-base) var(--ease-out);
 }
 .nav-logo:hover { color: var(--text); }
@@ -148,6 +151,17 @@ img { max-width: 100%; display: block; }
 }
 .nav-hamburger span { width: 24px; height: 2px; background: var(--text); transition: var(--dur-base); }
 
+/* ===== Filepath breadcrumb, IDE motif ===== */
+.filepath-bar {
+  max-width: var(--content-max); margin: var(--nav-height) auto 0;
+  padding: 8px 24px; font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-3); border-bottom: 1px solid var(--border);
+  display: flex; gap: 6px; align-items: center;
+}
+.filepath-bar .filepath-leaf { color: var(--ink-900); font-weight: 600; }
+.filepath-bar .filepath-meta { margin-left: auto; color: var(--grey-400); }
+@media (max-width: 720px) { .filepath-bar .filepath-meta { display: none; } }
+
 /* ===== Section scaffolding ===== */
 .section { padding: 96px 24px; max-width: var(--content-max); margin: 0 auto; }
 .section--band { max-width: 100%; padding: 0; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -160,6 +174,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.08em; text-transform: uppercase;
   margin-bottom: 16px;
 }
+.eyebrow::before { content: '// '; color: var(--grey-400); margin-right: 2px; text-transform: none; }
 .eyebrow .pipeline { width: 28px; background: var(--pbi-500); }
 .eyebrow--fabric .pipeline { background: var(--fabric-500); }
 .eyebrow--mvp .pipeline { background: var(--mvp-500); }
@@ -177,7 +192,7 @@ img { max-width: 100%; display: block; }
 }
 .section-title::after {
   content: ''; position: absolute; left: 0; bottom: 0;
-  width: 48px; height: 3px; background: var(--pbi-500); border-radius: 1px;
+  width: 48px; height: 3px; background: var(--ink-900); border-radius: 1px;
 }
 .section-sub {
   font-size: 1.0625rem; color: var(--text-2);
@@ -185,15 +200,15 @@ img { max-width: 100%; display: block; }
 }
 
 /* Reveal */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transition: opacity .35s var(--ease-out); }
+.reveal.visible { opacity: 1; }
 
 /* ============================================================
    HERO, Big data-viz energy, light mode
    ============================================================ */
 .hero {
   position: relative;
-  padding: calc(var(--nav-height) + 48px) 24px 72px;
+  padding: 32px 24px 72px;
   overflow: hidden;
   background:
     radial-gradient(ellipse 70% 50% at 85% 10%, rgba(242,200,17,0.08), transparent 60%),
@@ -245,7 +260,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-name .accent-dot {
   display: inline-block; width: 14px; height: 14px;
-  background: var(--pbi-500); border-radius: 50%;
+  background: var(--ink-900); border-radius: 50%;
   margin-left: 4px; vertical-align: baseline;
   transform: translateY(-2px);
 }
@@ -258,6 +273,7 @@ img { max-width: 100%; display: block; }
 .hero-title .msblue { color: var(--msblue-700); font-weight: 600; }
 .hero-title .fabric { color: var(--fabric-700); font-style: italic; font-weight: 600; }
 .hero-title .pbi { color: var(--pbi-700); font-weight: 600; }
+.hero-title .mono-role { font-family: var(--font-mono); font-size: 0.95em; }
 
 .hero-tagline {
   font-size: 1.0625rem; color: var(--text-2);
@@ -351,12 +367,6 @@ img { max-width: 100%; display: block; }
   border-color: var(--pbi-500); color: var(--pbi-700);
   background: var(--pbi-50);
 }
-.btn-outline--fabric:hover {
-  border-color: var(--fabric-500); color: var(--fabric-700);
-  background: var(--fabric-50);
-}
-.btn-outline--warn { border-color: var(--mvp-200); color: var(--mvp-700); }
-.btn-outline--warn:hover { border-color: var(--mvp-500); background: var(--mvp-50); color: var(--mvp-700); }
 
 /* Hero portrait with dashboard frame */
 .hero-portrait {
@@ -366,7 +376,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-portrait::before {
   content: ''; position: absolute; top: 0; left: 20px; right: 20px;
-  height: 3px; background: var(--pbi-500); border-radius: 0 0 1px 1px;
+  height: 3px; background: var(--ink-900); border-radius: 0 0 1px 1px;
 }
 .hero-portrait-meta {
   display: flex; justify-content: space-between; align-items: center;
@@ -402,17 +412,17 @@ img { max-width: 100%; display: block; }
    URGENCY BANNER, restyled in palette but kept aggressive
    ============================================================ */
 .urgency {
-  background: linear-gradient(135deg, var(--pbi-50), var(--mvp-50));
-  border-top: 1px solid var(--pbi-500);
-  border-bottom: 1px solid var(--pbi-500);
+  background: linear-gradient(135deg, #fafbfc, #f7f8fa);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 64px 24px;
   position: relative;
 }
 .urgency::before, .urgency::after {
   content: ''; position: absolute; left: 0; right: 0; height: 3px;
 }
-.urgency::before { top: 0; background: var(--pbi-500); }
-.urgency::after  { bottom: 0; background: var(--mvp-500); }
+.urgency::before { top: 0; background: var(--ink-900); }
+.urgency::after  { bottom: 0; background: var(--fabric-500); }
 .urgency-inner { max-width: var(--content-max); margin: 0 auto; }
 .urgency-head {
   display: flex; align-items: center; gap: 20px;
@@ -420,15 +430,9 @@ img { max-width: 100%; display: block; }
 }
 .urgency-eyebrow {
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
-  color: var(--mvp-700); letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-700); letter-spacing: 0.15em; text-transform: uppercase;
   display: inline-flex; align-items: center; gap: 8px;
 }
-.urgency-eyebrow::before {
-  content: ''; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--mvp-500);
-  animation: urgPulse 1.8s ease-in-out infinite;
-}
-@keyframes urgPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(228,34,46,.5) } 50% { box-shadow: 0 0 0 8px rgba(228,34,46,0) } }
 .urgency-title {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(1.5rem, 2.8vw, 2rem);
@@ -438,20 +442,14 @@ img { max-width: 100%; display: block; }
 .urgency-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .urgency-card {
   position: relative;
-  background: white; border: 1px solid var(--pbi-500);
+  background: white; border: 1px solid var(--border-2);
   border-radius: var(--r-md); padding: 20px;
-  transition: all var(--dur-base); overflow: hidden;
+  transition: box-shadow var(--dur-base); overflow: hidden;
 }
-.urgency-card::before {
-  content: ''; position: absolute; top: 12px; right: 12px;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--mvp-500);
-  animation: urgPulse 2s ease-in-out infinite;
-}
-.urgency-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
+.urgency-card:hover { box-shadow: var(--shadow-card-hover); }
 .urgency-headline {
   font-family: var(--font-display); font-weight: 600;
-  color: var(--mvp-700); font-size: 1rem; letter-spacing: -0.01em;
+  color: var(--ink-900); font-size: 1rem; letter-spacing: -0.01em;
   margin-bottom: 8px; padding-right: 20px;
 }
 .urgency-text {
@@ -504,7 +502,7 @@ img { max-width: 100%; display: block; }
   width: 3px; background: var(--card-accent, var(--pbi-500));
 }
 .stat-card:hover {
-  transform: translateY(-2px); box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-card-hover);
   border-color: var(--border-2);
 }
 .stat-label {
@@ -554,7 +552,7 @@ img { max-width: 100%; display: block; }
   transform: scaleX(0); transform-origin: left;
   transition: transform var(--dur-base) var(--ease-out);
 }
-.project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--border-2); }
+.project-card:hover { box-shadow: var(--shadow-card-hover); border-color: var(--border-2); }
 .project-card:hover::before { transform: scaleX(1); }
 .project-shot {
   aspect-ratio: 16/10; overflow: hidden;
@@ -704,7 +702,7 @@ img { max-width: 100%; display: block; }
   content: ''; position: absolute; top: 0; left: 0; right: 0;
   height: 3px; background: var(--card-accent, var(--pbi-500));
 }
-.cap-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
+.cap-card:hover { box-shadow: var(--shadow-card-hover); }
 .cap-title { font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
 .cap-title .material-symbols-outlined { color: var(--card-accent, var(--pbi-600)); font-size: 20px; }
 .cap-desc { font-size: 0.9375rem; color: var(--text-2); line-height: 1.6; margin-bottom: 12px; }
@@ -786,10 +784,8 @@ img { max-width: 100%; display: block; }
 .awards-range {
   position: absolute; height: 34px; border-radius: 17px;
   display: flex; align-items: center; padding: 0 36px 0 12px; gap: 8px;
-  clip-path: inset(0 100% 0 0); transition: clip-path .8s var(--ease-out);
   border: 1px solid; box-shadow: var(--shadow-card);
 }
-.awards-range.revealed { clip-path: inset(0 0 0 0); }
 .awards-range--superuser {
   top: 0; background: var(--fabric-100); border-color: var(--fabric-500); color: var(--fabric-700);
 }
@@ -802,16 +798,6 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-mono); font-size: 9px; font-weight: 700;
   background: white; padding: 2px 8px; border-radius: 999px;
   letter-spacing: 0.06em;
-}
-.awards-range::after {
-  content: ''; position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-  width: 8px; height: 8px; border-radius: 50%;
-  background: currentColor;
-  animation: awardPulse 2.4s ease-in-out infinite;
-}
-@keyframes awardPulse {
-  0%,100% { opacity: 1; box-shadow: 0 0 0 0 currentColor; }
-  50% { opacity: .6; box-shadow: 0 0 0 5px transparent; }
 }
 .awards-axis {
   position: relative; height: 2px;
@@ -838,18 +824,13 @@ img { max-width: 100%; display: block; }
 .awards-point-dot {
   width: 14px; height: 14px; border-radius: 50%;
   background: white; border: 3px solid var(--fabric-500);
-  transform: scale(0); opacity: 0;
-  transition: transform .4s var(--ease-out), opacity .4s;
+  transition: transform .2s var(--ease-out), border-color .2s var(--ease-out);
 }
-.awards-point-dot.revealed { transform: scale(1); opacity: 1; }
-.awards-point:hover .awards-point-dot { border-color: var(--pbi-500); transform: scale(1.25); }
+.awards-point:hover .awards-point-dot { border-color: var(--ink-900); transform: scale(1.25); }
 .awards-point-label {
   margin-top: 40px; text-align: center; max-width: 150px;
   font-size: 0.8125rem; color: var(--text-2); line-height: 1.4;
-  opacity: 0; transform: translateY(6px);
-  transition: opacity .5s, transform .5s;
 }
-.awards-point-label.revealed { opacity: 1; transform: translateY(0); }
 .awards-point-label strong { display: block; color: var(--text); font-weight: 600; }
 .awards-point-source { font-size: 11px; color: var(--text-3); font-style: italic; margin-top: 2px; }
 .awards-point--end { transform: translateX(-100%); }
@@ -865,7 +846,7 @@ img { max-width: 100%; display: block; }
   transition: all var(--dur-base) var(--ease-out);
   display: block; color: inherit;
 }
-.community-card:hover { border-color: var(--border-2); box-shadow: var(--shadow-card-hover); transform: translateY(-2px); color: inherit; }
+.community-card:hover { border-color: var(--border-2); box-shadow: var(--shadow-card-hover); color: inherit; }
 .community-card-title {
   font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem;
   color: var(--text); margin-bottom: 8px;
@@ -936,8 +917,8 @@ img { max-width: 100%; display: block; }
   transition: all var(--dur-fast);
 }
 .contact-link:hover {
-  border-color: var(--pbi-500); color: var(--pbi-700);
-  transform: translateY(-2px); box-shadow: var(--shadow-card-hover);
+  border-color: var(--ink-900); color: var(--ink-900);
+  box-shadow: var(--shadow-card-hover);
 }
 .contact-link .material-symbols-outlined, .contact-item .material-symbols-outlined { font-size: 20px; color: var(--mvp-500); }
 .contact-item .value { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-2); }
@@ -1031,6 +1012,13 @@ img { max-width: 100%; display: block; }
   </div>
 </nav>
 
+<div class="filepath-bar" aria-hidden="true">
+  <span class="filepath-prompt">~/jihwan-kim</span>
+  <span class="filepath-sep">/</span>
+  <span class="filepath-leaf">portfolio.html</span>
+  <span class="filepath-meta">// last edit: 2026-05-11</span>
+</div>
+
 <!-- ===== HERO ===== -->
 <header class="hero" id="hero">
   <div class="hero-inner">
@@ -1046,51 +1034,47 @@ img { max-width: 100%; display: block; }
         Microsoft MVP · Power BI &amp; Fabric Super User
       </span>
       <h1 class="hero-name">Jihwan Kim<span class="accent-dot" aria-hidden="true"></span></h1>
-      <p class="hero-title">Enterprise BI Architect &amp; <span class="fabric">Microsoft Fabric</span> Strategist</p>
+      <p class="hero-title"><span class="mono-role">Enterprise BI Architect</span> &middot; <span class="fabric">Fabric</span> &middot; <span style="color:var(--msblue-700);font-weight:600">Supply Chain</span></p>
       <p class="hero-tagline">
-        I architect enterprise analytics at IKEA, <strong>30,000+ users</strong> on <span class="msblue" style="color:var(--msblue-700);font-weight:600">Microsoft</span> <span class="fabric" style="color:var(--fabric-700);font-style:italic;font-weight:600">Fabric</span>, and build the open-source DevOps tooling that Power BI teams need for the PBIR/TMDL transition. <strong>Microsoft MVP</strong> since 2022. <strong>8+ years Power BI</strong>, <strong>2+ years Fabric</strong>.
+        Supply chain operator turned BI architect. At <strong>IKEA</strong> I run enterprise analytics on <span class="msblue" style="color:var(--msblue-700);font-weight:600">Microsoft</span> <span class="fabric" style="color:var(--fabric-700);font-style:italic;font-weight:600">Fabric</span> for <strong>30,000+ supply-chain users</strong> and <strong>500M+ records</strong>. <strong>Microsoft MVP</strong> since 2022, building the open-source PBIR/TMDL tooling Fortune 500 BI teams need to ship.
       </p>
 
       <!-- KPI dashboard strip -->
       <div class="kpi-strip" role="group" aria-label="Headline metrics">
         <div class="kpi-cell" style="--kpi-color: var(--pbi-500);">
           <div class="kpi-label">Users served</div>
-          <div class="kpi-value" data-target="30000" data-suffix="+">0 <small>▲</small></div>
+          <div class="kpi-value">30,000<small>+</small></div>
           <div class="kpi-trend" style="--kpi-spark-bg: rgba(242,200,17,.18);"></div>
         </div>
         <div class="kpi-cell" style="--kpi-color: var(--fabric-500);">
-          <div class="kpi-label">Community solutions</div>
-          <div class="kpi-value" data-target="2700" data-suffix="+">0 <small>▲</small></div>
+          <div class="kpi-label">Records served</div>
+          <div class="kpi-value">500M<small>+</small></div>
           <div class="kpi-trend" style="--kpi-spark-bg: rgba(14,165,190,.16); clip-path: polygon(0 90%, 15% 50%, 30% 55%, 45% 25%, 55% 30%, 70% 15%, 85% 20%, 100% 5%, 100% 100%, 0 100%);"></div>
         </div>
-        <div class="kpi-cell" style="--kpi-color: var(--mvp-500);">
+        <div class="kpi-cell" style="--kpi-color: var(--ink-900);">
           <div class="kpi-label">GitHub stars</div>
-          <div class="kpi-value" data-target="58" data-suffix="+">0 <small>★</small></div>
-          <div class="kpi-trend" style="--kpi-spark-bg: rgba(228,34,46,.15); clip-path: polygon(0 80%, 12% 65%, 25% 70%, 40% 45%, 55% 50%, 68% 30%, 82% 35%, 100% 15%, 100% 100%, 0 100%);"></div>
+          <div class="kpi-value">83<small>+ &#9733;</small></div>
+          <div class="kpi-trend" style="--kpi-spark-bg: rgba(14,26,43,.10); clip-path: polygon(0 80%, 12% 65%, 25% 70%, 40% 45%, 55% 50%, 68% 30%, 82% 35%, 100% 15%, 100% 100%, 0 100%);"></div>
         </div>
-        <div class="kpi-cell" style="--kpi-color: var(--msblue-500);">
-          <div class="kpi-label">Years Power BI</div>
-          <div class="kpi-value" data-target="8" data-suffix="+">0 <small>yrs</small></div>
-          <div class="kpi-trend" style="--kpi-spark-bg: rgba(0,164,239,.15); clip-path: polygon(0 75%, 14% 60%, 28% 65%, 42% 40%, 56% 45%, 70% 20%, 84% 25%, 100% 8%, 100% 100%, 0 100%);"></div>
+        <div class="kpi-cell" style="--kpi-color: var(--mvp-500);">
+          <div class="kpi-label">Open-source tools</div>
+          <div class="kpi-value">4<small>shipped</small></div>
+          <div class="kpi-trend" style="--kpi-spark-bg: rgba(228,34,46,.12); clip-path: polygon(0 75%, 14% 60%, 28% 65%, 42% 40%, 56% 45%, 70% 20%, 84% 25%, 100% 8%, 100% 100%, 0 100%);"></div>
         </div>
       </div>
 
       <div class="hero-cta">
-        <a href="#about" class="btn btn-primary">
+        <a href="#portfolio" class="btn btn-primary">
           <span class="material-symbols-outlined">arrow_downward</span>
-          See My Impact
+          See My Work
         </a>
-        <a href="#urgency" class="btn btn-outline btn-outline--warn">
-          <span class="material-symbols-outlined">schedule</span>
-          Why Hire Me Now
+        <a href="#urgency" class="btn btn-outline">
+          <span class="material-symbols-outlined">insights</span>
+          Market context
         </a>
         <a href="cv.html" class="btn btn-outline">
           <span class="material-symbols-outlined">description</span>
           CV
-        </a>
-        <a href="career-description.html" class="btn btn-outline btn-outline--fabric">
-          <span class="material-symbols-outlined">article</span>
-          Career Description
         </a>
       </div>
     </div>
@@ -1107,16 +1091,16 @@ img { max-width: 100%; display: block; }
           <div class="hero-portrait-stat-value">The Netherlands</div>
         </div>
         <div class="hero-portrait-stat" style="--stat-color: var(--fabric-500);">
-          <div class="hero-portrait-stat-label">Role</div>
-          <div class="hero-portrait-stat-value">Power BI + Fabric Architect</div>
+          <div class="hero-portrait-stat-label">Stack</div>
+          <div class="hero-portrait-stat-value">Fabric &middot; PBIR &middot; TMDL</div>
         </div>
         <div class="hero-portrait-stat" style="--stat-color: var(--mvp-500);">
           <div class="hero-portrait-stat-label">Microsoft MVP</div>
           <div class="hero-portrait-stat-value">Since 2022</div>
         </div>
-        <div class="hero-portrait-stat" style="--stat-color: var(--msblue-500);">
-          <div class="hero-portrait-stat-label">Industry</div>
-          <div class="hero-portrait-stat-value">Retail &amp; Supply Chain</div>
+        <div class="hero-portrait-stat" style="--stat-color: var(--ink-900);">
+          <div class="hero-portrait-stat-label">Domain</div>
+          <div class="hero-portrait-stat-value">Supply Chain BI</div>
         </div>
       </div>
     </aside>
@@ -1127,13 +1111,13 @@ img { max-width: 100%; display: block; }
 <section class="urgency" id="urgency" aria-labelledby="urg-title">
   <div class="urgency-inner">
     <div class="urgency-head reveal">
-      <span class="urgency-eyebrow">Why hire me now</span>
-      <h2 class="urgency-title" id="urg-title">The enterprise Fabric transition is happening <span style="color:var(--mvp-600);">now</span>.</h2>
+      <span class="urgency-eyebrow">Market context &middot; 2026</span>
+      <h2 class="urgency-title" id="urg-title">The enterprise Fabric transition is happening now. Here is what I have already shipped.</h2>
     </div>
     <div class="urgency-grid">
       <div class="urgency-card reveal">
         <div class="urgency-headline">PBIR mandatory Q3 2026</div>
-        <p class="urgency-text">Every Power BI report must migrate to the PBIR format. Most teams have no tooling or strategy. <strong>Jihwan already built 2 open-source tools</strong> for PBIR governance.</p>
+        <p class="urgency-text">Every Power BI report must migrate to the PBIR format. Most teams have no tooling or strategy. I have shipped <strong>4 open-source tools</strong> for PBIR/TMDL governance.</p>
       </div>
       <div class="urgency-card reveal">
         <div class="urgency-headline">85% IT talent shortage</div>
@@ -1143,13 +1127,13 @@ img { max-width: 100%; display: block; }
       </div>
       <div class="urgency-card reveal">
         <div class="urgency-headline">90%+ Fortune 500 on Fabric</div>
-        <p class="urgency-text">Over 90% of Fortune 500 companies now use Microsoft Fabric, but <strong>architects who've migrated at enterprise scale are rare</strong>. Jihwan did it at IKEA for 30,000+ users.
+        <p class="urgency-text">Over 90% of Fortune 500 companies now use Microsoft Fabric, but <strong>architects who've migrated at enterprise scale are rare</strong>. I delivered it at IKEA for <strong>30,000+ supply-chain users</strong>.
           <span class="src">Source: <a href="https://www.bowdark.com/blog/fabric-community-conference-2026-recap" target="_blank" rel="noopener">FabCon 2026 Keynote</a></span>
         </p>
       </div>
       <div class="urgency-card reveal">
         <div class="urgency-headline">CI/CD = #1 skills gap</div>
-        <p class="urgency-text">CI/CD for Power BI is the biggest skills gap in the market. <strong>Jihwan designed Git-based CI/CD governance</strong> at IKEA scale.</p>
+        <p class="urgency-text">CI/CD for Power BI is the biggest skills gap in the market. I designed the <strong>Git-based PBIP/TMDL CI/CD</strong> at IKEA scale.</p>
       </div>
     </div>
   </div>
@@ -1167,9 +1151,9 @@ img { max-width: 100%; display: block; }
 
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>Every Fortune 500 enterprise running Power BI faces the same challenge: migrating to <strong class="wm-fabric">Microsoft Fabric</strong>, adopting <strong>PBIR</strong> (mandatory Q3 2026), implementing <strong>TMDL-based CI/CD</strong>, and doing it all without breaking production. I have the enterprise-scale proof and the open-source tooling to prove it.</p>
-      <p>At IKEA, I architected the migration of legacy Import-mode semantic models to <strong>composite Direct Lake architecture on <span class="wm-fabric">Microsoft Fabric</span></strong>, serving <strong>30,000+ users</strong> with 90%+ refresh elimination, 30% model size reduction, and 25% query performance improvement. I designed the Git-based CI/CD governance (PBIP/TMDL) that became the standard for our Customer Fulfilment, Inventory &amp; Logistics organization.</p>
-      <p>What makes my approach different: I don't just implement solutions, <strong>I build the tools that make the transition repeatable</strong>. My four open-source PBIP governance tools solve the exact DevOps gaps every enterprise hits during the Fabric transition. As a <strong class="wm-mvp">Microsoft MVP with direct access to the product team</strong>, I work at the frontier of what's coming next. <strong>AI is integrated into every phase</strong> of my workflow, boosting development speed by 3&times;.</p>
+      <p>I started in supply chain. At <strong>Samsung SDS Cello Logistics</strong> in Seoul I supported SAP-driven freight and warehouse programs and discovered what a single Power BI dashboard could do to a report-driven operations culture. That pivot stuck.</p>
+      <p>Since then I have built BI for the operators I used to be: <strong>GXO Logistics</strong> across 10+ EU sites, <strong>ITVT Group</strong> on Dynamics 365 supply chain, and now <strong>IKEA Customer Fulfilment, Inventory &amp; Logistics</strong>, where I architected the Import-to-Direct-Lake migration on <strong class="wm-fabric">Microsoft Fabric</strong> for <strong>30,000+ users</strong> and <strong>500M+ records</strong>: 90%+ refresh elimination, 30% smaller models, 25% faster queries.</p>
+      <p>What I bring that is rare: I do not just deliver semantic models, <strong>I ship the DevOps tooling that makes the Fabric/PBIR/TMDL transition repeatable</strong>. Four open-source tools, <strong>83+ GitHub stars</strong>, used by enterprise teams worldwide. As a <strong class="wm-mvp">Microsoft MVP</strong> I work directly with the product group on PBIR and DAX UDFs before they ship.</p>
 
       <div class="mvp-callout">
         <div class="mvp-callout-badges">
@@ -1189,15 +1173,15 @@ img { max-width: 100%; display: block; }
         <div class="stat-card" style="--card-accent: var(--pbi-500);">
           <div class="stat-label">Users served</div>
           <div class="stat-value-row">
-            <div class="stat-number" data-target="30000" data-suffix="+">0</div>
-            <span class="stat-trend">+</span>
+            <div class="stat-number">30,000+</div>
+            <span class="stat-trend">supply chain</span>
           </div>
           <div class="stat-spark"></div>
         </div>
         <div class="stat-card" style="--card-accent: var(--fabric-500);">
           <div class="stat-label">Refresh time reduced</div>
           <div class="stat-value-row">
-            <div class="stat-number" data-target="90" data-suffix="%+">0</div>
+            <div class="stat-number">90%+</div>
             <span class="stat-trend">Direct Lake</span>
           </div>
           <div class="stat-spark"></div>
@@ -1205,7 +1189,7 @@ img { max-width: 100%; display: block; }
         <div class="stat-card" style="--card-accent: var(--fabric-600);">
           <div class="stat-label">Model size reduction</div>
           <div class="stat-value-row">
-            <div class="stat-number" data-target="30" data-suffix="%">0</div>
+            <div class="stat-number">30%</div>
             <span class="stat-trend">optimized</span>
           </div>
           <div class="stat-spark"></div>
@@ -1213,15 +1197,15 @@ img { max-width: 100%; display: block; }
         <div class="stat-card" style="--card-accent: var(--pbi-600);">
           <div class="stat-label">Performance gain</div>
           <div class="stat-value-row">
-            <div class="stat-number" data-target="25" data-suffix="%">0</div>
+            <div class="stat-number">25%</div>
             <span class="stat-trend">CU savings</span>
           </div>
           <div class="stat-spark"></div>
         </div>
-        <div class="stat-card" style="--card-accent: var(--mvp-500);">
+        <div class="stat-card" style="--card-accent: var(--ink-900);">
           <div class="stat-label">Open-source tools</div>
           <div class="stat-value-row">
-            <div class="stat-number" data-target="4">0</div>
+            <div class="stat-number">4</div>
             <span class="stat-trend">83+ stars</span>
           </div>
           <div class="stat-spark"></div>
@@ -1229,7 +1213,7 @@ img { max-width: 100%; display: block; }
         <div class="stat-card" style="--card-accent: var(--msblue-500);">
           <div class="stat-label">Years Power BI</div>
           <div class="stat-value-row">
-            <div class="stat-number" data-target="8" data-suffix="+">0</div>
+            <div class="stat-number">8+</div>
             <span class="stat-trend">enterprise</span>
           </div>
           <div class="stat-spark"></div>
@@ -1757,31 +1741,6 @@ const revealObs = new IntersectionObserver((es) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-/* counters */
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const suffix = el.dataset.suffix || '';
-  const duration = 1500;
-  const start = performance.now();
-  function update(now) {
-    const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const current = Math.floor(eased * target);
-    el.firstChild ? (el.childNodes[0].nodeValue = current.toLocaleString() + (p >= 1 ? suffix : '')) : (el.textContent = current.toLocaleString() + (p >= 1 ? suffix : ''));
-    if (p < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
-}
-const counterObs = new IntersectionObserver((es) => {
-  es.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('[data-target]').forEach(animateCounter);
-      counterObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.stats-grid, .kpi-strip').forEach(el => counterObs.observe(el));
-
 /* cap bar fill */
 const capObs = new IntersectionObserver((es) => {
   es.forEach(e => {
@@ -1804,20 +1763,6 @@ const navObs = new IntersectionObserver((es) => {
   });
 }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
 sections.forEach(s => navObs.observe(s));
-
-/* awards timeline reveal */
-const awardsObs = new IntersectionObserver((es) => {
-  es.forEach(e => {
-    if (e.isIntersecting) {
-      const el = e.target;
-      el.querySelectorAll('.awards-range').forEach((bar, i) => setTimeout(() => bar.classList.add('revealed'), 300 + i * 200));
-      el.querySelectorAll('.awards-point-dot').forEach((d, i) => setTimeout(() => d.classList.add('revealed'), 600 + i * 150));
-      el.querySelectorAll('.awards-point-label').forEach((l, i) => setTimeout(() => l.classList.add('revealed'), 800 + i * 150));
-      awardsObs.unobserve(el);
-    }
-  });
-}, { threshold: 0.2 });
-document.querySelectorAll('.awards-timeline').forEach(el => awardsObs.observe(el));
 
 /* scroll progress + nav shadow */
 const progressBar = document.querySelector('.scroll-progress');
