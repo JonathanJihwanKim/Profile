@@ -479,10 +479,10 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border); border-left: 3px solid var(--mvp-500);
   border-radius: var(--r-md);
   padding: 18px 20px;
-  display: flex; gap: 16px; align-items: flex-start;
+  display: flex; flex-direction: column; gap: 14px;
 }
-.mvp-callout-badges { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
-.mvp-callout-badges img { width: 48px; height: 48px; object-fit: contain; }
+.mvp-callout-row { display: flex; gap: 16px; align-items: flex-start; }
+.mvp-callout-badge { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
 .mvp-callout-text { font-size: 0.9375rem; color: var(--text-2); line-height: 1.6; }
 .mvp-callout-text a { color: var(--mvp-700); font-weight: 600; border-bottom: 1px solid var(--mvp-200); }
 .mvp-callout-text a:hover { color: var(--mvp-500); border-bottom-color: var(--mvp-500); }
@@ -1157,14 +1157,17 @@ img { max-width: 100%; display: block; }
       <p>What I bring that is rare: I do not just deliver semantic models, <strong>I ship the DevOps tooling that makes the Fabric/PBIR/TMDL transition repeatable</strong>. Five open-source tools (one Python, four JavaScript), <strong>86+ GitHub stars</strong>, used by enterprise teams worldwide. As a <strong class="wm-mvp">Microsoft MVP</strong> I work directly with the product group on PBIR and DAX UDFs before they ship.</p>
 
       <div class="mvp-callout">
-        <div class="mvp-callout-badges">
-          <img src="assets/mvp-avatar-badge.png" alt="Microsoft MVP Badge" />
-          <img src="assets/superuser-badge.png" alt="Community Super User Badge" />
+        <div class="mvp-callout-row">
+          <img src="assets/mvp-avatar-badge.png" alt="Microsoft MVP Badge" class="mvp-callout-badge" />
+          <div class="mvp-callout-text">
+            <a href="https://mvp.microsoft.com/en-US/mvp/profile/385eb34e-c755-ed11-9561-000d3a197333" target="_blank" rel="noopener">Microsoft MVP</a> since 2022, recognized for community contributions in Power BI and Fabric. Fewer than 200 people worldwide hold MVP status in Power BI &amp; Fabric: direct access to Microsoft's roadmap, early previews of PBIR and DAX UDFs, and a direct feedback channel to the engineering team.
+          </div>
         </div>
-        <div class="mvp-callout-text">
-          <a href="https://mvp.microsoft.com/en-US/mvp/profile/385eb34e-c755-ed11-9561-000d3a197333" target="_blank" rel="noopener">Microsoft MVP</a> since 2022, recognized for community contributions in Power BI and Fabric. Fewer than 200 people worldwide hold MVP status in Power BI &amp; Fabric: direct access to Microsoft's roadmap, early previews of PBIR and DAX UDFs, and a direct feedback channel to the engineering team.
-          <br><br>
-          <a href="https://community.fabric.microsoft.com/t5/user/viewprofilepage/user-id/291628" target="_blank" rel="noopener">Community Super User</a> since 2021, 2,709 solutions authored in the Power BI &amp; Fabric forums. Active community mentor.
+        <div class="mvp-callout-row">
+          <img src="assets/superuser-badge.png" alt="Community Super User Badge" class="mvp-callout-badge" />
+          <div class="mvp-callout-text">
+            <a href="https://community.fabric.microsoft.com/t5/user/viewprofilepage/user-id/291628" target="_blank" rel="noopener">Community Super User</a> since 2021, 2,709 solutions authored in the Power BI &amp; Fabric forums. Active community mentor.
+          </div>
         </div>
       </div>
     </div>
