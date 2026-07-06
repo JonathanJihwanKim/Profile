@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jihwan Kim — Career Description</title>
-<meta name="description" content="Detailed career achievements of Jihwan Kim — Microsoft MVP delivering enterprise BI architecture, Fabric migrations, and governance at Fortune 500 scale.">
+<meta name="description" content="Career description of Jihwan Kim, Microsoft MVP: enterprise BI architecture, the Direct Lake migration, CI/CD, and governance at IKEA scale.">
 <meta property="og:title" content="Jihwan Kim — Career Description">
-<meta property="og:description" content="Detailed career achievements — enterprise BI architecture, Fabric migrations, and governance at Fortune 500 scale.">
+<meta property="og:description" content="Enterprise BI architecture, the Direct Lake migration, CI/CD, and governance at IKEA scale.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jonathanjihwankim.github.io/Profile/career-description.html">
 <meta property="og:image" content="https://jonathanjihwankim.github.io/Profile/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Jihwan Kim — Career Description">
-<meta name="twitter:description" content="Detailed career achievements — enterprise BI architecture, Fabric migrations, and governance at Fortune 500 scale.">
+<meta name="twitter:description" content="Enterprise BI architecture, the Direct Lake migration, CI/CD, and governance at IKEA scale.">
 <meta name="twitter:image" content="https://jonathanjihwankim.github.io/Profile/assets/og-image.png">
 <link rel="canonical" href="https://jonathanjihwankim.github.io/Profile/career-description.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -301,7 +301,7 @@
   <!-- Professional Context -->
   <section class="section">
     <div class="section-title">Professional Context</div>
-    <p class="summary">At IKEA, within the Customer Fulfilment, Inventory &amp; Logistics Insights domain, I serve as the semantic model architect responsible for Microsoft Fabric and Power BI analytics infrastructure serving <strong>30,000+ users</strong> and <strong>billions of rows</strong> across the global supply chain organization. Since February 2023, I have led the technical architecture for the organization's transition from legacy Import-mode Power BI to modern Microsoft Fabric, designing patterns that became the standard for enterprise-scale BI governance. My work spans semantic modeling, Direct Lake migration, CI/CD pipeline design, performance engineering, and AI-augmented development, each initiative driven by measurable business outcomes. I also lead how the team uses AI in everyday development, testing each new tool as it lands, folding the ones that work into how we build, and coaching analysts to do the same.</p>
+    <p class="summary">At IKEA, within the Customer Fulfilment, Inventory &amp; Logistics Insights domain, I architect, build, and look after the Microsoft Fabric and Power BI analytics platform serving <strong>30,000+ users</strong> and <strong>billions of rows</strong> across the global supply chain organization. Since February 2023 I have led the transition from legacy Import-mode Power BI to Microsoft Fabric. Most of the work is governance and performance at scale: semantic modeling, the Direct Lake migration, CI/CD design, and performance engineering. I also lead how the team uses AI in everyday development, testing each new tool as it lands, folding the ones that work into how we build, and coaching analysts to do the same.</p>
   </section>
 
   <!-- Key Projects & Achievements -->
@@ -312,11 +312,11 @@
     <div class="project-case">
       <div class="project-case-title">1. Direct Lake &amp; Composite Model Migration</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Legacy Import-mode semantic models required full data refresh cycles, causing <strong>hours of data latency</strong>, high Fabric capacity (CU) consumption, and user dissatisfaction across 30,000+ supply chain users. Decision-makers in inventory and fulfilment operations were working with stale data, delaying critical supply chain decisions.</p>
+      <p class="sar-text">Legacy Import-mode semantic models needed full refresh cycles. Data was <strong>hours old</strong> by the time it reached 30,000+ supply chain users, the refreshes burned Fabric capacity (CU), and inventory and fulfilment teams were deciding on stale numbers.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Architected the migration to <strong>composite models with Direct Lake mode on Microsoft Fabric</strong>. Designed a hybrid architecture that balanced real-time data access via Direct Lake with calculated table requirements that still needed Import mode. Implemented an incremental migration strategy, model by model, to avoid service disruption for active users.</p>
+      <p class="sar-text">Architected the migration to <strong>composite models with Direct Lake mode on Microsoft Fabric</strong>. Designed a hybrid setup: Direct Lake for near real-time access, Import mode where calculated tables still required it. Migrated model by model so active users never lost service.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Delivered near real-time analytics for the entire supply chain organization, enabling faster inventory decisions and reducing data latency from hours to minutes.</p>
+      <p class="sar-text">Near real-time analytics for the whole supply chain organization. Data latency went from hours to minutes, and inventory decisions got faster with it.</p>
       <div class="result-metrics">
         <span class="result-metric">90%+ refresh elimination</span>
         <span class="result-metric">25% CU savings</span>
@@ -334,7 +334,7 @@
       <div class="sar-label action">Action</div>
       <p class="sar-text">Implemented <strong>systematic parameterization</strong> covering source control parameters, row count control, and data integrity parameters, making the development process controllable and reproducible. Built a framework where any developer could deploy identically across all three environments without manual configuration changes.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Reproducible deployments across all environments, eliminating deployment failures and dramatically reducing the release cycle.</p>
+      <p class="sar-text">Deployments became reproducible across all environments, deployment failures stopped, and the release cycle got much shorter.</p>
       <div class="result-metrics">
         <span class="result-metric">Reproducible across 3 environments</span>
         <span class="result-metric">70% release time reduction</span>
@@ -346,11 +346,11 @@
     <div class="project-case">
       <div class="project-case-title">3. Git Integration &amp; Source Control Architecture</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Power BI artifacts had <strong>no version control, no audit trail, and no governance</strong>. Changes were deployed directly without review, creating compliance risks. Onboarding new team members was slow because there was no documented history of what changed, when, or why.</p>
+      <p class="sar-text">Power BI artifacts had <strong>no version control, no audit trail, and no governance</strong>. Changes went straight to production without review, a compliance risk. Onboarding new team members was slow because no one could see what changed, when, or why.</p>
       <div class="sar-label action">Action</div>
       <p class="sar-text">Designed an end-to-end <strong>Git-based source control architecture</strong> using PBIP/TMDL format with CI/CD pipelines via Azure DevOps and GitHub. Established branching strategies, pull request workflows, automated validation gates, and deployment pipelines that enforced governance at every stage.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Full audit trail for compliance, zero-downtime deployments, and significantly faster onboarding for new analysts joining the team.</p>
+      <p class="sar-text">A full audit trail for compliance, zero-downtime deployments, and faster onboarding for new analysts joining the team.</p>
       <div class="result-metrics">
         <span class="result-metric">Zero-downtime deployments</span>
         <span class="result-metric">Full audit trail</span>
@@ -363,11 +363,11 @@
     <div class="project-case">
       <div class="project-case-title">4. Semantic Model Performance Engineering</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Semantic models had grown organically over time, accumulating redundant measures, unoptimized relationships, and bloated table structures. Report load times were degrading as data volumes increased, and users were experiencing slow dashboard responsiveness.</p>
+      <p class="sar-text">The semantic models had grown over time. Redundant measures, slow relationships, and oversized tables piled up, and report load times got worse as data volumes grew.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Conducted a <strong>systematic performance audit</strong> across all production semantic models. Refactored DAX calculations at the formula and storage engine level, removed unused measures, optimized relationships, and restructured tables for query efficiency.</p>
+      <p class="sar-text">Audited every production semantic model. Refactored DAX at the formula and storage engine level, removed unused measures, fixed relationships, and restructured tables for query efficiency.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Leaner, faster models that improved the end-user experience and reduced infrastructure load.</p>
+      <p class="sar-text">Leaner, faster models. Users noticed the difference, and the infrastructure load came down.</p>
       <div class="result-metrics">
         <span class="result-metric">30% model size reduction</span>
         <span class="result-metric">25% query performance gain</span>
@@ -378,11 +378,11 @@
     <div class="project-case">
       <div class="project-case-title">5. AI-Augmented Development Workflow</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Traditional BI development cycles were slow: DAX authoring, debugging, and documentation consumed disproportionate development hours, creating bottlenecks in delivery timelines.</p>
+      <p class="sar-text">Development was slow in the usual places. DAX authoring, debugging, and documentation took most of the hours and held up delivery.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Embedded <strong>AI copilots into DAX authoring, performance diagnostics, and documentation workflows</strong>. Adopted the <strong>Power BI MCP (Model Context Protocol) server from its earliest public preview</strong>, enabling AI agents to interact directly with semantic models: creating measures, validating DAX, executing bulk operations, and enforcing best practices through natural language. Developed prompt engineering patterns specific to Power BI and DAX context. Established team guidelines for effective AI-augmented development that balanced speed with quality.</p>
+      <p class="sar-text">Brought AI into <strong>DAX authoring, performance diagnostics, and documentation</strong>. Adopted the <strong>Power BI MCP (Model Context Protocol) server from its earliest public preview</strong>, so AI agents work directly against the semantic model: creating measures, validating DAX, running bulk operations. This space moves fast, so I test each new tool as it lands and fold the ones that work into how we build. Wrote the team's working guidelines so the speed did not cost us quality.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Fundamentally accelerated the development cycle without sacrificing code quality or governance standards. The MCP integration shifted AI from a code-suggestion tool to an autonomous development partner across the full semantic model lifecycle.</p>
+      <p class="sar-text">Development speed roughly tripled, with code quality and governance standards intact. AI went from a suggestion tool to a working part of the development cycle.</p>
       <div class="result-metrics">
         <span class="result-metric">3&times; development speed</span>
         <span class="result-metric">AI-augmented DAX authoring</span>
@@ -395,11 +395,11 @@
     <div class="project-case">
       <div class="project-case-title">6. Fabric Capacity Optimization</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Fabric Premium capacity (CU) costs were high and growing, with no systematic approach to usage monitoring or optimization. Refresh patterns were wasteful, and capacity allocation was not aligned with actual workload demands.</p>
+      <p class="sar-text">Fabric capacity (CU) costs were high and growing, and nobody was watching usage closely. Refresh patterns were wasteful, and capacity allocation did not match the real workloads.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Conducted hands-on <strong>CU usage analysis</strong> combining AI-supported performance diagnostics with manual tuning. Identified and eliminated wasteful refresh patterns, optimized query distribution across capacity, and right-sized allocation based on actual usage patterns.</p>
+      <p class="sar-text">Analyzed <strong>CU usage</strong> hands-on, combining AI-supported diagnostics with manual tuning. Removed wasteful refresh patterns, spread queries better across capacity, and right-sized allocation to the actual workload.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Significant cost reduction while maintaining, and in many cases improving, performance for end users.</p>
+      <p class="sar-text">CU usage came down 25% while performance held, and in several models improved.</p>
       <div class="result-metrics">
         <span class="result-metric">25% CU usage reduction</span>
       </div>
@@ -409,11 +409,11 @@
     <div class="project-case">
       <div class="project-case-title">7. Team Mentoring &amp; Knowledge Transfer</div>
       <div class="sar-label">Situation</div>
-      <p class="sar-text">Analysts lacked semantic modeling expertise, DAX proficiency, and awareness of AI-augmented workflows, creating bottlenecks and single points of failure within the team.</p>
+      <p class="sar-text">Too much of the work depended on too few people. Analysts were missing semantic modeling depth, DAX fluency, and experience with AI-assisted development.</p>
       <div class="sar-label action">Action</div>
-      <p class="sar-text">Established an ongoing <strong>mentoring program</strong> covering semantic modeling best practices, DAX optimization patterns, and AI-powered report generation. Created documentation and training materials. Conducted hands-on workshops tailored to each analyst's skill level and responsibilities.</p>
+      <p class="sar-text">Set up ongoing <strong>mentoring</strong> covering semantic modeling, DAX optimization patterns, and AI-assisted report development. Wrote documentation and training materials, and ran hands-on workshops matched to each analyst's level and responsibilities.</p>
       <div class="sar-label result">Result</div>
-      <p class="sar-text">Upskilled the analyst team, eliminating single points of failure and building a self-sustaining BI engineering culture within the organization.</p>
+      <p class="sar-text">The analysts carry this work themselves now. The single points of failure are gone.</p>
       <div class="result-metrics">
         <span class="result-metric">Analysts upskilled</span>
         <span class="result-metric">Semantic modeling</span>

@@ -11,10 +11,10 @@
 ---
 
 - **Microsoft MVP** for Power BI and Microsoft Fabric, every year since 2022
-- Architecting enterprise Fabric analytics at global scale: **30,000+ users**, **billions of rows** across **15+ semantic models** powering **30+ reports**
-- Building **AI-ready semantic layers**: governed, source-controlled models that Copilot and AI agents can trust, with agentic development (Claude, Copilot, Power BI MCP) tripling team speed
-- Creator of open-source PBIP governance tools: **94+ GitHub stars** across 5 repositories
-- Supply chain & logistics domain expertise: Samsung SDS, GXO Logistics, IKEA
+- I architect, build, and look after IKEA's enterprise Fabric analytics: **30,000+ users**, **billions of rows** across **15+ semantic models** powering **30+ reports**
+- Copilot and AI agents answer from these models, so I keep them **governed, documented, and source-controlled**. I also lead how my team uses AI in development (Claude, Copilot, Power BI MCP), which has roughly tripled our speed
+- On the side I build open-source PBIP governance tools: **94+ GitHub stars** across 5 repositories
+- Before BI, over ten years in supply chain and logistics operations: Samsung SDS, GXO Logistics, and more
 
 ---
 
@@ -28,7 +28,7 @@ Tools I built to solve real enterprise Power BI governance problems.
 | [pbip-lineage-explorer](https://github.com/JonathanJihwanKim/pbip-lineage-explorer) | Visualizes end-to-end data lineage across models | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-lineage-explorer?style=flat-square&color=F2C811&label=) |
 | [isHiddenInViewMode](https://github.com/JonathanJihwanKim/isHiddenInViewMode) | Bulk toggles visual visibility for governance control | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/isHiddenInViewMode?style=flat-square&color=F2C811&label=) |
 | [pbip-impact-analyzer](https://github.com/JonathanJihwanKim/pbip-impact-analyzer) | Analyzes change impact before refactoring semantic models | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip-impact-analyzer?style=flat-square&color=F2C811&label=) |
-| [pbip_model_lenz](https://github.com/JonathanJihwanKim/pbip_model_lenz) | Python PBIP analyzer (on PyPI) — one graph, two readings for BI devs and data engineers | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip_model_lenz?style=flat-square&color=F2C811&label=) |
+| [pbip_model_lenz](https://github.com/JonathanJihwanKim/pbip_model_lenz) | Python PBIP analyzer (on PyPI): one graph, two readings for BI devs and data engineers | ![Stars](https://img.shields.io/github/stars/JonathanJihwanKim/pbip_model_lenz?style=flat-square&color=F2C811&label=) |
 
 ---
 
@@ -44,4 +44,4 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ---
 
-📧 jonathan.jihwankim@gmail.com · 📍 The Netherlands · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)
+jonathan.jihwankim@gmail.com · The Netherlands · [LinkedIn](https://www.linkedin.com/in/jihwankim1975/) · [Blog](https://powerbimvp.com/)
