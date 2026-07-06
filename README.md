@@ -2,18 +2,19 @@
 
 # Jihwan Kim
 
-**Power BI Architect** | Supply Chain &rarr; Microsoft Fabric &rarr; Power BI
+**Power BI & Microsoft Fabric Architect** | Supply Chain &rarr; Microsoft Fabric &rarr; AI-Ready Semantic Layers
 
 [![View Portfolio](https://img.shields.io/badge/View_Portfolio_%E2%86%92-F2C811?style=for-the-badge)](https://jonathanjihwankim.github.io/Profile/)
 
-![Users](https://img.shields.io/badge/Users_Served-30,000+-F2C811?style=flat-square&logo=powerbi&logoColor=white) ![Solutions](https://img.shields.io/badge/Community_Solutions-2,700+-2AAC94?style=flat-square&logo=microsoft&logoColor=white) ![Stars](https://img.shields.io/badge/GitHub_Stars-92+-55DDB9?style=flat-square&logo=github&logoColor=white) ![Experience](https://img.shields.io/badge/Power_BI-8+_Years-EEA41A?style=flat-square) ![Fabric](https://img.shields.io/badge/Fabric-2+_Years-085954?style=flat-square)
+![Users](https://img.shields.io/badge/Users_Served-30,000+-F2C811?style=flat-square&logo=powerbi&logoColor=white) ![Solutions](https://img.shields.io/badge/Community_Solutions-2,700+-2AAC94?style=flat-square&logo=microsoft&logoColor=white) ![Stars](https://img.shields.io/badge/GitHub_Stars-94+-55DDB9?style=flat-square&logo=github&logoColor=white) ![Experience](https://img.shields.io/badge/Power_BI-8+_Years-EEA41A?style=flat-square) ![Fabric](https://img.shields.io/badge/Fabric-2+_Years-085954?style=flat-square)
 
 ---
 
-- **Microsoft MVP** for Power BI and Microsoft Fabric — fewer than 200 worldwide
-- Architecting enterprise Fabric analytics at Fortune 500 scale — **30,000+ users**, **500M+ records** across **15 semantic models** powering **30 reports**
-- Creator of open-source PBIP governance tools — **92+ GitHub stars** across 5 repositories
-- Supply chain & logistics domain expertise — Samsung SDS, GXO Logistics, IKEA
+- **Microsoft MVP** for Power BI and Microsoft Fabric, every year since 2022
+- Architecting enterprise Fabric analytics at global scale: **30,000+ users**, **billions of rows** across **15+ semantic models** powering **30+ reports**
+- Building **AI-ready semantic layers**: governed, source-controlled models that Copilot and AI agents can trust, with agentic development (Claude, Copilot, Power BI MCP) tripling team speed
+- Creator of open-source PBIP governance tools: **94+ GitHub stars** across 5 repositories
+- Supply chain & logistics domain expertise: Samsung SDS, GXO Logistics, IKEA
 
 ---
 
@@ -33,7 +34,7 @@ Tools I built to solve real enterprise Power BI governance problems.
 
 ### GitHub Stats
 
-![Repos](https://img.shields.io/badge/Public_Repos-5-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=2AAC94) ![Stars](https://img.shields.io/badge/Total_Stars-92+-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=F2C811)
+![Repos](https://img.shields.io/badge/Public_Repos-5-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=2AAC94) ![Stars](https://img.shields.io/badge/Total_Stars-94+-0c1220?style=for-the-badge&logo=github&logoColor=white&labelColor=0c1220&color=F2C811)
 
 ---
 
